@@ -64,8 +64,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const body = res.body;
-    if (!body) {
+    const responseBody = res.body;
+    if (!responseBody) {
       return NextResponse.json(
         { error: "No response body" },
         { status: 502 }
@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
 
     const stream = new ReadableStream({
       async start(controller) {
-        const reader = body.getReader();
+        const reader = responseBody.getReader();
         const decoder = new TextDecoder();
         let buffer = "";
         try {
