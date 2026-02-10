@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========== Lion Finance 金融公司设计系统（新西兰客户向） ========== */
+:root {
+  /* 品牌色 - 稳重、可信 */
+  --lion-gold: #c9a227;
+  --lion-gold-hover: #b8921f;
+  --lion-dark: #1a1a2e;
+  --lion-navy: #16213e;
+  --lion-cream: #f5f0e8;
+  --lion-white: #ffffff;
+
+  /* 金融感：中性灰阶，用于正文与次级信息 */
+  --lion-text-primary: #1a1a2e;
+  --lion-text-secondary: #4a5568;
+  --lion-text-muted: #718096;
+
+  /* 间距规范：8px 基准 */
+  --space-section: 5rem;   /* 80px 区块间距 */
+  --space-block: 2rem;    /* 32px 块内间距 */
+  --space-element: 1rem;  /* 16px 元素间距 */
+
+  /* 圆角：适度圆角体现专业与亲和 */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+
+  /* 阴影：轻微层次，不花哨 */
+  --shadow-card: 0 1px 3px rgba(22, 33, 62, 0.08);
+  --shadow-card-hover: 0 4px 12px rgba(22, 33, 62, 0.12);
+  --shadow-button: 0 2px 8px rgba(201, 162, 39, 0.35);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  @apply text-lion-dark antialiased;
+  color: var(--lion-text-primary);
+  font-feature-settings: "kern" 1, "liga" 1;
+  overflow-x: hidden;
+}
+
+/* 区块标题统一风格 */
+.section-heading {
+  @apply text-3xl font-bold text-lion-navy tracking-tight;
+  letter-spacing: -0.02em;
+}
+
+/* 卡片：金融产品/客户评价等 */
+.card-financial {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card-financial:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* 主按钮 */
+.btn-primary {
+  background-color: var(--lion-gold);
+  color: var(--lion-white);
+  box-shadow: var(--shadow-button);
+  border-radius: var(--radius-md);
+  transition: background-color 0.2s ease, transform 0.05s ease;
+}
+.btn-primary:hover {
+  background-color: var(--lion-gold-hover);
+}
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+@layer utilities {
+  .animate-in {
+    animation: fadeIn 0.6s ease-out, slideUp 0.5s ease-out;
+  }
+}
