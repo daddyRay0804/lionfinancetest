@@ -55,7 +55,7 @@ export default function ComplaintsPage({ params }: { params: { lang: string } })
                   <p className="mb-4 leading-relaxed">{content[0]}</p>
                   <ul className="list-none pl-0 space-y-2 mb-4">
                     <li><strong>{lang === "en" ? "Phone" : lang === "zh" ? "电话" : "전화"}:</strong> {content[1].replace(/^Phone:?\s*/i, "").replace(/^电话：?\s*/, "").replace(/^전화:?\s*/, "")}</li>
-                    <li><strong>{lang === "en" ? "Email" : lang === "zh" ? "电邮" : "이메일"}:</strong> <a href="mailto:allan@lionfinance.co.nz">allan@lionfinance.co.nz</a>, <a href="mailto:gary@lionfinance.co.nz">gary@lionfinance.co.nz</a>, <a href="mailto:joyce@lionfinance.co.nz">joyce@lionfinance.co.nz</a></li>
+                    <li><strong>{lang === "en" ? "Email" : lang === "zh" ? "电邮" : "이메일"}:</strong> <a href="mailto:allan@lionfinance.co.nz">allan@lionfinance.co.nz</a>, <a href="mailto:gary@lionfinance.co.nz">gary@lionfinance.co.nz</a></li>
                     <li><strong>{lang === "en" ? "In writing" : lang === "zh" ? "书面" : "서면"}</strong> — {content[3].replace(/^In writing\s*—\s*Complaints officer:?\s*/i, "").replace(/^书面投诉负责人：?\s*/, "").replace(/^서면\s*—\s*불만 담당:?\s*/, "")}</li>
                     <li>{content[4]}</li>
                   </ul>

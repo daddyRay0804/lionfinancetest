@@ -119,7 +119,7 @@ export default function TermsPage({ params }: { params: { lang: string } }) {
           </p>
           <p className="leading-relaxed">
             This policy does not limit or exclude any of your rights under the Act. If you wish to seek further information on the Act, you can contact our Privacy Officer by email on{" "}
-            <a href="mailto:joyce@ginkgo.co.nz">joyce@ginkgo.co.nz</a>. Or visit{" "}
+            <a href="mailto:info@lionfinance.co.nz">info@lionfinance.co.nz</a>. Or visit{" "}
             <a href="https://www.privacy.org.nz" target="_blank" rel="noopener noreferrer">www.privacy.org.nz</a> for further information.
           </p>
         </section>
@@ -201,7 +201,7 @@ export default function TermsPage({ params }: { params: { lang: string } }) {
             We will only retain personal information as long as it is required for the purposes for which the information may lawfully be used. All data stored online is backed up and can be retrieved in the event of data loss or corruption.
           </p>
           <p className="leading-relaxed">
-            Data will sometimes be held on-premise at office — 20 Northcroft Street, Takapuna, Auckland — if it is provided to us outside of our software.
+            Data will sometimes be held on-premise at office — 2/24 Aberfeldy Ave, Highland Park, Auckland 2010 — if it is provided to us outside of our software.
           </p>
         </section>
 
@@ -217,7 +217,7 @@ export default function TermsPage({ params }: { params: { lang: string } }) {
           </p>
           <p className="leading-relaxed">
             If you want to exercise either of the above rights, email us at{" "}
-            <a href="mailto:joyce@ginkgo.co.nz">joyce@ginkgo.co.nz</a>. Your email should provide evidence of who you are and set out the details of your request (e.g. the personal information, or the correction, that you are requesting).
+            <a href="mailto:info@lionfinance.co.nz">info@lionfinance.co.nz</a>. Your email should provide evidence of who you are and set out the details of your request (e.g. the personal information, or the correction, that you are requesting).
           </p>
         </section>
 

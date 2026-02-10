@@ -24,7 +24,7 @@ export const nav: Record<string, ContentMap> = {
 };
 
 /** 公司联络地址 */
-export const contactAddress = "Unit 5, 20 Northcroft Road, Takapuna, Auckland";
+export const contactAddress = "2/24 Aberfeldy Ave, Highland Park, Auckland 2010";
 export const contactEmail = "info@lionfinance.co.nz";
 
 /** 页脚法律/政策导航（二级页面） */

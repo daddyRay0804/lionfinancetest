@@ -255,9 +255,9 @@ export const disclosureSections: LegalSection[] = [
       {
         type: "p",
         text: {
-          en: "If you are not satisfied with our financial advice service in any way, you can make a complaint by emailing allan@lionfinance.co.nz, gary@lionfinance.co.nz, or joyce@lionfinance.co.nz, or by calling us on the mobile numbers listed under our personal profile. You can also write to us at: PO Box 259289, Botany, Auckland 2163.",
-          zh: "若您对我们的金融建议服务有任何不满，可通过电邮 allan@lionfinance.co.nz、gary@lionfinance.co.nz 或 joyce@lionfinance.co.nz 投诉，或拨打个人资料中列出的手机号码。您也可来信：PO Box 259289, Botany, Auckland 2163。",
-          kr: "당사 금융 자문 서비스에 어떤 이유로든 만족하지 않으시면 allan@lionfinance.co.nz, gary@lionfinance.co.nz 또는 joyce@lionfinance.co.nz로 이메일을 보내거나 개인 프로필에 기재된 휴대폰 번호로 전화하여 불만을 제기할 수 있습니다. 서면으로 보내실 경우: PO Box 259289, Botany, Auckland 2163.",
+          en: "If you are not satisfied with our financial advice service in any way, you can make a complaint by emailing allan@lionfinance.co.nz or gary@lionfinance.co.nz, or by calling us on the mobile numbers listed under our personal profile. You can also write to us at: PO Box 259289, Botany, Auckland 2163.",
+          zh: "若您对我们的金融建议服务有任何不满，可通过电邮 allan@lionfinance.co.nz 或 gary@lionfinance.co.nz 投诉，或拨打个人资料中列出的手机号码。您也可来信：PO Box 259289, Botany, Auckland 2163。",
+          kr: "당사 금융 자문 서비스에 어떤 이유로든 만족하지 않으시면 allan@lionfinance.co.nz 또는 gary@lionfinance.co.nz로 이메일을 보내거나 개인 프로필에 기재된 휴대폰 번호로 전화하여 불만을 제기할 수 있습니다. 서면으로 보내실 경우: PO Box 259289, Botany, Auckland 2163.",
         },
       },
       {
@@ -428,21 +428,21 @@ export const disclosureSections: LegalSection[] = [
         type: "ul",
         items: {
           en: [
-            "Phone: 021 153 1918 (Allan Wu, Director), 022 161 9172 (Gary Jiang, Director), 021 187 7785 (Joyce He)",
-            "Email: allan@lionfinance.co.nz, gary@lionfinance.co.nz, joyce@lionfinance.co.nz",
-            "Address: Unit 5, 20 Northcroft Road, Takapuna, Auckland",
+            "Phone: 021 153 1918 (Allan Wu, Director), 022 161 9172 (Gary Jiang, Director)",
+            "Email: allan@lionfinance.co.nz, gary@lionfinance.co.nz",
+            "Address: 2/24 Aberfeldy Ave, Highland Park, Auckland 2010",
             "Mail: PO Box 259289, Botany, Auckland 2163",
           ],
           zh: [
-            "电话：021 153 1918（Allan Wu，总监）、022 161 9172（Gary Jiang，总监）、021 187 7785（Joyce He）",
-            "电邮：allan@lionfinance.co.nz、gary@lionfinance.co.nz、joyce@lionfinance.co.nz",
-            "地址：Unit 5, 20 Northcroft Road, Takapuna, Auckland",
+            "电话：021 153 1918（Allan Wu，总监）、022 161 9172（Gary Jiang，总监）",
+            "电邮：allan@lionfinance.co.nz、gary@lionfinance.co.nz",
+            "地址：2/24 Aberfeldy Ave, Highland Park, Auckland 2010",
             "邮寄：PO Box 259289, Botany, Auckland 2163",
           ],
           kr: [
-            "전화: 021 153 1918 (Allan Wu, 디렉터), 022 161 9172 (Gary Jiang, 디렉터), 021 187 7785 (Joyce He)",
-            "이메일: allan@lionfinance.co.nz, gary@lionfinance.co.nz, joyce@lionfinance.co.nz",
-            "주소: Unit 5, 20 Northcroft Road, Takapuna, Auckland",
+            "전화: 021 153 1918 (Allan Wu, 디렉터), 022 161 9172 (Gary Jiang, 디렉터)",
+            "이메일: allan@lionfinance.co.nz, gary@lionfinance.co.nz",
+            "주소: 2/24 Aberfeldy Ave, Highland Park, Auckland 2010",
             "우편: PO Box 259289, Botany, Auckland 2163",
           ],
         },

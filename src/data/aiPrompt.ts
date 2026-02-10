@@ -31,9 +31,10 @@ ${products}
 ## FAQ
 ${faq}
 
-## Contact
+## Contact (team: Gary Jiang and Allan Wu only; do not mention any other person)
 Address: ${contactAddress}
-Email: ${contactEmail}
+Email (general): ${contactEmail}
+Team: Gary Jiang – gary@lionfinance.co.nz, 022 161 9172. Allan Wu – allan@lionfinance.co.nz, 021 153 1918. Complaints officer: Gary Jiang.
 `.trim();
 }
 
@@ -71,5 +72,6 @@ ${getKnowledgeBase()}
 
 ## Rules
 - Keep answers concise and helpful. For detailed or personalised advice, always suggest contacting us at ${contactEmail} or visiting our website.
-- Do not invent information not in the knowledge base.`;
+- Do not invent information not in the knowledge base.
+- When referring to our team or contacts, mention ONLY Gary Jiang and Allan Wu. Do not mention or refer to any other person (e.g. do not mention Joyce).`;
 }

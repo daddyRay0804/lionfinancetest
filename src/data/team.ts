@@ -48,22 +48,4 @@ export const teamMembers: TeamMember[] = [
     email: "allan@lionfinance.co.nz",
     image: "/team/allan.png",
   },
-  {
-    id: "joyce-he",
-    name: "Joyce He",
-    title: {
-      en: "Mortgage & Insurance Advisor",
-      zh: "房贷与保险顾问",
-      kr: "모기지 및 보험 어드바이저",
-    },
-    bio: {
-      en: "Joyce is a trusted insurance and mortgage adviser with over 10 years of experience in New Zealand's financial services industry. Since starting her insurance career in 2007 and expanding into mortgage advice in 2014, Joyce has helped hundreds of families and business owners make confident financial decisions. She is a fully qualified Level 5 financial adviser who understands every stage of the process—from the first conversation to policy approval or loan settlement. Joyce brings professionalism, empathy, and attention to detail to every client relationship. Whether it's a small personal cover or a complex lending project, no case is too small or too big—her goal is always to find the best solution for you.",
-      zh: "Joyce 是新西兰金融服务行业超过 10 年经验的保险与房贷顾问。自 2007 年从事保险、2014 年拓展至房贷建议以来，已帮助数百个家庭与企业主做出自信的财务决策。她为完全合格的 Level 5 金融顾问，熟悉从首次沟通到保单获批或贷款交割的全流程。Joyce 以专业、同理心与细致对待每一位客户；无论小额个人保障还是复杂贷款项目，她都致力于为您找到最佳方案。",
-      kr: "Joyce는 뉴질랜드 금융 서비스 업계 10년 이상 경력의 신뢰받는 보험 및 모기지 어드바이저입니다. 2007년 보험 커리어를 시작하고 2014년 모기지 상담으로 확장한 이래 수백 가정과 사업주가 확신 있는 재정 결정을 내리도록 도왔습니다. 첫 대화부터 정책 승인 또는 대출 정산까지 전 과정을 이해하는 완전 자격을 갖춘 Level 5 금융 어드바이저입니다. Joyce는 전문성, 공감, 세부 사항에 대한 관심을 모든 고객 관계에 담습니다. 소규모 개인 보장이든 복잡한 대출 프로젝트든, 그녀의 목표는 항상 귀하에게 최선의 솔루션을 찾는 것입니다.",
-    },
-    fspNumber: "FSP 50801",
-    phone: "021 187 7785",
-    email: "joyce@lionfinance.co.nz",
-    image: "/team/joyce.png",
-  },
 ];

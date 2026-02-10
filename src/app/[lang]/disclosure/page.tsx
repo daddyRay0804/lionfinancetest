@@ -42,7 +42,7 @@ function renderBlock(block: (typeof disclosureSections)[0]["blocks"][0], lang: L
             const parts = item.split("enquiries@fdrs.org.nz");
             return <li key={i}>{parts[0]}<a href="mailto:enquiries@fdrs.org.nz">enquiries@fdrs.org.nz</a>{parts[1] ?? ""}</li>;
           }
-          if (isContactDetails && item.includes("allan@lionfinance")) return <li key={i}><strong>{item.split(":")[0]}:</strong> <a href="mailto:allan@lionfinance.co.nz">allan@lionfinance.co.nz</a>, <a href="mailto:gary@lionfinance.co.nz">gary@lionfinance.co.nz</a>, <a href="mailto:joyce@lionfinance.co.nz">joyce@lionfinance.co.nz</a></li>;
+          if (isContactDetails && item.includes("allan@lionfinance")) return <li key={i}><strong>{item.split(":")[0]}:</strong> <a href="mailto:allan@lionfinance.co.nz">allan@lionfinance.co.nz</a>, <a href="mailto:gary@lionfinance.co.nz">gary@lionfinance.co.nz</a></li>;
           if (isContactDetails) {
             const colonIdx = item.indexOf(": ");
             if (colonIdx > 0) return <li key={i}><strong>{item.slice(0, colonIdx)}:</strong> {item.slice(colonIdx + 2)}</li>;
