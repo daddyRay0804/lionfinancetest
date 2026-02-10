@@ -15,10 +15,16 @@ const WELCOME: Record<Lang, string> = {
   kr: "안녕하세요! Lion Finance 상담 도우미입니다. 주택 대출, 재융자, 건축 대출 등 일반적인 질문에 답변해 드립니다. 맞춤 상담은 팀에 연락해 주세요. 오늘 무엇을 도와드릴까요?",
 };
 
-const STREAM_REPLY: Record<Lang, string> = {
-  en: "Thanks for your message. At Lion Finance we specialise in home loans, construction loans, business and commercial finance, refinance, top-ups, and interest rate refix across New Zealand. For a personalised quote or to speak with a broker, please email us or call—we'd be happy to help.",
-  zh: "感谢您的留言。Lion Finance 专注新西兰的房屋贷款、建筑贷款、商业与商业地产融资、再融资、加贷及利率重定。如需个性化报价或与经纪沟通，请发邮件或致电，我们乐意为您服务。",
-  kr: "메시지 감사합니다. Lion Finance는 뉴질랜드 전역에서 주택 대출, 건축 대출, 사업자 및 상업용 금융, 재융자, 탑업, 금리 재설정을 전문으로 합니다. 맞춤 견적 또는 브로커 상담을 원하시면 이메일 또는 전화로 연락해 주시면 기꺼이 도와드리겠습니다.",
+const ERROR_MSG: Record<Lang, string> = {
+  en: "Something went wrong. Please try again or contact us for help.",
+  zh: "出了点问题，请重试或联系我们。",
+  kr: "오류가 발생했습니다. 다시 시도하거나 연락해 주세요.",
+};
+
+const SEND_LABEL: Record<Lang, string> = {
+  en: "Send",
+  zh: "发送",
+  kr: "보내기",
 };
 
 type AIChatProps = { lang: Lang };
@@ -43,7 +49,7 @@ export function AIChat({ lang }: AIChatProps) {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, streamText]);
 
-  const streamReply = (fullText: string) => {
+  const appendStreamThenFinish = (fullText: string) => {
     setStreaming(true);
     setStreamText("");
     let i = 0;
@@ -57,15 +63,81 @@ export function AIChat({ lang }: AIChatProps) {
         setStreamText("");
         setStreaming(false);
       }
-    }, 20);
+    }, 16);
   };
 
-  const send = () => {
+  const send = async () => {
     const text = input.trim();
     if (!text || streaming) return;
     setInput("");
-    setMessages((prev) => [...prev, { role: "user", text }]);
-    streamReply(STREAM_REPLY[lang]);
+    const newMessages = [...messages, { role: "user" as const, text }];
+    setMessages(newMessages);
+
+    const apiMessages = newMessages.map((m) => ({
+      role: m.role,
+      content: m.text,
+    }));
+
+    setStreaming(true);
+    setStreamText("");
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: apiMessages, lang }),
+      });
+
+      const contentType = res.headers.get("Content-Type") ?? "";
+
+      if (contentType.includes("application/json")) {
+        const data = (await res.json()) as { content?: string; error?: string; detail?: string };
+        setStreaming(false);
+        setStreamText("");
+        if (!res.ok) {
+          setMessages((prev) => [
+            ...prev,
+            { role: "assistant", text: data.content ?? data.error ?? ERROR_MSG[lang] },
+          ]);
+          return;
+        }
+        const content = data.content ?? "";
+        if (content) {
+          appendStreamThenFinish(content);
+        } else {
+          setStreaming(false);
+        }
+        return;
+      }
+
+      if (!res.body) {
+        setStreaming(false);
+        setMessages((prev) => [...prev, { role: "assistant", text: ERROR_MSG[lang] }]);
+        return;
+      }
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let full = "";
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          const chunk = decoder.decode(value, { stream: true });
+          full += chunk;
+          setStreamText(full);
+        }
+      } finally {
+        reader.releaseLock();
+      }
+      setMessages((prev) => [...prev, { role: "assistant", text: full }]);
+      setStreamText("");
+    } catch {
+      setMessages((prev) => [...prev, { role: "assistant", text: ERROR_MSG[lang] }]);
+    } finally {
+      setStreaming(false);
+      setStreamText("");
+    }
   };
 
   return (
@@ -113,10 +185,10 @@ export function AIChat({ lang }: AIChatProps) {
                 </div>
               </div>
             ))}
-            {streaming && streamText && (
+            {streaming && (
               <div className="flex justify-start">
                 <div className="max-w-[85%] px-3 py-2 rounded-lg bg-lion-cream text-lion-dark">
-                  {streamText}
+                  {streamText || " "}
                   <span className="animate-pulse">|</span>
                 </div>
               </div>
@@ -140,7 +212,7 @@ export function AIChat({ lang }: AIChatProps) {
                 disabled={streaming || !input.trim()}
                 className="min-h-[44px] px-4 py-2 text-sm font-medium bg-lion-gold text-white rounded-lg hover:bg-lion-gold/90 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
               >
-                Send
+                {SEND_LABEL[lang]}
               </button>
             </div>
           </div>
