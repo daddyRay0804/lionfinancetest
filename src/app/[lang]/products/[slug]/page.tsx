@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import {
   productSlugs,
@@ -74,6 +75,16 @@ export default function ProductPage({
           <span className="mx-2">/</span>
           <span className="text-lion-navy font-medium">{title}</span>
         </nav>
+        <div className="relative w-full h-48 sm:h-64 md:h-80 rounded-xl overflow-hidden mb-8">
+          <Image
+            src={`/products/${slug}.png`}
+            alt={title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 768px"
+            priority
+          />
+        </div>
         <h1 className="text-4xl font-bold text-lion-navy mb-4">{title}</h1>
         <div className="space-y-4 text-lion-dark/90 leading-relaxed">
           {description.split(/\n\n+/).map((para, i) => (

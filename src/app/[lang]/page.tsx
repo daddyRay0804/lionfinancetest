@@ -4,6 +4,7 @@ import type { Lang } from "@/lib/i18n";
 import { siteName, siteTagline, contactAddress, contactEmail } from "@/data/content";
 import { testimonialsList } from "@/data/testimonials";
 import { faqList } from "@/data/faq";
+import { teamMembers } from "@/data/team";
 import { ProductShowcase } from "@/components/ProductShowcase";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { FAQPageJsonLd } from "@/components/FAQPageJsonLd";
@@ -66,6 +67,18 @@ const productsHeading: Record<Lang, string> = {
   en: "Our products",
   zh: "我们的产品",
   kr: "상품 안내",
+};
+
+const teamHeading: Record<Lang, string> = {
+  en: "Our Team",
+  zh: "我们的团队",
+  kr: "우리 팀",
+};
+
+const teamMeetCta: Record<Lang, string> = {
+  en: "Meet the full team",
+  zh: "查看完整团队",
+  kr: "팀 전체 보기",
 };
 
 const testimonialsHeading: Record<Lang, string> = {
@@ -159,6 +172,46 @@ export default function HomePage({ params }: { params: { lang: string } }) {
       <ProductShowcase lang={lang} heading={productsHeading[lang]} />
 
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="section-heading text-center mb-8 sm:mb-12 text-2xl sm:text-3xl">
+            {teamHeading[lang]}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            {teamMembers.map((member) => (
+              <div
+                key={member.id}
+                className="flex flex-col items-center text-center p-6 bg-lion-cream rounded-xl border border-lion-gold/20 shadow-card hover:shadow-card-hover transition"
+              >
+                {member.image && (
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    width={120}
+                    height={120}
+                    className="rounded-full object-cover mb-4 border-2 border-lion-gold/30"
+                  />
+                )}
+                <h3 className="text-lg font-bold text-lion-navy">{member.name}</h3>
+                <p className="text-sm text-lion-gold font-medium mb-2">{member.title[lang]}</p>
+                <p className="text-sm text-lion-dark/80 leading-relaxed line-clamp-3">
+                  {member.bio[lang].slice(0, 150)}…
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Link
+              href={`/${lang}/team`}
+              className="inline-flex items-center gap-1.5 text-lion-gold font-medium hover:underline"
+            >
+              {teamMeetCta[lang]}
+              <span aria-hidden>→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-lion-cream">
         <div className="max-w-6xl mx-auto">
           <h2 className="section-heading text-center mb-8 sm:mb-12 text-2xl sm:text-3xl">
             {testimonialsHeading[lang]}
