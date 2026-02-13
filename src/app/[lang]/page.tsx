@@ -216,18 +216,23 @@ export default function HomePage({ params }: { params: { lang: string } }) {
           <h2 className="section-heading text-center mb-8 sm:mb-12 text-2xl sm:text-3xl">
             {testimonialsHeading[lang]}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {testimonialsList.map((t) => (
               <blockquote
                 key={t.name}
-                className="p-5 sm:p-6 bg-lion-cream card-financial border border-lion-gold/20 border-l-4 border-l-lion-gold"
+                className="p-5 sm:p-6 bg-white card-financial rounded-xl border border-lion-gold/20 border-l-4 border-l-lion-gold flex flex-col justify-between"
               >
-                <p className="text-lion-dark mb-4">&ldquo;{t.text[lang]}&rdquo;</p>
-                <footer className="text-sm text-lion-navy font-medium">
-                  {t.name} — {t.role[lang]}, {t.location}
-                </footer>
-                <div className="mt-2 text-lion-gold" aria-hidden>
-                  {"★".repeat(t.rating)}
+                <p className="text-lion-dark mb-4 text-sm leading-relaxed">&ldquo;{t.text[lang]}&rdquo;</p>
+                <div>
+                  <footer className="text-sm text-lion-navy font-semibold">
+                    {t.name}
+                  </footer>
+                  <p className="text-xs text-lion-dark/60 mt-0.5">
+                    {t.role[lang]} · {t.location}
+                  </p>
+                  <div className="mt-2 text-lion-gold text-sm" aria-hidden>
+                    {"★".repeat(t.rating)}
+                  </div>
                 </div>
               </blockquote>
             ))}
