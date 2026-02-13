@@ -211,16 +211,18 @@ export default function HomePage({ params }: { params: { lang: string } }) {
         </div>
       </section>
 
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-lion-cream">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-12 sm:py-16 md:py-20 bg-lion-cream">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <h2 className="section-heading text-center mb-8 sm:mb-12 text-2xl sm:text-3xl">
             {testimonialsHeading[lang]}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        </div>
+        <div className="relative max-w-6xl mx-auto">
+          <div className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory px-4 sm:px-6 pb-4 no-scrollbar">
             {testimonialsList.map((t) => (
               <blockquote
                 key={t.name}
-                className="p-5 sm:p-6 bg-white card-financial rounded-xl border border-lion-gold/20 border-l-4 border-l-lion-gold flex flex-col justify-between"
+                className="snap-start shrink-0 w-[300px] sm:w-[340px] p-5 sm:p-6 bg-white rounded-xl border border-lion-gold/20 border-l-4 border-l-lion-gold flex flex-col justify-between shadow-card"
               >
                 <p className="text-lion-dark mb-4 text-sm leading-relaxed">&ldquo;{t.text[lang]}&rdquo;</p>
                 <div>
