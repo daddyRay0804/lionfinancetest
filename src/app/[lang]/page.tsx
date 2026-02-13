@@ -8,6 +8,7 @@ import { teamMembers } from "@/data/team";
 import { ProductShowcase } from "@/components/ProductShowcase";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { FAQPageJsonLd } from "@/components/FAQPageJsonLd";
+import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
 
 function OrganizationJsonLd({ lang }: { lang: string }) {
   const base = "https://lionfinance.co.nz";
@@ -217,29 +218,7 @@ export default function HomePage({ params }: { params: { lang: string } }) {
             {testimonialsHeading[lang]}
           </h2>
         </div>
-        <div className="relative max-w-6xl mx-auto">
-          <div className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory px-4 sm:px-6 pb-4 no-scrollbar">
-            {testimonialsList.map((t) => (
-              <blockquote
-                key={t.name}
-                className="snap-start shrink-0 w-[300px] sm:w-[340px] p-5 sm:p-6 bg-white rounded-xl border border-lion-gold/20 border-l-4 border-l-lion-gold flex flex-col justify-between shadow-card"
-              >
-                <p className="text-lion-dark mb-4 text-sm leading-relaxed">&ldquo;{t.text[lang]}&rdquo;</p>
-                <div>
-                  <footer className="text-sm text-lion-navy font-semibold">
-                    {t.name}
-                  </footer>
-                  <p className="text-xs text-lion-dark/60 mt-0.5">
-                    {t.role[lang]} · {t.location}
-                  </p>
-                  <div className="mt-2 text-lion-gold text-sm" aria-hidden>
-                    {"★".repeat(t.rating)}
-                  </div>
-                </div>
-              </blockquote>
-            ))}
-          </div>
-        </div>
+        <TestimonialsCarousel items={testimonialsList} lang={lang} />
       </section>
 
       <section id="faq" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-lion-cream">
