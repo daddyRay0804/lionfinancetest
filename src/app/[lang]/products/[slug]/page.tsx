@@ -11,6 +11,7 @@ import {
 import { isValidLang } from "@/lib/i18n";
 import type { Lang } from "@/lib/i18n";
 import { nav } from "@/data/content";
+import { makeAlternates } from "@/lib/seo";
 
 const cta: Record<Lang, string> = {
   en: "Get in touch",
@@ -43,6 +44,7 @@ export async function generateMetadata({
   return {
     title,
     description: desc,
+    alternates: makeAlternates(lang, `/products/${slug}`),
     openGraph: { title, description: desc },
   };
 }

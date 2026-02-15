@@ -2,13 +2,24 @@ import type { Metadata } from "next";
 import { footerLegal } from "@/data/content";
 import { isValidLang } from "@/lib/i18n";
 import type { Lang } from "@/lib/i18n";
+import { makeAlternates } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
 }: { params: { lang: string } }): Promise<Metadata> {
   const lang = isValidLang(params.lang) ? params.lang : "en";
   const title = footerLegal.terms[lang as Lang];
-  return { title: `${title} | Lion Finance`, description: title };
+  const desc = lang === "zh"
+    ? "Lion Finance 网站条款与隐私政策（新西兰）。"
+    : lang === "kr"
+      ? "Lion Finance 웹사이트 이용 약관 및 개인정보 처리 관련 안내(뉴질랜드)."
+      : "Lion Finance website terms & conditions and privacy policy (New Zealand).";
+  return {
+    title: `${title} | Lion Finance`,
+    description: desc,
+    alternates: makeAlternates(lang, "/terms"),
+    openGraph: { title: `${title} | Lion Finance`, description: desc },
+  };
 }
 
 export default function TermsPage({ params }: { params: { lang: string } }) {

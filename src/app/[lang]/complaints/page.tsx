@@ -4,13 +4,24 @@ import { footerLegal } from "@/data/content";
 import { complaintsIntro, complaintsSteps } from "@/data/legal/complaints";
 import { isValidLang } from "@/lib/i18n";
 import type { Lang } from "@/lib/i18n";
+import { makeAlternates } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
 }: { params: { lang: string } }): Promise<Metadata> {
   const lang = isValidLang(params.lang) ? params.lang : "en";
   const title = footerLegal.complaints[lang as Lang];
-  return { title: `${title} | Lion Finance`, description: title };
+  const desc = lang === "zh"
+    ? "Lion Finance 投诉与争议解决流程（含 FDRS 联系方式）。"
+    : lang === "kr"
+      ? "Lion Finance 불만 처리 및 분쟁 해결 절차(FDRS 안내 포함)."
+      : "Lion Finance complaints and dispute resolution process (includes FDRS contact).";
+  return {
+    title: `${title} | Lion Finance`,
+    description: desc,
+    alternates: makeAlternates(lang, "/complaints"),
+    openGraph: { title: `${title} | Lion Finance`, description: desc },
+  };
 }
 
 export default function ComplaintsPage({ params }: { params: { lang: string } }) {

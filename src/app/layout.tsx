@@ -38,11 +38,13 @@ export const metadata: Metadata = {
     siteName: "Lion Finance",
     title: "Lion Finance | Mortgage & Loan Broker | New Zealand",
     description: "Your trusted mortgage and loan broker in New Zealand.",
+    images: [{ url: "/hero.png", width: 1200, height: 630, alt: "Lion Finance" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Lion Finance | Mortgage & Loan Broker | New Zealand",
     description: "Your trusted mortgage and loan broker in New Zealand.",
+    images: ["/hero.png"],
   },
   robots: { index: true, follow: true },
   icons: {

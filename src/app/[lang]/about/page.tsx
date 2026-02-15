@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { Lang } from "@/lib/i18n";
 import { aboutContent } from "@/data/about";
 import { isValidLang } from "@/lib/i18n";
+import { makeAlternates } from "@/lib/seo";
 
 const titles: Record<Lang, string> = {
   en: "About Lion Finance",
@@ -24,6 +25,7 @@ export async function generateMetadata({
   return {
     title: titles[lang],
     description: descriptions[lang],
+    alternates: makeAlternates(lang, "/about"),
     openGraph: { title: titles[lang], description: descriptions[lang] },
   };
 }

@@ -1,7 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import type { Lang } from "@/lib/i18n";
 import { siteName, siteTagline, contactAddress, contactEmail } from "@/data/content";
+import { isValidLang } from "@/lib/i18n";
+import { makeAlternates } from "@/lib/seo";
 import { testimonialsList } from "@/data/testimonials";
 import { faqList } from "@/data/faq";
 import { teamMembers } from "@/data/team";
@@ -9,6 +12,32 @@ import { ProductShowcase } from "@/components/ProductShowcase";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { FAQPageJsonLd } from "@/components/FAQPageJsonLd";
 import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
+
+const titles: Record<Lang, string> = {
+  en: "Lion Finance | Mortgage & Loan Broker | New Zealand",
+  zh: "Lion Finance｜新西兰房贷与贷款经纪",
+  kr: "Lion Finance | 뉴질랜드 모기지 & 대출 브로커",
+};
+
+const descriptions: Record<Lang, string> = {
+  en: "Trusted mortgage and loan broker in New Zealand. Home loans, construction loans, business and commercial finance, refinance, top-up, and interest rate refix.",
+  zh: "新西兰值得信赖的房贷与贷款经纪：房屋贷款、建筑贷款、商业/商业地产融资、再融资、加贷与利率重定。",
+  kr: "뉴질랜드 신뢰할 수 있는 모기지 및 대출 브로커. 주택/건축/사업자/상업용 대출, 재융자, 탑업, 금리 재설정.",
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: string };
+}): Promise<Metadata> {
+  const lang = (isValidLang(params.lang) ? params.lang : "en") as Lang;
+  return {
+    title: titles[lang],
+    description: descriptions[lang],
+    alternates: makeAlternates(lang, ""),
+    openGraph: { title: titles[lang], description: descriptions[lang] },
+  };
+}
 
 function OrganizationJsonLd({ lang }: { lang: string }) {
   const base = "https://lionfinance.co.nz";

@@ -3,6 +3,7 @@ import { FAQAccordion } from "@/components/FAQAccordion";
 import { faqList } from "@/data/faq";
 import type { Lang } from "@/lib/i18n";
 import { isValidLang } from "@/lib/i18n";
+import { makeAlternates } from "@/lib/seo";
 
 const titles: Record<Lang, string> = {
   en: "Frequently Asked Questions",
@@ -25,6 +26,7 @@ export async function generateMetadata({
   return {
     title: titles[lang],
     description: descriptions[lang],
+    alternates: makeAlternates(lang, "/faq"),
     openGraph: { title: titles[lang], description: descriptions[lang] },
   };
 }

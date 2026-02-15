@@ -3,13 +3,24 @@ import { footerLegal } from "@/data/content";
 import { disclosureSubtitle, disclosureSections } from "@/data/legal/disclosure";
 import { isValidLang } from "@/lib/i18n";
 import type { Lang } from "@/lib/i18n";
+import { makeAlternates } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
 }: { params: { lang: string } }): Promise<Metadata> {
   const lang = isValidLang(params.lang) ? params.lang : "en";
   const title = footerLegal.disclosure[lang as Lang];
-  return { title: `${title} | Lion Finance`, description: title };
+  const desc = lang === "zh"
+    ? "Lion Finance 披露声明：服务范围、费用与争议解决（新西兰）。"
+    : lang === "kr"
+      ? "Lion Finance 공시: 서비스 범위, 수수료 및 분쟁 해결(뉴질랜드)."
+      : "Lion Finance disclosure statement: services, fees, and dispute resolution (New Zealand).";
+  return {
+    title: `${title} | Lion Finance`,
+    description: desc,
+    alternates: makeAlternates(lang, "/disclosure"),
+    openGraph: { title: `${title} | Lion Finance`, description: desc },
+  };
 }
 
 function renderBlock(block: (typeof disclosureSections)[0]["blocks"][0], lang: Lang, sectionTitleEn: string) {
