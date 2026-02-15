@@ -47,9 +47,12 @@ export const metadata: Metadata = {
     images: ["/hero.png"],
   },
   robots: { index: true, follow: true },
-  // Note: keep icons pointing to files that actually exist in /public to avoid 404s.
   icons: {
-    icon: "/icon.svg",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
 };
 
