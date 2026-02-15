@@ -39,15 +39,35 @@ export async function generateMetadata({
   };
 }
 
-function OrganizationJsonLd({ lang }: { lang: string }) {
+function OrganizationJsonLd({ lang }: { lang: Lang }) {
   const base = "https://lionfinance.co.nz";
+
+  // Prefer a richer local-business schema for better Google understanding.
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "FinancialService",
     name: "Lion Finance",
     url: base,
-    description: siteTagline[lang as keyof typeof siteTagline],
+    description: siteTagline[lang],
+    image: `${base}/logo.png`,
     areaServed: { "@type": "Country", name: "New Zealand" },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: contactAddress,
+      addressLocality: "Auckland",
+      addressCountry: "NZ",
+    },
+    email: contactEmail,
+    contactPoint: teamMembers
+      .filter((m) => m.email || m.phone)
+      .map((m) => ({
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        name: m.name,
+        email: m.email,
+        telephone: m.phone,
+        areaServed: "NZ",
+      })),
     knowsAbout: [
       "Home Loans",
       "Construction Loans",
@@ -58,6 +78,7 @@ function OrganizationJsonLd({ lang }: { lang: string }) {
       "Interest Rate Refix",
     ],
   };
+
   return (
     <script
       type="application/ld+json"

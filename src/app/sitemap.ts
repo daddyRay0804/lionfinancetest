@@ -12,7 +12,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const lang of langs) {
     entries.push({
       url: `${BASE}/${lang}`,
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
     });
@@ -20,7 +19,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       if (!path) continue;
       entries.push({
         url: `${BASE}/${lang}${path}`,
-        lastModified: new Date(),
         changeFrequency: "monthly",
         priority: 0.8,
       });
@@ -28,7 +26,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const path of legalPaths) {
       entries.push({
         url: `${BASE}/${lang}${path}`,
-        lastModified: new Date(),
         changeFrequency: "monthly",
         priority: 0.5,
       });
@@ -36,7 +33,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const slug of productSlugs) {
       entries.push({
         url: `${BASE}/${lang}/products/${slug}`,
-        lastModified: new Date(),
         changeFrequency: "monthly",
         priority: 0.9,
       });
