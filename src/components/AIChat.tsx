@@ -35,6 +35,7 @@ export function AIChat({ lang }: AIChatProps) {
   const [messages, setMessages] = useState<{ role: "user" | "assistant"; text: string }[]>([]);
   const [streaming, setStreaming] = useState(false);
   const [streamText, setStreamText] = useState("");
+  const [waiting, setWaiting] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const hasWelcomed = useRef(false);
 
@@ -79,6 +80,7 @@ export function AIChat({ lang }: AIChatProps) {
     }));
 
     setStreaming(true);
+    setWaiting(true);
     setStreamText("");
 
     try {
@@ -88,6 +90,7 @@ export function AIChat({ lang }: AIChatProps) {
         body: JSON.stringify({ messages: apiMessages, lang }),
       });
 
+      setWaiting(false);
       const data = (await res.json()) as { content?: string; error?: string };
       const content = data.content ?? data.error ?? ERROR_MSG[lang];
 
@@ -97,6 +100,7 @@ export function AIChat({ lang }: AIChatProps) {
         setStreaming(false);
       }
     } catch {
+      setWaiting(false);
       setMessages((prev) => [...prev, { role: "assistant", text: ERROR_MSG[lang] }]);
       setStreaming(false);
       setStreamText("");
@@ -148,10 +152,21 @@ export function AIChat({ lang }: AIChatProps) {
                 </div>
               </div>
             ))}
-            {streaming && (
+            {streaming && waiting && (
+              <div className="flex justify-start">
+                <div className="max-w-[85%] px-3 py-2 rounded-lg bg-lion-cream text-lion-dark flex items-center gap-1">
+                  <span className="inline-flex gap-[3px]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-lion-gold/70 animate-bounce" style={{ animationDelay: "0ms" }} />
+                    <span className="w-1.5 h-1.5 rounded-full bg-lion-gold/70 animate-bounce" style={{ animationDelay: "150ms" }} />
+                    <span className="w-1.5 h-1.5 rounded-full bg-lion-gold/70 animate-bounce" style={{ animationDelay: "300ms" }} />
+                  </span>
+                </div>
+              </div>
+            )}
+            {streaming && !waiting && streamText && (
               <div className="flex justify-start">
                 <div className="max-w-[85%] px-3 py-2 rounded-lg bg-lion-cream text-lion-dark">
-                  {streamText || " "}
+                  {streamText}
                   <span className="animate-pulse">|</span>
                 </div>
               </div>

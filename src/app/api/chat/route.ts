@@ -59,6 +59,7 @@ export async function POST(request: NextRequest) {
         messages: apiMessages,
         max_tokens: 300,
         temperature: 0.7,
+        include_reasoning: false,
       }),
     });
 
@@ -80,6 +81,7 @@ export async function POST(request: NextRequest) {
           body: JSON.stringify({
             model: MODEL,
             messages: apiMessages,
+            include_reasoning: false,
           }),
         });
 
