@@ -41,6 +41,7 @@ export async function POST(request: NextRequest) {
       })),
     ];
 
+    /* ---------- 先尝试 streaming ---------- */
     const res = await fetch(API_URL, {
       method: "POST",
       headers: {
@@ -60,23 +61,62 @@ export async function POST(request: NextRequest) {
 
     if (!res.ok) {
       const errText = await res.text();
+      console.error("[api/chat] OpenRouter error:", res.status, errText.slice(0, 500));
+
+      /* 如果 streaming 被拒（如 400），回退到 non-streaming */
+      if (res.status === 400 || res.status === 422) {
+        console.log("[api/chat] Retrying without streaming...");
+        const retry = await fetch(API_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiKey}`,
+            "HTTP-Referer": "https://lionfinance.co.nz",
+            "X-Title": "Lion Finance AI Assistant",
+          },
+          body: JSON.stringify({
+            model: MODEL,
+            messages: openAiMessages,
+            stream: false,
+            max_tokens: 300,
+            temperature: 0.7,
+          }),
+        });
+
+        if (retry.ok) {
+          const json = (await retry.json()) as {
+            choices?: Array<{ message?: { content?: string } }>;
+          };
+          const content = json.choices?.[0]?.message?.content ?? "";
+          return NextResponse.json({ content, stream: false }, { status: 200 });
+        }
+        const retryErr = await retry.text();
+        console.error("[api/chat] Retry also failed:", retry.status, retryErr.slice(0, 500));
+      }
+
+      const detail = res.status === 401
+        ? "API key 无效，请检查 Vercel 环境变量 aibot"
+        : errText.slice(0, 300);
       return NextResponse.json(
-        {
-          error: "OpenRouter request failed",
-          detail: res.status === 401 ? "Invalid API key" : errText.slice(0, 200),
-        },
-        { status: res.status >= 500 ? 502 : 400 }
+        { content: `⚠️ 连接出了点问题 (${res.status})：${detail}\n\n请联系管理员检查配置。` },
+        { status: 200 }
       );
     }
 
+    /* ---------- 检查响应是否真的是 SSE 流 ---------- */
+    const responseContentType = res.headers.get("Content-Type") ?? "";
     const responseBody = res.body;
-    if (!responseBody) {
-      return NextResponse.json(
-        { error: "No response body" },
-        { status: 502 }
-      );
+
+    /* 如果 OpenRouter 返回的是 JSON（非流），直接解析 */
+    if (responseContentType.includes("application/json") || !responseBody) {
+      const json = (await res.json()) as {
+        choices?: Array<{ message?: { content?: string } }>;
+      };
+      const content = json.choices?.[0]?.message?.content ?? "";
+      return NextResponse.json({ content, stream: false }, { status: 200 });
     }
 
+    /* ---------- SSE 流正常处理 ---------- */
     const stream = new ReadableStream({
       async start(controller) {
         const reader = responseBody.getReader();
@@ -102,7 +142,7 @@ export async function POST(request: NextRequest) {
                     controller.enqueue(new TextEncoder().encode(content));
                   }
                 } catch {
-                  // ignore parse errors for non-JSON lines
+                  // ignore parse errors
                 }
               }
             }

@@ -4,6 +4,25 @@ import { aboutContent } from "@/data/about";
 import { faqList } from "@/data/faq";
 import { NZ_LENDING_KNOWLEDGE } from "@/data/nzLendingKnowledge";
 
+/** 精简版 NZ 知识摘要（控制 token 数量） */
+function getNzKnowledgeSummary(): string {
+  return `
+- CCCFA: NZ's main consumer credit law. Requires affordability assessments, responsible lending, clear fee disclosure. Borrowers can apply for hardship variations.
+- LVR: RBNZ sets deposit rules — owner-occupiers ~20%, investors ~35%. First-home buyers may qualify for 5% deposit via Kāinga Ora.
+- Interest rates: Fixed (6mo-5yr, break costs apply), floating (flexible, higher), split (mix). OCR influences all rates.
+- First home support: KiwiSaver withdrawal (after 3yr), First Home Grant (up to $5k existing/$10k new build), First Home Loan (5% deposit).
+- Pre-approval: Valid 60-90 days. Need ID, income proof, bank statements, debt details. Not a final guarantee.
+- Settlement: Unconditional agreement → solicitor transfers funds → keys handed over. Typically 2-6 weeks.
+- Construction loans: Drawn in stages (foundation, framing, roof, fit-out, completion). Interest on drawn amount only. Need fixed-price contract + CCC.
+- Refinance: May involve break fees, legal fees, cashback clawback. Broker compares market for best deal.
+- Investment property: 35%+ deposit, rental income assessed at 65-80%. Interest deductibility limited since 2021. Bright-line test applies.
+- AML/CFT: KYC required — photo ID, proof of address, source of funds for large transactions.
+- Dispute resolution: Lion Finance is a member of FDRS (0508 337 337, fdrs.org.nz).
+- Insurance: House insurance required by lenders. Life/income protection recommended.
+- Foreign buyers: Generally cannot buy existing residential property. Exceptions for AU/SG citizens, certain visa holders, new builds.
+- Privacy Act 2020: Right to access/correct personal info. Mandatory breach reporting.`.trim();
+}
+
 /** 业务知识库（英文，供模型参考后按用户语言回答） */
 function getKnowledgeBase(): string {
   const products = productSlugs
@@ -87,10 +106,9 @@ export function getSystemPrompt(lang: Lang): string {
 ${getKnowledgeBase()}
 
 ## NZ Lending & Regulatory Knowledge (REFERENCE ONLY)
-Use this section ONLY when the user's question specifically involves NZ lending regulations, legal requirements, property buying process, government schemes, or financial compliance.
-Do NOT proactively quote laws or regulations unless the user asks. When you do reference this knowledge, keep your answer concise — summarise in 1-3 sentences and suggest contacting our team or a solicitor for details.
+Use ONLY when the user asks about NZ regulations, legal requirements, buying process, or government schemes. Do NOT proactively cite laws. Summarise in 1-2 sentences and suggest contacting our team or a solicitor.
 
-${NZ_LENDING_KNOWLEDGE}
+${getNzKnowledgeSummary()}
 
 ## Hard rules
 - Never mention anyone other than Gary Jiang and Allan Wu.
