@@ -31,11 +31,19 @@ export async function generateMetadata({
   params: { lang: string };
 }): Promise<Metadata> {
   const lang = (isValidLang(params.lang) ? params.lang : "en") as Lang;
+  const image = "/hero.png";
   return {
     title: titles[lang],
     description: descriptions[lang],
+    keywords:
+      lang === "zh"
+        ? ["奥克兰房贷经纪", "新西兰房贷", "再融资", "建筑贷款", "商业贷款", "贷款顾问"]
+        : lang === "kr"
+          ? ["오클랜드 모기지 브로커", "뉴질랜드 주택 대출", "재융자", "건축 대출", "사업자 대출"]
+          : ["Auckland mortgage broker", "home loan NZ", "refinance", "construction loan", "business loan"],
     alternates: makeAlternates(lang, ""),
-    openGraph: { title: titles[lang], description: descriptions[lang] },
+    openGraph: { title: titles[lang], description: descriptions[lang], images: [image] },
+    twitter: { card: "summary_large_image", title: titles[lang], description: descriptions[lang], images: [image] },
   };
 }
 

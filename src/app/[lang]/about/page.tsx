@@ -25,6 +25,12 @@ export async function generateMetadata({
   return {
     title: titles[lang],
     description: descriptions[lang],
+    keywords:
+      lang === "zh"
+        ? ["Lion Finance", "关于我们", "新西兰房贷经纪", "奥克兰贷款顾问"]
+        : lang === "kr"
+          ? ["Lion Finance", "회사 소개", "뉴질랜드 모기지 브로커", "오클랜드"]
+          : ["Lion Finance", "about", "mortgage broker", "Auckland"],
     alternates: makeAlternates(lang, "/about"),
     openGraph: { title: titles[lang], description: descriptions[lang] },
   };

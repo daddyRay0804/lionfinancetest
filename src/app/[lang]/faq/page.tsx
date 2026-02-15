@@ -26,6 +26,12 @@ export async function generateMetadata({
   return {
     title: titles[lang],
     description: descriptions[lang],
+    keywords:
+      lang === "zh"
+        ? ["房贷常见问题", "预批", "材料清单", "经纪费用", "新西兰房贷"]
+        : lang === "kr"
+          ? ["모기지 FAQ", "사전 승인", "필요 서류", "수수료", "뉴질랜드"]
+          : ["mortgage FAQ", "pre-approval", "documents", "broker fees", "New Zealand"],
     alternates: makeAlternates(lang, "/faq"),
     openGraph: { title: titles[lang], description: descriptions[lang] },
   };
