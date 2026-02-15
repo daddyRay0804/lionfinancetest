@@ -5,7 +5,8 @@ import type { Lang } from "@/lib/i18n";
 
 /* ---- OpenRouter 配置 ---- */
 const API_URL = "https://openrouter.ai/api/v1/chat/completions";
-const MODEL = "deepseek/deepseek-r1-0528:free";
+// Prefer a stable chat model for customer-facing Q&A (free models tend to be flaky)
+const MODEL = "deepseek/deepseek-chat";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 
@@ -57,8 +58,9 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         model: MODEL,
         messages: apiMessages,
-        max_tokens: 300,
-        temperature: 0.7,
+        // Give the model enough room to finish an answer; low temperature reduces hallucination.
+        max_tokens: 800,
+        temperature: 0.3,
         include_reasoning: false,
       }),
     });
