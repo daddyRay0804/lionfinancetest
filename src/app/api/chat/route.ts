@@ -5,7 +5,7 @@ import type { Lang } from "@/lib/i18n";
 
 /* ---- OpenRouter 配置 ---- */
 const API_URL = "https://openrouter.ai/api/v1/chat/completions";
-const MODEL = "openai/gpt-oss-120b:free";
+const MODEL = "deepseek/deepseek-r1-0528:free";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 
@@ -34,12 +34,9 @@ export async function POST(request: NextRequest) {
 
     const systemPrompt = getSystemPrompt(language);
 
-    /*
-     * gpt-oss-120b 是 OpenAI 新推理模型，使用 "developer" 角色代替 "system"。
-     * 同时保留 "system" 作为 fallback 以兼容其他模型。
-     */
+    /* DeepSeek R1 使用标准 system 角色 */
     const apiMessages: { role: string; content: string }[] = [
-      { role: "developer", content: systemPrompt },
+      { role: "system", content: systemPrompt },
       ...messages.map((m) => ({
         role: m.role,
         content: m.content,
@@ -69,14 +66,9 @@ export async function POST(request: NextRequest) {
       const errText = await res.text();
       console.error("[api/chat] OpenRouter error:", res.status, errText.slice(0, 800));
 
-      /* 如果 developer 角色不支持，回退到 system 角色重试 */
+      /* 400/422：尝试极简请求（去掉 temperature/max_tokens） */
       if (res.status === 400 || res.status === 422) {
-        console.log("[api/chat] Retrying with 'system' role...");
-        const fallbackMessages: { role: string; content: string }[] = [
-          { role: "system", content: systemPrompt },
-          ...messages.map((m) => ({ role: m.role, content: m.content })),
-        ];
-
+        console.log("[api/chat] Retrying with minimal params...");
         const retry = await fetch(API_URL, {
           method: "POST",
           headers: {
@@ -87,9 +79,7 @@ export async function POST(request: NextRequest) {
           },
           body: JSON.stringify({
             model: MODEL,
-            messages: fallbackMessages,
-            max_tokens: 300,
-            temperature: 0.7,
+            messages: apiMessages,
           }),
         });
 
@@ -103,37 +93,8 @@ export async function POST(request: NextRequest) {
 
         const retryErr = await retry.text();
         console.error("[api/chat] Retry also failed:", retry.status, retryErr.slice(0, 800));
-
-        /* 最后尝试：极简请求，无额外参数 */
-        console.log("[api/chat] Final retry with minimal params...");
-        const minimal = await fetch(API_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`,
-            "HTTP-Referer": "https://lionfinance.co.nz",
-            "X-Title": "Lion Finance AI Assistant",
-          },
-          body: JSON.stringify({
-            model: MODEL,
-            messages: [
-              { role: "user", content: systemPrompt + "\n\n---\n\nUser: " + (messages[messages.length - 1]?.content ?? "Hello") },
-            ],
-          }),
-        });
-
-        if (minimal.ok) {
-          const json = (await minimal.json()) as {
-            choices?: Array<{ message?: { content?: string } }>;
-          };
-          const content = json.choices?.[0]?.message?.content ?? "";
-          return NextResponse.json({ content, stream: false }, { status: 200 });
-        }
-
-        const minimalErr = await minimal.text();
-        console.error("[api/chat] Minimal retry failed:", minimal.status, minimalErr.slice(0, 800));
         return NextResponse.json(
-          { content: `⚠️ AI 暂时无法连接 (${minimal.status})。请稍后再试或直接联系我们的团队！\n\n📧 gary@lionfinance.co.nz / 022 161 9172\n📧 allan@lionfinance.co.nz / 021 153 1918` },
+          { content: `⚠️ AI 暂时无法连接 (${retry.status})。请稍后再试或直接联系我们的团队！\n\n📧 gary@lionfinance.co.nz / 022 161 9172\n📧 allan@lionfinance.co.nz / 021 153 1918` },
           { status: 200 }
         );
       }
