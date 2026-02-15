@@ -40,12 +40,23 @@ export async function generateMetadata({
     : null;
   if (!slug) return { title: "Product | Lion Finance" };
   const title = productTitles[slug][lang];
-  const desc = productDescriptions[slug][lang].slice(0, 160);
+
+  // Meta descriptions should be concise and keyword-forward (not story-like copy).
+  const desc =
+    lang === "zh"
+      ? `${title}｜Lion Finance 新西兰贷款经纪。对比多家贷款机构，协助预批、申请与交割。`
+      : lang === "kr"
+        ? `${title} | Lion Finance 뉴질랜드 대출 브로커. 여러 대출 기관 비교, 사전 승인부터 정산까지 지원.`
+        : `${title} | Lion Finance New Zealand loan broker. Compare lenders and get help from pre-approval to settlement.`;
+
+  const image = `/products/${slug}.png`;
+
   return {
     title,
     description: desc,
     alternates: makeAlternates(lang, `/products/${slug}`),
-    openGraph: { title, description: desc },
+    openGraph: { title, description: desc, images: [image] },
+    twitter: { card: "summary_large_image", title, description: desc, images: [image] },
   };
 }
 

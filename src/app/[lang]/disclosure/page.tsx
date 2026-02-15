@@ -19,6 +19,7 @@ export async function generateMetadata({
     title: `${title} | Lion Finance`,
     description: desc,
     alternates: makeAlternates(lang, "/disclosure"),
+    robots: { index: lang === "en", follow: true },
     openGraph: { title: `${title} | Lion Finance`, description: desc },
   };
 }

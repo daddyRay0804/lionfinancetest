@@ -18,6 +18,8 @@ export async function generateMetadata({
     title: `${title} | Lion Finance`,
     description: desc,
     alternates: makeAlternates(lang, "/terms"),
+    // Non-English legal pages are currently English content → avoid duplicate-language indexing.
+    robots: { index: lang === "en", follow: true },
     openGraph: { title: `${title} | Lion Finance`, description: desc },
   };
 }
