@@ -23,9 +23,9 @@ export function Logo({ lang, className = "" }: LogoProps) {
         className="h-auto w-auto max-h-12 sm:max-h-14 object-contain object-left"
         priority
       />
-      <span className="hidden sm:block text-left">
-        <span className="block font-bold text-lion-navy text-base sm:text-lg leading-tight uppercase tracking-wide">LION FINANCE</span>
-        <span className="block text-xs text-lion-dark/80 leading-tight uppercase tracking-wider">YOUR PROSPERITY, OUR PRIORITY</span>
+      <span className="text-left">
+        <span className="block font-bold text-lion-navy text-sm sm:text-lg leading-tight uppercase tracking-wide">LION FINANCE</span>
+        <span className="block text-[10px] sm:text-xs text-lion-dark/80 leading-tight uppercase tracking-wider">YOUR PROSPERITY, OUR PRIORITY</span>
       </span>
     </Link>
   );
