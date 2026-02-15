@@ -6,7 +6,7 @@ import type { Lang } from "@/lib/i18n";
 /* ---- OpenRouter 配置 ---- */
 const API_URL = "https://openrouter.ai/api/v1/chat/completions";
 // Prefer a stable chat model for customer-facing Q&A (free models tend to be flaky)
-const MODEL = "deepseek/deepseek-chat";
+const MODEL = "meta-llama/llama-3.3-70b-instruct:free";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 
