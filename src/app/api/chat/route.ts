@@ -4,16 +4,27 @@ import { API_NOT_CONFIGURED } from "@/data/aiPrompt";
 import type { Lang } from "@/lib/i18n";
 import { faqList } from "@/data/faq";
 
-/* ---- OpenRouter 配置（可选，AI_MODE=llm 时才会调用） ---- */
-const API_URL = "https://openrouter.ai/api/v1/chat/completions";
-const MODEL = "meta-llama/llama-3.3-70b-instruct:free";
-
 /**
  * AI_MODE:
  * - bot (default): 纯规则/知识库命中，不消耗 token
- * - llm: 调用 OpenRouter
+ * - llm: 调用大模型（DeepSeek 官方 / OpenRouter）
  */
 const AI_MODE = (process.env.AI_MODE ?? "bot").toLowerCase();
+
+/**
+ * LLM_PROVIDER:
+ * - deepseek (default)
+ * - openrouter
+ */
+const LLM_PROVIDER = (process.env.LLM_PROVIDER ?? "deepseek").toLowerCase();
+
+/* ---- DeepSeek 官方（OpenAI 兼容） ---- */
+const DEEPSEEK_API_URL = "https://api.deepseek.com/chat/completions";
+const DEEPSEEK_MODEL = process.env.DEEPSEEK_MODEL ?? "deepseek-chat";
+
+/* ---- OpenRouter（可选） ---- */
+const OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";
+const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL ?? "meta-llama/llama-3.3-70b-instruct:free";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 
@@ -118,19 +129,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ content, stream: false }, { status: 200 });
     }
 
-    /* Vercel 环境变量名: aibot */
-    const apiKey = process.env.aibot?.trim();
-
-    if (!apiKey) {
-      return NextResponse.json(
-        { content: API_NOT_CONFIGURED[language], stream: false },
-        { status: 200 }
-      );
-    }
-
     const systemPrompt = getSystemPrompt(language);
 
-    /* DeepSeek R1 使用标准 system 角色 */
     const apiMessages: { role: string; content: string }[] = [
       { role: "system", content: systemPrompt },
       ...messages.map((m) => ({
@@ -139,46 +139,67 @@ export async function POST(request: NextRequest) {
       })),
     ];
 
-    console.log("[api/chat] Calling OpenRouter:", MODEL, "messages:", apiMessages.length);
+    // ---- provider switch ----
+    const provider = LLM_PROVIDER === "openrouter" ? "openrouter" : "deepseek";
 
-    /* ---------- 使用 non-streaming 请求（免费模型更稳定） ---------- */
-    const res = await fetch(API_URL, {
+    let url = DEEPSEEK_API_URL;
+    let model = DEEPSEEK_MODEL;
+    let apiKey = process.env.DEEPSEEK_API_KEY?.trim();
+    let extraHeaders: Record<string, string> = {};
+
+    if (provider === "openrouter") {
+      url = OPENROUTER_API_URL;
+      model = OPENROUTER_MODEL;
+      apiKey = process.env.aibot?.trim(); // existing var name in this project
+      extraHeaders = {
+        "HTTP-Referer": "https://lionfinance.co.nz",
+        "X-Title": "Lion Finance AI Assistant",
+      };
+    }
+
+    if (!apiKey) {
+      return NextResponse.json(
+        { content: API_NOT_CONFIGURED[language], stream: false },
+        { status: 200 }
+      );
+    }
+
+    console.log("[api/chat] Calling LLM:", provider, model, "messages:", apiMessages.length);
+
+    const res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
-        "HTTP-Referer": "https://lionfinance.co.nz",
-        "X-Title": "Lion Finance AI Assistant",
+        ...extraHeaders,
       },
       body: JSON.stringify({
-        model: MODEL,
+        model,
         messages: apiMessages,
-        // Give the model enough room to finish an answer; low temperature reduces hallucination.
         max_tokens: 800,
         temperature: 0.3,
+        // OpenRouter supports include_reasoning; DeepSeek may ignore unknown fields.
         include_reasoning: false,
       }),
     });
 
     if (!res.ok) {
       const errText = await res.text();
-      console.error("[api/chat] OpenRouter error:", res.status, errText.slice(0, 800));
+      console.error("[api/chat] LLM error:", res.status, errText.slice(0, 800));
 
-      /* 400/422：尝试极简请求（去掉 temperature/max_tokens） */
+      /* 400/422：尝试极简请求（去掉 temperature/max_tokens），对部分 provider 更兼容 */
       if (res.status === 400 || res.status === 422) {
         console.log("[api/chat] Retrying with minimal params...");
-        const retry = await fetch(API_URL, {
+        const retry = await fetch(url, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${apiKey}`,
-            "HTTP-Referer": "https://lionfinance.co.nz",
-            "X-Title": "Lion Finance AI Assistant",
+            ...extraHeaders,
           },
           body: JSON.stringify({
-            model: MODEL,
+            model,
             messages: apiMessages,
-            include_reasoning: false,
           }),
         });
 
@@ -200,7 +221,9 @@ export async function POST(request: NextRequest) {
 
       /* 非 400/422 的其他错误 */
       const detail = res.status === 401
-        ? "API key 无效，请检查 Vercel 环境变量 aibot 的值"
+        ? provider === "openrouter"
+          ? "API key 无效，请检查 Vercel 环境变量 aibot 的值"
+          : "API key 无效，请检查 Vercel 环境变量 DEEPSEEK_API_KEY 的值"
         : res.status === 429
           ? "请求太频繁，请稍后再试"
           : errText.slice(0, 200);
