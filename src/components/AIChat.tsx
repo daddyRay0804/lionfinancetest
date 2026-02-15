@@ -88,53 +88,16 @@ export function AIChat({ lang }: AIChatProps) {
         body: JSON.stringify({ messages: apiMessages, lang }),
       });
 
-      const contentType = res.headers.get("Content-Type") ?? "";
+      const data = (await res.json()) as { content?: string; error?: string };
+      const content = data.content ?? data.error ?? ERROR_MSG[lang];
 
-      if (contentType.includes("application/json")) {
-        const data = (await res.json()) as { content?: string; error?: string; detail?: string };
+      if (content) {
+        appendStreamThenFinish(content);
+      } else {
         setStreaming(false);
-        setStreamText("");
-        if (!res.ok) {
-          setMessages((prev) => [
-            ...prev,
-            { role: "assistant", text: data.content ?? data.error ?? ERROR_MSG[lang] },
-          ]);
-          return;
-        }
-        const content = data.content ?? "";
-        if (content) {
-          appendStreamThenFinish(content);
-        } else {
-          setStreaming(false);
-        }
-        return;
       }
-
-      if (!res.body) {
-        setStreaming(false);
-        setMessages((prev) => [...prev, { role: "assistant", text: ERROR_MSG[lang] }]);
-        return;
-      }
-
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder();
-      let full = "";
-      try {
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          const chunk = decoder.decode(value, { stream: true });
-          full += chunk;
-          setStreamText(full);
-        }
-      } finally {
-        reader.releaseLock();
-      }
-      setMessages((prev) => [...prev, { role: "assistant", text: full }]);
-      setStreamText("");
     } catch {
       setMessages((prev) => [...prev, { role: "assistant", text: ERROR_MSG[lang] }]);
-    } finally {
       setStreaming(false);
       setStreamText("");
     }

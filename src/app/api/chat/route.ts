@@ -15,8 +15,8 @@ function isValidLang(lang: string): lang is Lang {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { messages = [], lang = "en" } = body as {
+    const reqBody = await request.json();
+    const { messages = [], lang = "en" } = reqBody as {
       messages?: ChatMessage[];
       lang?: string;
     };
@@ -33,15 +33,22 @@ export async function POST(request: NextRequest) {
     }
 
     const systemPrompt = getSystemPrompt(language);
-    const openAiMessages: { role: "system" | "user" | "assistant"; content: string }[] = [
-      { role: "system", content: systemPrompt },
+
+    /*
+     * gpt-oss-120b 是 OpenAI 新推理模型，使用 "developer" 角色代替 "system"。
+     * 同时保留 "system" 作为 fallback 以兼容其他模型。
+     */
+    const apiMessages: { role: string; content: string }[] = [
+      { role: "developer", content: systemPrompt },
       ...messages.map((m) => ({
-        role: m.role as "user" | "assistant",
+        role: m.role,
         content: m.content,
       })),
     ];
 
-    /* ---------- 先尝试 streaming ---------- */
+    console.log("[api/chat] Calling OpenRouter:", MODEL, "messages:", apiMessages.length);
+
+    /* ---------- 使用 non-streaming 请求（免费模型更稳定） ---------- */
     const res = await fetch(API_URL, {
       method: "POST",
       headers: {
@@ -52,8 +59,7 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({
         model: MODEL,
-        messages: openAiMessages,
-        stream: true,
+        messages: apiMessages,
         max_tokens: 300,
         temperature: 0.7,
       }),
@@ -61,11 +67,16 @@ export async function POST(request: NextRequest) {
 
     if (!res.ok) {
       const errText = await res.text();
-      console.error("[api/chat] OpenRouter error:", res.status, errText.slice(0, 500));
+      console.error("[api/chat] OpenRouter error:", res.status, errText.slice(0, 800));
 
-      /* 如果 streaming 被拒（如 400），回退到 non-streaming */
+      /* 如果 developer 角色不支持，回退到 system 角色重试 */
       if (res.status === 400 || res.status === 422) {
-        console.log("[api/chat] Retrying without streaming...");
+        console.log("[api/chat] Retrying with 'system' role...");
+        const fallbackMessages: { role: string; content: string }[] = [
+          { role: "system", content: systemPrompt },
+          ...messages.map((m) => ({ role: m.role, content: m.content })),
+        ];
+
         const retry = await fetch(API_URL, {
           method: "POST",
           headers: {
@@ -76,8 +87,7 @@ export async function POST(request: NextRequest) {
           },
           body: JSON.stringify({
             model: MODEL,
-            messages: openAiMessages,
-            stream: false,
+            messages: fallbackMessages,
             max_tokens: 300,
             temperature: 0.7,
           }),
@@ -90,99 +100,77 @@ export async function POST(request: NextRequest) {
           const content = json.choices?.[0]?.message?.content ?? "";
           return NextResponse.json({ content, stream: false }, { status: 200 });
         }
+
         const retryErr = await retry.text();
-        console.error("[api/chat] Retry also failed:", retry.status, retryErr.slice(0, 500));
+        console.error("[api/chat] Retry also failed:", retry.status, retryErr.slice(0, 800));
+
+        /* 最后尝试：极简请求，无额外参数 */
+        console.log("[api/chat] Final retry with minimal params...");
+        const minimal = await fetch(API_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiKey}`,
+            "HTTP-Referer": "https://lionfinance.co.nz",
+            "X-Title": "Lion Finance AI Assistant",
+          },
+          body: JSON.stringify({
+            model: MODEL,
+            messages: [
+              { role: "user", content: systemPrompt + "\n\n---\n\nUser: " + (messages[messages.length - 1]?.content ?? "Hello") },
+            ],
+          }),
+        });
+
+        if (minimal.ok) {
+          const json = (await minimal.json()) as {
+            choices?: Array<{ message?: { content?: string } }>;
+          };
+          const content = json.choices?.[0]?.message?.content ?? "";
+          return NextResponse.json({ content, stream: false }, { status: 200 });
+        }
+
+        const minimalErr = await minimal.text();
+        console.error("[api/chat] Minimal retry failed:", minimal.status, minimalErr.slice(0, 800));
+        return NextResponse.json(
+          { content: `⚠️ AI 暂时无法连接 (${minimal.status})。请稍后再试或直接联系我们的团队！\n\n📧 gary@lionfinance.co.nz / 022 161 9172\n📧 allan@lionfinance.co.nz / 021 153 1918` },
+          { status: 200 }
+        );
       }
 
+      /* 非 400/422 的其他错误 */
       const detail = res.status === 401
-        ? "API key 无效，请检查 Vercel 环境变量 aibot"
-        : errText.slice(0, 300);
+        ? "API key 无效，请检查 Vercel 环境变量 aibot 的值"
+        : res.status === 429
+          ? "请求太频繁，请稍后再试"
+          : errText.slice(0, 200);
       return NextResponse.json(
-        { content: `⚠️ 连接出了点问题 (${res.status})：${detail}\n\n请联系管理员检查配置。` },
+        { content: `⚠️ 连接出了点问题 (${res.status})：${detail}` },
         { status: 200 }
       );
     }
 
-    /* ---------- 检查响应是否真的是 SSE 流 ---------- */
-    const responseContentType = res.headers.get("Content-Type") ?? "";
-    const responseBody = res.body;
+    /* ---------- 成功：解析响应 ---------- */
+    const json = (await res.json()) as {
+      choices?: Array<{ message?: { content?: string } }>;
+      error?: { message?: string };
+    };
 
-    /* 如果 OpenRouter 返回的是 JSON（非流），直接解析 */
-    if (responseContentType.includes("application/json") || !responseBody) {
-      const json = (await res.json()) as {
-        choices?: Array<{ message?: { content?: string } }>;
-      };
-      const content = json.choices?.[0]?.message?.content ?? "";
-      return NextResponse.json({ content, stream: false }, { status: 200 });
+    if (json.error) {
+      console.error("[api/chat] OpenRouter response error:", json.error);
+      return NextResponse.json(
+        { content: `⚠️ ${json.error.message ?? "Unknown error"}` },
+        { status: 200 }
+      );
     }
 
-    /* ---------- SSE 流正常处理 ---------- */
-    const stream = new ReadableStream({
-      async start(controller) {
-        const reader = responseBody.getReader();
-        const decoder = new TextDecoder();
-        let buffer = "";
-        try {
-          while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-            buffer += decoder.decode(value, { stream: true });
-            const lines = buffer.split("\n");
-            buffer = lines.pop() ?? "";
-            for (const line of lines) {
-              if (line.startsWith("data: ")) {
-                const data = line.slice(6);
-                if (data === "[DONE]") continue;
-                try {
-                  const parsed = JSON.parse(data) as {
-                    choices?: Array<{ delta?: { content?: string } }>;
-                  };
-                  const content = parsed.choices?.[0]?.delta?.content;
-                  if (typeof content === "string" && content) {
-                    controller.enqueue(new TextEncoder().encode(content));
-                  }
-                } catch {
-                  // ignore parse errors
-                }
-              }
-            }
-          }
-          if (buffer.trim()) {
-            const data = buffer.startsWith("data: ") ? buffer.slice(6) : null;
-            if (data && data !== "[DONE]") {
-              try {
-                const parsed = JSON.parse(data) as {
-                  choices?: Array<{ delta?: { content?: string } }>;
-                };
-                const content = parsed.choices?.[0]?.delta?.content;
-                if (typeof content === "string" && content) {
-                  controller.enqueue(new TextEncoder().encode(content));
-                }
-              } catch {
-                // ignore
-              }
-            }
-          }
-        } catch (e) {
-          controller.error(e);
-        } finally {
-          controller.close();
-        }
-      },
-    });
-
-    return new Response(stream, {
-      headers: {
-        "Content-Type": "text/plain; charset=utf-8",
-        "Cache-Control": "no-cache",
-        Connection: "keep-alive",
-      },
-    });
+    const content = json.choices?.[0]?.message?.content ?? "";
+    return NextResponse.json({ content, stream: false }, { status: 200 });
   } catch (e) {
-    console.error("[api/chat]", e);
+    console.error("[api/chat] Server error:", e);
     return NextResponse.json(
-      { error: "Server error" },
-      { status: 500 }
+      { content: "⚠️ 服务器出了点问题，请稍后再试！" },
+      { status: 200 }
     );
   }
 }
