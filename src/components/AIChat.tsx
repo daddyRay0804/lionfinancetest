@@ -4,21 +4,21 @@ import { useState, useRef, useEffect } from "react";
 import type { Lang } from "@/lib/i18n";
 
 const PLACEHOLDER: Record<Lang, string> = {
-  en: "Ask about home loans, refinance, or get a quick quote...",
-  zh: "咨询房屋贷款、再融资或获取快速报价…",
-  kr: "주택 대출, 재융자 또는 빠른 견적 문의…",
+  en: "Ask me anything about loans...",
+  zh: "问我任何贷款相关的问题…",
+  kr: "대출 관련 질문을 해주세요…",
 };
 
 const WELCOME: Record<Lang, string> = {
-  en: "Hello! I'm the Lion Finance assistant. I can help with general questions about home loans, refinancing, construction loans, and more. For personalised advice, please contact our team. How can I help you today?",
-  zh: "您好！我是 Lion Finance 咨询助手。我可以回答关于房屋贷款、再融资、建筑贷款等一般问题。如需个性化建议，请联系我们的团队。今天有什么可以帮您？",
-  kr: "안녕하세요! Lion Finance 상담 도우미입니다. 주택 대출, 재융자, 건축 대출 등 일반적인 질문에 답변해 드립니다. 맞춤 상담은 팀에 연락해 주세요. 오늘 무엇을 도와드릴까요?",
+  en: "Hi there! 👋 I'm Leo, your Lion Finance assistant. Ask me about home loans, refinance, construction loans — anything finance! How can I help?",
+  zh: "你好呀！👋 我是 Leo，Lion Finance 的小助手。房贷、再融资、建筑贷款，什么都可以问我！有什么能帮你的？",
+  kr: "안녕하세요! 👋 저는 Leo, Lion Finance 도우미예요. 주택 대출, 재융자, 건축 대출 등 뭐든 물어보세요! 어떻게 도와드릴까요?",
 };
 
 const ERROR_MSG: Record<Lang, string> = {
-  en: "Something went wrong. Please try again or contact us for help.",
-  zh: "出了点问题，请重试或联系我们。",
-  kr: "오류가 발생했습니다. 다시 시도하거나 연락해 주세요.",
+  en: "Oops, something hiccuped 😅 Please try again!",
+  zh: "哎呀，出了点小状况 😅 请再试一次！",
+  kr: "앗, 문제가 생겼어요 😅 다시 시도해 주세요!",
 };
 
 const SEND_LABEL: Record<Lang, string> = {

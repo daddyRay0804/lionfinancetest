@@ -49,7 +49,8 @@ export async function POST(request: NextRequest) {
         model: MODEL,
         messages: openAiMessages,
         stream: true,
-        max_tokens: 800,
+        max_tokens: 300,
+        temperature: 0.7,
       }),
     });
 
