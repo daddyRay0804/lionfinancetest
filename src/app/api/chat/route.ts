@@ -3,8 +3,9 @@ import { getSystemPrompt } from "@/data/aiPrompt";
 import { API_NOT_CONFIGURED } from "@/data/aiPrompt";
 import type { Lang } from "@/lib/i18n";
 
-const OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
-const MODEL = "gpt-4o-mini";
+/* ---- OpenRouter 配置 ---- */
+const API_URL = "https://openrouter.ai/api/v1/chat/completions";
+const MODEL = "openai/gpt-oss-120b:free";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 
@@ -21,7 +22,8 @@ export async function POST(request: NextRequest) {
     };
 
     const language = isValidLang(lang) ? lang : "en";
-    const apiKey = process.env.OPENAI_API_KEY?.trim();
+    /* Vercel 环境变量名: aibot */
+    const apiKey = process.env.aibot?.trim();
 
     if (!apiKey) {
       return NextResponse.json(
@@ -39,11 +41,13 @@ export async function POST(request: NextRequest) {
       })),
     ];
 
-    const res = await fetch(OPENAI_API_URL, {
+    const res = await fetch(API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
+        "HTTP-Referer": "https://lionfinance.co.nz",
+        "X-Title": "Lion Finance AI Assistant",
       },
       body: JSON.stringify({
         model: MODEL,
@@ -58,7 +62,7 @@ export async function POST(request: NextRequest) {
       const errText = await res.text();
       return NextResponse.json(
         {
-          error: "OpenAI request failed",
+          error: "OpenRouter request failed",
           detail: res.status === 401 ? "Invalid API key" : errText.slice(0, 200),
         },
         { status: res.status >= 500 ? 502 : 400 }

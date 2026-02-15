@@ -2,6 +2,7 @@ import type { Lang } from "@/lib/i18n";
 import { productSlugs, productTitles, productDescriptions, contactAddress, contactEmail } from "@/data/content";
 import { aboutContent } from "@/data/about";
 import { faqList } from "@/data/faq";
+import { NZ_LENDING_KNOWLEDGE } from "@/data/nzLendingKnowledge";
 
 /** 业务知识库（英文，供模型参考后按用户语言回答） */
 function getKnowledgeBase(): string {
@@ -82,11 +83,18 @@ export function getSystemPrompt(lang: Lang): string {
   (Translate to ${langName} as appropriate.)
 - Don't force this into every reply — only when it naturally fits (e.g. after answering 2-3 questions, or when the user asks about specific rates/quotes/appointments).
 
-## Knowledge base
+## Knowledge base — Lion Finance
 ${getKnowledgeBase()}
+
+## NZ Lending & Regulatory Knowledge (REFERENCE ONLY)
+Use this section ONLY when the user's question specifically involves NZ lending regulations, legal requirements, property buying process, government schemes, or financial compliance.
+Do NOT proactively quote laws or regulations unless the user asks. When you do reference this knowledge, keep your answer concise — summarise in 1-3 sentences and suggest contacting our team or a solicitor for details.
+
+${NZ_LENDING_KNOWLEDGE}
 
 ## Hard rules
 - Never mention anyone other than Gary Jiang and Allan Wu.
-- Never invent information not in the knowledge base.
+- Never invent information not in the knowledge base or the NZ lending knowledge above.
+- When citing NZ regulations (CCCFA, LVR, bright-line, etc.), always add "rules may change — check with our team or your solicitor for the latest".
 - Keep it short. Keep it human. Keep it helpful.`;
 }
