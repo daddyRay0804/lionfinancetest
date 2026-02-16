@@ -3,6 +3,8 @@ import { cookies } from 'next/headers';
 import fs from 'fs/promises';
 import path from 'path';
 
+export const dynamic = 'force-dynamic';
+
 // Content directory path
 const CONTENT_DIR = path.join(process.cwd(), 'content');
 

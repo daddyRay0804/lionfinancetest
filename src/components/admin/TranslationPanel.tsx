@@ -26,8 +26,8 @@ export default function TranslationPanel({ selectedFile, onTranslate }: Translat
 
     const confirmed = confirm(
       `This will translate "${selectedFile.name}" from English to ${targetLang.toUpperCase()}.\n\n` +
-      'The translation will overwrite any existing content in the target file.\n\n' +
-      'Continue?'
+      "The translation will overwrite any existing content in the target file.\n\n" +
+      "Continue?"
     );
 
     if (confirmed) {
@@ -44,7 +44,7 @@ export default function TranslationPanel({ selectedFile, onTranslate }: Translat
         <ul className="text-sm text-blue-700 space-y-1">
           <li>• Select an English (.en) file</li>
           <li>• Click translate to generate Chinese/Korean</li>
-          <li>• Uses project's LLM (DeepSeek/OpenRouter)</li>
+          <li>• Uses project&apos;s LLM (DeepSeek/OpenRouter)</li>
           <li>• Saves to corresponding language directory</li>
         </ul>
       </div>
