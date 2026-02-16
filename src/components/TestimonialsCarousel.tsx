@@ -2,9 +2,11 @@
 
 import { useRef, useState, useEffect, useCallback } from "react";
 import type { Lang } from "@/lib/i18n";
-import type { TestimonialItem } from "@/data/testimonials";
 
-type Props = { items: TestimonialItem[]; lang: Lang };
+type Props = {
+  items: Array<{ name: string; role: string; location: string; text: string; rating: number }>;
+  lang: Lang;
+};
 
 export function TestimonialsCarousel({ items, lang }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -116,13 +118,13 @@ export function TestimonialsCarousel({ items, lang }: Props) {
             key={t.name}
             className="snap-start shrink-0 w-[300px] sm:w-[340px] p-5 sm:p-6 bg-white rounded-xl border border-lion-gold/20 border-l-4 border-l-lion-gold flex flex-col justify-between shadow-card select-none"
           >
-            <p className="text-lion-dark mb-4 text-sm leading-relaxed">&ldquo;{t.text[lang]}&rdquo;</p>
+            <p className="text-lion-dark mb-4 text-sm leading-relaxed">&ldquo;{t.text}&rdquo;</p>
             <div>
               <footer className="text-sm text-lion-navy font-semibold">
                 {t.name}
               </footer>
               <p className="text-xs text-lion-dark/60 mt-0.5">
-                {t.role[lang]} · {t.location}
+                {t.role} · {t.location}
               </p>
               <div className="mt-2 text-lion-gold text-sm" aria-hidden>
                 {"★".repeat(t.rating)}

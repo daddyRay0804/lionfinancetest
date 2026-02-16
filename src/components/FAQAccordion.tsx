@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import type { Lang } from "@/lib/i18n";
-import type { FAQItem } from "@/data/faq";
 
-type FAQAccordionProps = { items: FAQItem[]; lang: Lang };
+type FAQAccordionProps = { items: Array<{ q: string; a: string }>; lang: Lang };
 
 export function FAQAccordion({ items, lang }: FAQAccordionProps) {
   const [openId, setOpenId] = useState<number | null>(0);
@@ -24,7 +23,7 @@ export function FAQAccordion({ items, lang }: FAQAccordionProps) {
             aria-controls={`faq-answer-${i}`}
             id={`faq-question-${i}`}
           >
-            {item.q[lang]}
+            {item.q}
             <span className="text-lion-gold shrink-0" aria-hidden>
               {openId === i ? "−" : "+"}
             </span>
@@ -38,7 +37,7 @@ export function FAQAccordion({ items, lang }: FAQAccordionProps) {
             }`}
           >
             <div className="px-4 py-3 bg-lion-cream/50 text-lion-dark/90 text-sm border-t border-lion-gold/10">
-              {item.a[lang]}
+              {item.a}
             </div>
           </div>
         </div>

@@ -5,12 +5,16 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { Logo } from "./Logo";
-import { nav, productSlugs, productTitles } from "@/data/content";
 import type { Lang } from "@/lib/i18n";
 
-type HeaderProps = { lang: Lang };
+type HeaderProps = {
+  lang: Lang;
+  nav: Record<string, string>;
+  productSlugs: readonly string[];
+  productTitles: Record<string, string>;
+};
 
-export function Header({ lang }: HeaderProps) {
+export function Header({ lang, nav, productSlugs, productTitles }: HeaderProps) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
@@ -28,7 +32,7 @@ export function Header({ lang }: HeaderProps) {
             href={base}
             className={`text-sm font-medium transition ${isActive(base) && base === pathname ? "text-lion-gold" : "text-lion-dark hover:text-lion-gold"}`}
           >
-            {nav.home[lang]}
+            {nav.home}
           </Link>
           <div className="relative group">
             <button
@@ -38,7 +42,7 @@ export function Header({ lang }: HeaderProps) {
               aria-haspopup="true"
               onClick={() => setProductsOpen(!productsOpen)}
             >
-              {nav.products[lang]}
+              {nav.products}
               <span className="text-xs">▼</span>
             </button>
             {productsOpen && (
@@ -54,7 +58,7 @@ export function Header({ lang }: HeaderProps) {
                     role="menuitem"
                     onClick={() => setProductsOpen(false)}
                   >
-                    {productTitles[slug][lang]}
+                    {productTitles[slug]}
                   </Link>
                 ))}
               </div>
@@ -64,25 +68,25 @@ export function Header({ lang }: HeaderProps) {
             href={`${base}/about`}
             className={`text-sm font-medium transition ${isActive(`${base}/about`) ? "text-lion-gold" : "text-lion-dark hover:text-lion-gold"}`}
           >
-            {nav.about[lang]}
+            {nav.about}
           </Link>
           <Link
             href={`${base}/team`}
             className={`text-sm font-medium transition ${isActive(`${base}/team`) ? "text-lion-gold" : "text-lion-dark hover:text-lion-gold"}`}
           >
-            {nav.team[lang]}
+            {nav.team}
           </Link>
           <Link
             href={`${base}/faq`}
             className={`text-sm font-medium transition ${isActive(`${base}/faq`) ? "text-lion-gold" : "text-lion-dark hover:text-lion-gold"}`}
           >
-            {nav.faq[lang]}
+            {nav.faq}
           </Link>
           <Link
             href={`${base}#contact`}
             className="text-sm font-medium text-lion-dark hover:text-lion-gold"
           >
-            {nav.contact[lang]}
+            {nav.contact}
           </Link>
           <LanguageSwitcher currentLang={lang} />
         </nav>
@@ -101,9 +105,9 @@ export function Header({ lang }: HeaderProps) {
         <div className="md:hidden border-t border-lion-gold/20 bg-white py-2 px-4 pb-6 animate-fade-in">
           <div className="flex flex-col">
             <Link href={base} className="min-h-[44px] flex items-center text-sm font-medium py-2 touch-manipulation" onClick={() => setMenuOpen(false)}>
-              {nav.home[lang]}
+              {nav.home}
             </Link>
-            <span className="text-sm font-medium text-lion-gold pt-3 pb-1">{nav.products[lang]}</span>
+            <span className="text-sm font-medium text-lion-gold pt-3 pb-1">{nav.products}</span>
             {productSlugs.map((slug) => (
               <Link
                 key={slug}
@@ -111,20 +115,20 @@ export function Header({ lang }: HeaderProps) {
                 className="min-h-[44px] flex items-center text-sm pl-4 py-2 touch-manipulation"
                 onClick={() => setMenuOpen(false)}
               >
-                {productTitles[slug][lang]}
+                {productTitles[slug]}
               </Link>
             ))}
             <Link href={`${base}/about`} className="min-h-[44px] flex items-center text-sm font-medium py-2 touch-manipulation" onClick={() => setMenuOpen(false)}>
-              {nav.about[lang]}
+              {nav.about}
             </Link>
             <Link href={`${base}/team`} className="min-h-[44px] flex items-center text-sm font-medium py-2 touch-manipulation" onClick={() => setMenuOpen(false)}>
-              {nav.team[lang]}
+              {nav.team}
             </Link>
             <Link href={`${base}/faq`} className="min-h-[44px] flex items-center text-sm font-medium py-2 touch-manipulation" onClick={() => setMenuOpen(false)}>
-              {nav.faq[lang]}
+              {nav.faq}
             </Link>
             <Link href={`${base}#contact`} className="min-h-[44px] flex items-center text-sm font-medium py-2 touch-manipulation" onClick={() => setMenuOpen(false)}>
-              {nav.contact[lang]}
+              {nav.contact}
             </Link>
             <div className="pt-4">
               <LanguageSwitcher currentLang={lang} />

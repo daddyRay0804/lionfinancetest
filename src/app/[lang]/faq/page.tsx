@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { FAQAccordion } from "@/components/FAQAccordion";
-import { faqList } from "@/data/faq";
+import { getLocalizedContentBundle } from "@/lib/contentStore";
 import type { Lang } from "@/lib/i18n";
 import { isValidLang } from "@/lib/i18n";
 import { makeAlternates } from "@/lib/seo";
@@ -39,13 +39,14 @@ export async function generateMetadata({
 
 export default function FAQPage({ params }: { params: { lang: string } }) {
   const lang = (isValidLang(params.lang) ? params.lang : "en") as Lang;
+  const content = getLocalizedContentBundle(lang);
 
   return (
     <article className="py-16 sm:py-20 px-4 sm:px-6">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-4xl font-bold text-lion-navy mb-4">{titles[lang]}</h1>
         <p className="text-lg text-lion-dark/80 mb-10">{descriptions[lang]}</p>
-        <FAQAccordion items={faqList} lang={lang} />
+        <FAQAccordion items={content.faq} lang={lang} />
       </div>
     </article>
   );

@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { useRef, useEffect, useState } from "react";
-import { productSlugs, productTitles, productDescriptions } from "@/data/content";
 import type { Lang } from "@/lib/i18n";
-import type { ProductSlug } from "@/data/content";
 
-const productIcons: Record<ProductSlug, string> = {
+type ProductSlug = string;
+
+const productIcons: Record<string, string> = {
   "home-loans": "🏠",
   "construction-loans": "🏗️",
   "business-loans": "💼",
@@ -22,9 +22,15 @@ const learnMore: Record<Lang, string> = {
   kr: "자세히 보기",
 };
 
-type ProductShowcaseProps = { lang: Lang; heading: string };
+type ProductShowcaseProps = {
+  lang: Lang;
+  heading: string;
+  productSlugs: readonly string[];
+  productTitles: Record<string, string>;
+  productDescriptions: Record<string, string>;
+};
 
-export function ProductShowcase({ lang, heading }: ProductShowcaseProps) {
+export function ProductShowcase({ lang, heading, productSlugs, productTitles, productDescriptions }: ProductShowcaseProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [inView, setInView] = useState(false);
 
@@ -74,10 +80,10 @@ export function ProductShowcase({ lang, heading }: ProductShowcaseProps) {
               </span>
               <div className="min-w-0 flex-1">
                 <h3 className="text-sm md:text-lg font-semibold text-lion-navy group-hover:text-lion-gold transition-colors duration-200 md:mb-2">
-                  {productTitles[slug][lang]}
+                  {productTitles[slug]}
                 </h3>
                 <p className="hidden md:block text-sm text-lion-dark/75 line-clamp-2 mb-4">
-                  {productDescriptions[slug][lang].slice(0, 100)}…
+                  {productDescriptions[slug].slice(0, 100)}…
                 </p>
                 <span className="hidden md:inline-flex items-center gap-1.5 text-sm font-medium text-lion-gold">
                   {learnMore[lang]}

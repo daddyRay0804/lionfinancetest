@@ -2,12 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import type { Lang } from "@/lib/i18n";
-import { siteName, siteTagline, contactAddress, contactEmail } from "@/data/content";
 import { isValidLang } from "@/lib/i18n";
 import { makeAlternates } from "@/lib/seo";
-import { testimonialsList } from "@/data/testimonials";
-import { faqList } from "@/data/faq";
-import { teamMembers } from "@/data/team";
+import { getLocalizedContentBundle, contentMeta } from "@/lib/contentStore";
 import { ProductShowcase } from "@/components/ProductShowcase";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { FAQPageJsonLd } from "@/components/FAQPageJsonLd";
@@ -47,7 +44,7 @@ export async function generateMetadata({
   };
 }
 
-function OrganizationJsonLd({ lang }: { lang: Lang }) {
+function OrganizationJsonLd({ bundle }: { bundle: ReturnType<typeof getLocalizedContentBundle> }) {
   const base = "https://lionfinance.co.nz";
 
   // Prefer a richer local-business schema for better Google understanding.
@@ -56,17 +53,17 @@ function OrganizationJsonLd({ lang }: { lang: Lang }) {
     "@type": "FinancialService",
     name: "Lion Finance",
     url: base,
-    description: siteTagline[lang],
+    description: bundle.site.siteTagline,
     image: `${base}/logo.png`,
     areaServed: { "@type": "Country", name: "New Zealand" },
     address: {
       "@type": "PostalAddress",
-      streetAddress: contactAddress,
+      streetAddress: bundle.site.contactAddress,
       addressLocality: "Auckland",
       addressCountry: "NZ",
     },
-    email: contactEmail,
-    contactPoint: teamMembers
+    email: bundle.site.contactEmail,
+    contactPoint: bundle.team
       .filter((m) => m.email || m.phone)
       .map((m) => ({
         "@type": "ContactPoint",
@@ -178,11 +175,12 @@ const faqSub: Record<Lang, string> = {
 
 export default function HomePage({ params }: { params: { lang: string } }) {
   const lang = (params.lang === "zh" || params.lang === "kr" ? params.lang : "en") as Lang;
+  const bundle = getLocalizedContentBundle(lang);
 
   return (
     <>
-      <OrganizationJsonLd lang={lang} />
-      <FAQPageJsonLd lang={lang} items={faqList} baseUrl="https://lionfinance.co.nz" />
+      <OrganizationJsonLd bundle={bundle} />
+      <FAQPageJsonLd lang={lang} items={bundle.faq} baseUrl="https://lionfinance.co.nz" />
       <section className="relative overflow-hidden text-white py-16 sm:py-20 md:py-28 px-4 sm:px-6 min-h-[360px] sm:min-h-[420px] flex flex-col justify-center">
         {/* Hero 背景图：奥克兰天际线 */}
         <div className="absolute inset-0 z-0">
@@ -204,7 +202,7 @@ export default function HomePage({ params }: { params: { lang: string } }) {
         <div className="max-w-4xl mx-auto relative z-10 text-center animate-fade-in px-0">
           <div className="inline-block rounded-2xl bg-black/40 backdrop-blur-md px-6 py-8 sm:px-10 sm:py-10 shadow-xl border border-white/10 max-w-2xl">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-white drop-shadow-sm">
-              {siteName[lang]}
+              {bundle.site.siteName}
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-lion-gold mb-4 font-medium drop-shadow-sm">
               {heroTagline[lang]}
@@ -228,7 +226,13 @@ export default function HomePage({ params }: { params: { lang: string } }) {
         </div>
       </section>
 
-      <ProductShowcase lang={lang} heading={productsHeading[lang]} />
+      <ProductShowcase
+        lang={lang}
+        heading={productsHeading[lang]}
+        productSlugs={contentMeta.productSlugs}
+        productTitles={bundle.site.productTitles}
+        productDescriptions={bundle.site.productDescriptions}
+      />
 
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white">
         <div className="max-w-6xl mx-auto">
@@ -236,7 +240,7 @@ export default function HomePage({ params }: { params: { lang: string } }) {
             {teamHeading[lang]}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            {teamMembers.map((member) => (
+            {bundle.team.map((member) => (
               <div
                 key={member.id}
                 className="flex flex-col items-center text-center p-6 bg-lion-cream rounded-xl border border-lion-gold/20 shadow-card hover:shadow-card-hover transition"
@@ -251,9 +255,9 @@ export default function HomePage({ params }: { params: { lang: string } }) {
                   />
                 )}
                 <h3 className="text-lg font-bold text-lion-navy">{member.name}</h3>
-                <p className="text-sm text-lion-gold font-medium mb-2">{member.title[lang]}</p>
+                <p className="text-sm text-lion-gold font-medium mb-2">{member.title}</p>
                 <p className="text-sm text-lion-dark/80 leading-relaxed line-clamp-3">
-                  {member.bio[lang].slice(0, 150)}…
+                  {member.bio.slice(0, 150)}…
                 </p>
               </div>
             ))}
@@ -276,7 +280,7 @@ export default function HomePage({ params }: { params: { lang: string } }) {
             {testimonialsHeading[lang]}
           </h2>
         </div>
-        <TestimonialsCarousel items={testimonialsList} lang={lang} />
+        <TestimonialsCarousel items={bundle.testimonials} lang={lang} />
       </section>
 
       <section id="faq" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-lion-cream">
@@ -287,7 +291,7 @@ export default function HomePage({ params }: { params: { lang: string } }) {
           <p className="text-center text-lion-dark/80 mb-6 sm:mb-8 max-w-xl mx-auto text-sm sm:text-base">
             {faqSub[lang]}
           </p>
-          <FAQAccordion items={faqList} lang={lang} />
+          <FAQAccordion items={bundle.faq} lang={lang} />
           <div className="mt-8 text-center">
             <Link
               href={`/${lang}/faq`}
@@ -310,10 +314,10 @@ export default function HomePage({ params }: { params: { lang: string } }) {
             Lion Finance
           </p>
           <p className="text-sm text-white/80 mb-2">
-            {contactAddress}
+            {bundle.site.contactAddress}
           </p>
           <p className="text-xs sm:text-sm text-white/70">
-            <a href={`mailto:${contactEmail}`} className="hover:text-lion-gold transition">{contactEmail}</a>
+            <a href={`mailto:${bundle.site.contactEmail}`} className="hover:text-lion-gold transition">{bundle.site.contactEmail}</a>
           </p>
         </div>
       </section>
