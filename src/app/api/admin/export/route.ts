@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import fs from 'fs/promises';
+import fsSync from 'fs';
 import path from 'path';
 import archiver from 'archiver';
 
@@ -44,7 +45,7 @@ export async function GET() {
     const zipFilePath = path.join(tempDir, zipFileName);
 
     // Create a write stream for the zip file
-    const output = fs.createWriteStream(zipFilePath);
+    const output = fsSync.createWriteStream(zipFilePath);
     const archive = archiver('zip', {
       zlib: { level: 9 } // Maximum compression
     });
@@ -137,8 +138,8 @@ All files use JSON-in-markdown format:
     await archive.finalize();
 
     // Wait for the file to be written
-    await new Promise((resolve, reject) => {
-      output.on('close', resolve);
+    await new Promise<void>((resolve, reject) => {
+      output.on('close', () => resolve());
       output.on('error', reject);
     });
 
