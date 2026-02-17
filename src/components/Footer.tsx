@@ -37,7 +37,9 @@ export function Footer({ lang, nav, productSlugs, productTitles, siteName, siteT
               {contactAddress}
             </p>
             <p className="text-xs text-white/60 mt-1">
-              <a href={`mailto:${contactEmail}`} className="hover:text-lion-gold transition">{contactEmail}</a>
+              <a href="mailto:gary@lionfinance.co.nz" className="hover:text-lion-gold transition">gary@lionfinance.co.nz</a>
+              <span className="text-white/60"> &amp; </span>
+              <a href="mailto:allan@lionfinance.co.nz" className="hover:text-lion-gold transition">allan@lionfinance.co.nz</a>
             </p>
             <p className="text-xs text-white/50 mt-1">Licensed Broker • New Zealand</p>
           </div>
