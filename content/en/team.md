@@ -6,24 +6,24 @@ Edit the JSON block below to update the content.
 ```json
 [
   {
-    "id": "ray",
-    "name": "Raymond Chen",
-    "title": "Director & Senior Mortgage Broker",
-    "bio": "Ray has over 15 years of experience in the New Zealand lending market. He specialises in complex residential and commercial loans, and has helped hundreds of clients secure finance for their homes and businesses.",
-    "fspNumber": "FSP1000001",
-    "phone": "+64 9 123 4567",
-    "email": "ray@lionfinance.co.nz",
-    "image": "/team/ray.jpg"
+    "id": "allan-wu",
+    "name": "Allan Wu",
+    "title": "Director / Mortgage & Insurance Advisor",
+    "bio": "With over 11 years of experience at ANZ in both lending and insurance, Allan brings a wealth of industry knowledge and practical expertise to every client interaction. His deep understanding of bank processes and products allows him to provide clear, reliable advice tailored to each client's financial needs. Allan is committed to helping individuals and families make confident, informed decisions about their future.",
+    "fspNumber": "FSP 1009101",
+    "phone": "021 153 1918",
+    "email": "allan@lionfinance.co.nz",
+    "image": "/team/allan.png"
   },
   {
-    "id": "sarah",
-    "name": "Sarah Wang",
-    "title": "Mortgage Broker",
-    "bio": "Sarah focuses on first‑home buyers and construction loans. Fluent in Mandarin and English, she enjoys helping young families navigate the home‑buying journey with clarity and confidence.",
-    "fspNumber": "FSP1000002",
-    "phone": "+64 9 234 5678",
-    "email": "sarah@lionfinance.co.nz",
-    "image": "/team/sarah.jpg"
+    "id": "gary-jiang",
+    "name": "Gary Jiang",
+    "title": "Director / Mortgage Advisor",
+    "bio": "Gary graduated from University of Canterbury (Bachelor of Commerce – Major in Accounting). He worked as a Home Loan Specialist and Business Relationship Manager with ANZ bank for more than 12 years. Gary has extensive experience on Residential Lending, Business/Commercial lending as well as development lending. He is friendly, knowledgeable and passionate, always willing to help his customers to achieve their financial goal.",
+    "fspNumber": "FSP 1002478",
+    "phone": "022 161 9172",
+    "email": "gary@lionfinance.co.nz",
+    "image": "/team/gary.png"
   }
 ]
 ```

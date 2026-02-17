@@ -6,24 +6,24 @@ Edit the JSON block below to update the content.
 ```json
 [
   {
-    "id": "ray",
-    "name": "Raymond Chen",
-    "title": "이사 & 시니어 모기지 브로커",
-    "bio": "Ray는 뉴질랜드 대출 시장에서 15년 이상의 경험을 가지고 있습니다. 복잡한 주거 및 상업 대출에 특화되어 있으며 수백 명의 고객이 주택 및 사업 자금을 확보하도록 도왔습니다.",
-    "fspNumber": "FSP1000001",
-    "phone": "+64 9 123 4567",
-    "email": "ray@lionfinance.co.nz",
-    "image": "/team/ray.jpg"
+    "id": "allan-wu",
+    "name": "Allan Wu",
+    "title": "Director / Mortgage & Insurance Advisor",
+    "bio": "Allan은 ANZ에서 대출 및 보험 분야 11년 이상의 경험을 바탕으로 모든 고객 상담에 풍부한 업계 지식과 실무 전문성을 제공합니다. 은행 프로세스와 상품에 대한 깊은 이해로 각 고객의 재정 요구에 맞는 명확하고 신뢰할 수 있는 조언을 합니다. Allan은 개인과 가족이 미래에 대해 확신 있고 정보에 기반한 결정을 내리도록 돕는 데 전념합니다.",
+    "fspNumber": "FSP 1009101",
+    "phone": "021 153 1918",
+    "email": "allan@lionfinance.co.nz",
+    "image": "/team/allan.png"
   },
   {
-    "id": "sarah",
-    "name": "Sarah Wang",
-    "title": "모기지 브로커",
-    "bio": "Sarah는 첫 주택 구매자 및 건축 대출에 중점을 둡니다. 중국어와 영어에 능통하며 젊은 가족이 명확하고 자신감 있게 주택 구매 여정을 진행하도록 돕는 것을 즐깁니다.",
-    "fspNumber": "FSP1000002",
-    "phone": "+64 9 234 5678",
-    "email": "sarah@lionfinance.co.nz",
-    "image": "/team/sarah.jpg"
+    "id": "gary-jiang",
+    "name": "Gary Jiang",
+    "title": "Director / Mortgage Advisor",
+    "bio": "Gary는 캔터베리 대학교(상학 학사, 회계 전공)를 졸업했습니다. ANZ 은행에서 주택 대출 전문가 및 비즈니스 관계 매니저로 12년 이상 근무했습니다. 주거 대출, 사업자/상업용 대출 및 개발 대출 분야에서 풍부한 경험을 보유하고 있으며, 친절하고 전문적이며 열정적이며 고객의 재정 목표 달성을 돕고자 합니다.",
+    "fspNumber": "FSP 1002478",
+    "phone": "022 161 9172",
+    "email": "gary@lionfinance.co.nz",
+    "image": "/team/gary.png"
   }
 ]
 ```

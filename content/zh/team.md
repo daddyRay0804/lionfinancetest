@@ -6,24 +6,24 @@ Edit the JSON block below to update the content.
 ```json
 [
   {
-    "id": "ray",
-    "name": "Raymond Chen",
-    "title": "董事兼高级房贷经纪人",
-    "bio": "Ray 在新西兰贷款市场拥有超过15年经验。他专长于复杂的住宅和商业贷款，已帮助数百名客户获得房屋和商业融资。",
-    "fspNumber": "FSP1000001",
-    "phone": "+64 9 123 4567",
-    "email": "ray@lionfinance.co.nz",
-    "image": "/team/ray.jpg"
+    "id": "allan-wu",
+    "name": "Allan Wu",
+    "title": "总监 / 房贷与保险顾问",
+    "bio": "Allan 在 ANZ 拥有超过 11 年的贷款与保险经验，为每次客户沟通带来丰富的行业知识与实战经验。他对银行流程与产品的深入理解使他能够根据客户财务需求提供清晰、可靠的建议。Allan 致力于帮助个人与家庭对未来做出自信、明智的决策。",
+    "fspNumber": "FSP 1009101",
+    "phone": "021 153 1918",
+    "email": "allan@lionfinance.co.nz",
+    "image": "/team/allan.png"
   },
   {
-    "id": "sarah",
-    "name": "Sarah Wang",
-    "title": "房贷经纪人",
-    "bio": "Sarah 专注于首次购房者和建筑贷款。精通普通话和英语，她乐于帮助年轻家庭清晰自信地完成购房之旅。",
-    "fspNumber": "FSP1000002",
-    "phone": "+64 9 234 5678",
-    "email": "sarah@lionfinance.co.nz",
-    "image": "/team/sarah.jpg"
+    "id": "gary-jiang",
+    "name": "Gary Jiang",
+    "title": "总监 / 房贷顾问",
+    "bio": "Gary 毕业于坎特伯雷大学（商学学士，会计专业）。曾在 ANZ 银行担任房屋贷款专员及商业关系经理超过 12 年。在住宅贷款、商业/商业地产贷款以及开发贷款方面经验丰富。为人友善、专业且热情，始终致力于帮助客户实现财务目标。",
+    "fspNumber": "FSP 1002478",
+    "phone": "022 161 9172",
+    "email": "gary@lionfinance.co.nz",
+    "image": "/team/gary.png"
   }
 ]
 ```
