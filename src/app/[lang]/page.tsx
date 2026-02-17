@@ -9,6 +9,7 @@ import { ProductShowcase } from "@/components/ProductShowcase";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { FAQPageJsonLd } from "@/components/FAQPageJsonLd";
 import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
+import { SHOW_TESTIMONIALS_ON_HOMEPAGE } from "@/data/testimonials";
 
 const titles: Record<Lang, string> = {
   en: "Lion Finance | Mortgage & Loan Broker | New Zealand",
@@ -274,14 +275,16 @@ export default function HomePage({ params }: { params: { lang: string } }) {
         </div>
       </section>
 
-      <section className="py-12 sm:py-16 md:py-20 bg-lion-cream">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <h2 className="section-heading text-center mb-8 sm:mb-12 text-2xl sm:text-3xl">
-            {testimonialsHeading[lang]}
-          </h2>
-        </div>
-        <TestimonialsCarousel items={bundle.testimonials} lang={lang} />
-      </section>
+      {SHOW_TESTIMONIALS_ON_HOMEPAGE && (
+        <section className="py-12 sm:py-16 md:py-20 bg-lion-cream">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
+            <h2 className="section-heading text-center mb-8 sm:mb-12 text-2xl sm:text-3xl">
+              {testimonialsHeading[lang]}
+            </h2>
+          </div>
+          <TestimonialsCarousel items={bundle.testimonials} lang={lang} />
+        </section>
+      )}
 
       <section id="faq" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-lion-cream">
         <div className="max-w-3xl mx-auto">

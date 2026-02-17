@@ -8,6 +8,9 @@ export type TestimonialItem = {
   rating: number;
 };
 
+// 控制是否在主页显示 testimonials
+export const SHOW_TESTIMONIALS_ON_HOMEPAGE = false;
+
 export const testimonialsList: TestimonialItem[] = [
   {
     name: "Sarah M.",
@@ -47,9 +50,9 @@ export const testimonialsList: TestimonialItem[] = [
     role: { en: "Property investor", zh: "房产投资者", kr: "부동산 투자자" },
     location: "Auckland",
     text: {
-      en: "I've used Lion Finance for three investment property purchases now. They understand the investor mindset — loan structuring, LVR strategies, and cash flow planning. Gary's banking background gives him an edge that most brokers simply don't have.",
-      zh: "我已经通过 Lion Finance 购买了三处投资物业。他们懂投资者的思路——贷款结构、LVR 策略和现金流规划。Gary 的银行从业背景让他拥有大多数经纪无法比拟的优势。",
-      kr: "Lion Finance를 통해 이미 투자용 부동산 3채를 구매했습니다. 대출 구조, LVR 전략, 현금 흐름 계획 등 투자자의 사고방식을 잘 이해해요. Gary의 은행 근무 경력이 대부분의 브로커에게 없는 강점을 줍니다.",
+      en: "I've used Lion Finance for three investment property purchases now. They understand the investor mindset — loan structuring, LVR strategies, and cash flow planning. Their expertise gives them an edge that most brokers simply don't have.",
+      zh: "我已经通过 Lion Finance 购买了三处投资物业。他们懂投资者的思路——贷款结构、LVR 策略和现金流规划。他们的专业知识让他们拥有大多数经纪无法比拟的优势。",
+      kr: "Lion Finance를 통해 이미 투자용 부동산 3채를 구매했습니다. 대출 구조, LVR 전략, 현금 흐름 계획 등 투자자의 사고방식을 잘 이해해요. 전문 지식이 대부분의 브로커에게 없는 강점을 줍니다.",
     },
     rating: 5,
   },
