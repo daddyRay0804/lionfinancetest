@@ -6,16 +6,6 @@ Edit the JSON block below to update the content.
 ```json
 [
   {
-    "id": "allan-wu",
-    "name": "Allan Wu",
-    "title": "Director / Mortgage & Insurance Advisor",
-    "bio": "Allan은 ANZ에서 대출 및 보험 분야 11년 이상의 경험을 바탕으로 모든 고객 상담에 풍부한 업계 지식과 실무 전문성을 제공합니다. 은행 프로세스와 상품에 대한 깊은 이해로 각 고객의 재정 요구에 맞는 명확하고 신뢰할 수 있는 조언을 합니다. Allan은 개인과 가족이 미래에 대해 확신 있고 정보에 기반한 결정을 내리도록 돕는 데 전념합니다.",
-    "fspNumber": "FSP 1009101",
-    "phone": "021 153 1918",
-    "email": "allan@lionfinance.co.nz",
-    "image": "/team/allan.png"
-  },
-  {
     "id": "gary-jiang",
     "name": "Gary Jiang",
     "title": "Director / Mortgage Advisor",
@@ -24,8 +14,18 @@ Edit the JSON block below to update the content.
     "phone": "022 161 9172",
     "email": "gary@lionfinance.co.nz",
     "image": "/team/gary.png"
+  },
+  {
+    "id": "allan-wu",
+    "name": "Allan Wu",
+    "title": "Director / Mortgage & Insurance Advisor",
+    "bio": "Allan은 ANZ에서 대출 및 보험 분야 11년 이상의 경험을 바탕으로 모든 고객 상담에 풍부한 업계 지식과 실무 전문성을 제공합니다. 은행 프로세스와 상품에 대한 깊은 이해로 각 고객의 재정 요구에 맞는 명확하고 신뢰할 수 있는 조언을 합니다. Allan은 개인과 가족이 미래에 대해 확신 있고 정보에 기반한 결정을 내리도록 돕는 데 전념합니다.",
+    "fspNumber": "FSP 1009101",
+    "phone": "021 153 1918",
+    "email": "allan@lionfinance.co.nz",
+    "image": "/team/allan.png"
   }
 ]
 ```
 
-*Last updated: 2026-02-16T02:39:39.576Z*
+*Last updated: 2026-02-17T08:47:00.000Z*
