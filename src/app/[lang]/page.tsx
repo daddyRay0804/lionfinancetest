@@ -320,7 +320,9 @@ export default function HomePage({ params }: { params: { lang: string } }) {
             {bundle.site.contactAddress}
           </p>
           <p className="text-xs sm:text-sm text-white/70">
-            <a href={`mailto:${bundle.site.contactEmail}`} className="hover:text-lion-gold transition">{bundle.site.contactEmail}</a>
+            <a href="mailto:gary@lionfinance.co.nz" className="hover:text-lion-gold transition">gary@lionfinance.co.nz</a>
+            <span className="text-lion-dark/60"> &amp; </span>
+            <a href="mailto:allan@lionfinance.co.nz" className="hover:text-lion-gold transition">allan@lionfinance.co.nz</a>
           </p>
         </div>
       </section>
