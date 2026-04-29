@@ -47,7 +47,7 @@ Edit the JSON block below to update the content.
       "kr": "연락처"
     }
   },
-  "contactAddress": "Level 1, 123 Queen Street, Auckland 1010, New Zealand",
+  "contactAddress": "2/24 Aberfeldy Ave, Highland Park , Auckland 2010",
   "contactEmail": "info@lionfinance.co.nz",
   "footerLegal": {
     "disclosure": {

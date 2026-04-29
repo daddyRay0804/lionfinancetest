@@ -305,17 +305,17 @@ export const disclosureSections: LegalSection[] = [
         items: {
           en: [
             "Email: allan@lionfinance.co.nz",
-            "Address: 2/24 Aberfeldy Ave, Highland Park, Auckland 2010",
+            "Address: 2/24 Aberfeldy Ave, Highland Park , Auckland 2010",
             "We will acknowledge and consider your complaint. We aim to resolve complaints within 10 working days. If we need more time, we will contact you within that timeframe and provide a realistic timeframe.",
           ],
           zh: [
             "邮箱：allan@lionfinance.co.nz",
-            "地址：2/24 Aberfeldy Ave, Highland Park, Auckland 2010",
+            "地址：2/24 Aberfeldy Ave, Highland Park , Auckland 2010",
             "我们会在收到投诉后进行审阅并与您沟通处理方式。一般目标是在 10 个工作日内解决；如需更长时间，我们会在该期限内联系您并提供预计时间。",
           ],
           kr: [
             "이메일: allan@lionfinance.co.nz",
-            "주소: 2/24 Aberfeldy Ave, Highland Park, Auckland 2010",
+            "주소: 2/24 Aberfeldy Ave, Highland Park , Auckland 2010",
             "불만 접수 후 검토 및 처리 방안을 안내드립니다. 통상 10영업일 내 해결을 목표로 하며, 추가 시간이 필요한 경우 해당 기간 내 연락드리고 예상 일정을 안내드립니다.",
           ],
         },
@@ -436,19 +436,19 @@ export const disclosureSections: LegalSection[] = [
             "Financial Advice Provider: Lion (FSP 1011137)",
             "Phone: 022 161 9172 or 021 153 1918",
             "Email: gary@lionfinance.co.nz or allan@lionfinance.co.nz",
-            "Address: 2/24 Aberfeldy Ave, Highland Park, Auckland 2010",
+            "Address: 2/24 Aberfeldy Ave, Highland Park , Auckland 2010",
           ],
           zh: [
             "金融建议提供方：Lion（FSP 1011137）",
             "电话：022 161 9172 或 021 153 1918",
             "邮箱：gary@lionfinance.co.nz 或 allan@lionfinance.co.nz",
-            "地址：2/24 Aberfeldy Ave, Highland Park, Auckland 2010",
+            "地址：2/24 Aberfeldy Ave, Highland Park , Auckland 2010",
           ],
           kr: [
             "금융 자문 제공자: Lion (FSP 1011137)",
             "전화: 022 161 9172 또는 021 153 1918",
             "이메일: gary@lionfinance.co.nz 또는 allan@lionfinance.co.nz",
-            "주소: 2/24 Aberfeldy Ave, Highland Park, Auckland 2010",
+            "주소: 2/24 Aberfeldy Ave, Highland Park , Auckland 2010",
           ],
         },
       },

@@ -223,7 +223,7 @@ export default function TermsPage({ params }: { params: { lang: string } }) {
             We will only retain personal information as long as it is required for the purposes for which the information may lawfully be used. All data stored online is backed up and can be retrieved in the event of data loss or corruption.
           </p>
           <p className="leading-relaxed">
-            Data will sometimes be held on-premise at 2/24 Aberfeldy Ave, Highland Park, Auckland 2010 - if it is provided to us outside of our software.
+            Data will sometimes be held on-premise at 2/24 Aberfeldy Ave, Highland Park , Auckland 2010 - if it is provided to us outside of our software.
           </p>
         </section>
 
