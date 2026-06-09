@@ -28,10 +28,10 @@ export async function generateMetadata({
     description: descriptions[lang],
     keywords:
       lang === "zh"
-        ? ["房贷顾问", "贷款顾问", "Gary Jiang", "Allan Wu", "奥克兰"]
+        ? ["房贷顾问", "贷款顾问", "Gary Jiang", "Allan Wu", "Eric Huang", "奥克兰"]
         : lang === "kr"
-          ? ["모기지 어드바이저", "대출 상담", "Gary Jiang", "Allan Wu", "오클랜드"]
-          : ["mortgage advisor", "loan broker", "Gary Jiang", "Allan Wu", "Auckland"],
+          ? ["모기지 어드바이저", "대출 상담", "Gary Jiang", "Allan Wu", "Eric Huang", "오클랜드"]
+          : ["mortgage advisor", "loan broker", "Gary Jiang", "Allan Wu", "Eric Huang", "Auckland"],
     alternates: makeAlternates(lang, "/team"),
     openGraph: { title: titles[lang], description: descriptions[lang] },
   };

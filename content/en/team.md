@@ -24,6 +24,13 @@ Edit the JSON block below to update the content.
     "phone": "021 153 1918",
     "email": "allan@lionfinance.co.nz",
     "image": "/team/allan.png"
+  },
+  {
+    "id": "eric-huang",
+    "name": "Eric Huang",
+    "title": "Social Media & Advertising Specialist",
+    "bio": "Eric is Lion Finance's Advertising Specialist with over 10 years' experience in digital sales and social media content creation. He manages the company's key Chinese-language channels, including Xiaohongshu and Facebook, producing bilingual (English & Mandarin) content that helps Chinese-speaking clients in New Zealand better understand home loans, investment lending, and business finance options. Eric combines market insight with data-driven campaign optimisation to improve lead quality and support the advisory team with compliant, accurate messaging.",
+    "image": "/team/eric-huang.jpg"
   }
 ]
 ```

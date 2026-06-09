@@ -51,4 +51,19 @@ export const teamMembers: TeamMember[] = [
     email: "allan@lionfinance.co.nz",
     image: "/team/allan.png",
   },
+  {
+    id: "eric-huang",
+    name: "Eric Huang",
+    title: {
+      en: "Social Media & Advertising Specialist",
+      zh: "社交媒体与广告专员",
+      kr: "소셜 미디어 및 광고 스페셜리스트",
+    },
+    bio: {
+      en: "Eric is Lion Finance's Advertising Specialist with over 10 years' experience in digital sales and social media content creation. He manages the company's key Chinese-language channels, including Xiaohongshu and Facebook, producing bilingual (English & Mandarin) content that helps Chinese-speaking clients in New Zealand better understand home loans, investment lending, and business finance options. Eric combines market insight with data-driven campaign optimisation to improve lead quality and support the advisory team with compliant, accurate messaging.",
+      zh: "Eric 是 Lion Finance 的广告专员，拥有超过 10 年数字销售与社交媒体内容创作经验。他负责管理公司的主要中文渠道，包括小红书和 Facebook，并制作英文与普通话双语内容，帮助新西兰华语客户更好地了解房屋贷款、投资贷款和商业融资选择。Eric 将市场洞察与数据驱动的广告优化相结合，提升潜在客户质量，并以合规、准确的信息支持顾问团队。",
+      kr: "Eric은 Lion Finance의 광고 스페셜리스트로, 디지털 세일즈와 소셜 미디어 콘텐츠 제작 분야에서 10년 이상의 경험을 보유하고 있습니다. Xiaohongshu와 Facebook을 포함한 회사의 주요 중국어 채널을 관리하며, 뉴질랜드의 중국어권 고객이 주택 대출, 투자 대출, 사업자 금융 옵션을 더 잘 이해할 수 있도록 영어와 중국어 콘텐츠를 제작합니다. Eric은 시장 인사이트와 데이터 기반 캠페인 최적화를 결합해 리드 품질을 높이고, 자문팀이 규정을 준수하는 정확한 메시지를 전달하도록 지원합니다.",
+    },
+    image: "/team/eric-huang.jpg",
+  },
 ];

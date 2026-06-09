@@ -24,6 +24,13 @@ Edit the JSON block below to update the content.
     "phone": "021 153 1918",
     "email": "allan@lionfinance.co.nz",
     "image": "/team/allan.png"
+  },
+  {
+    "id": "eric-huang",
+    "name": "Eric Huang",
+    "title": "社交媒体与广告专员",
+    "bio": "Eric 是 Lion Finance 的广告专员，拥有超过 10 年数字销售与社交媒体内容创作经验。他负责管理公司的主要中文渠道，包括小红书和 Facebook，并制作英文与普通话双语内容，帮助新西兰华语客户更好地了解房屋贷款、投资贷款和商业融资选择。Eric 将市场洞察与数据驱动的广告优化相结合，提升潜在客户质量，并以合规、准确的信息支持顾问团队。",
+    "image": "/team/eric-huang.jpg"
   }
 ]
 ```
