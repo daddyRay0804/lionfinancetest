@@ -32,6 +32,7 @@ export async function generateMetadata({
           ? ["Lion Finance", "회사 소개", "뉴질랜드 모기지 브로커", "오클랜드"]
           : ["Lion Finance", "about", "mortgage broker", "Auckland"],
     alternates: makeAlternates(lang, "/about"),
+    robots: { index: true, follow: true },
     openGraph: { title: titles[lang], description: descriptions[lang] },
   };
 }

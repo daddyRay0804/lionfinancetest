@@ -1,8 +1,15 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import { headers } from "next/headers";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+
+function resolveHtmlLang(pathname: string): string {
+  if (pathname.startsWith("/zh")) return "zh-CN";
+  if (pathname.startsWith("/kr")) return "ko";
+  return "en";
+}
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -61,8 +68,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = headers().get("x-pathname") ?? "";
+  const htmlLang = resolveHtmlLang(pathname);
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={htmlLang} suppressHydrationWarning>
       <body
         className={`${inter.variable} font-sans antialiased min-h-screen bg-lion-cream text-lion-dark`}
       >

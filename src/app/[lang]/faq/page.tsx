@@ -33,6 +33,7 @@ export async function generateMetadata({
           ? ["모기지 FAQ", "사전 승인", "필요 서류", "수수료", "뉴질랜드"]
           : ["mortgage FAQ", "pre-approval", "documents", "broker fees", "New Zealand"],
     alternates: makeAlternates(lang, "/faq"),
+    robots: { index: true, follow: true },
     openGraph: { title: titles[lang], description: descriptions[lang] },
   };
 }

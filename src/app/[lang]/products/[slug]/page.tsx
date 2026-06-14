@@ -55,6 +55,7 @@ export async function generateMetadata({
     title,
     description: desc,
     alternates: makeAlternates(lang, `/products/${slug}`),
+    robots: { index: true, follow: true },
     openGraph: { title, description: desc, images: [image] },
     twitter: { card: "summary_large_image", title, description: desc, images: [image] },
   };

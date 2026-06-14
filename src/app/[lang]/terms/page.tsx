@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { footerLegal } from "@/data/content";
 import { isValidLang } from "@/lib/i18n";
 import type { Lang } from "@/lib/i18n";
-import { makeAlternates } from "@/lib/seo";
+import { makeAlternates, ENGLISH_ONLY_LEGAL_LANGS } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -17,8 +17,10 @@ export async function generateMetadata({
   return {
     title: `${title} | Lion Finance`,
     description: desc,
-    alternates: makeAlternates(lang, "/terms"),
-    // Non-English legal pages are currently English content → avoid duplicate-language indexing.
+    alternates: makeAlternates(lang, "/terms", {
+      indexableLangs: ENGLISH_ONLY_LEGAL_LANGS,
+    }),
+    // Body content is English-only on all language routes → noindex zh/kr.
     robots: { index: lang === "en", follow: true },
     openGraph: { title: `${title} | Lion Finance`, description: desc },
   };
