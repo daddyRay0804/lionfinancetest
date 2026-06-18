@@ -66,4 +66,19 @@ export const teamMembers: TeamMember[] = [
     },
     image: "/team/eric-huang.jpg",
   },
+  {
+    id: "cody-li",
+    name: "Cody Li",
+    title: {
+      en: "Client Support Specialist",
+      zh: "客户支持专员",
+      kr: "고객 지원 스페셜리스트",
+    },
+    bio: {
+      en: "Cody brings more than eight years of administration and client-relationship experience to Lion Finance. She is committed to providing a seamless, professional experience by combining strong organizational skills with a client-first mindset. Known for her attention to detail and clear, empathetic communication, Cody excels at resolving inquiries efficiently, coordinating account needs, and maintaining accurate documentation. She collaborates closely with internal teams to streamline processes and proactively anticipate client requirements, ensuring reliable, responsive support.",
+      zh: "Cody 为 Lion Finance 带来超过八年的行政与客户关系管理经验。她致力于通过卓越的组织能力与客户为先的心态，提供无缝且专业的客户体验。Cody 以注重细节与清晰、富有同理心的沟通著称，擅长高效处理询问、协调账户需求并保持准确的文档记录。她与内部团队紧密合作，优化流程并主动预见客户需求，确保提供可靠且及时的支持。",
+      kr: "Cody는 Lion Finance에 8년 이상의 행정 및 고객 관계 관리 경험을 바탕으로 합니다. 뛰어난 조직력과 고객 우선 마인드셋을 통해 매끄럽고 전문적인 고객 경험을 제공하는 데 전념합니다. 세심한 주의력과 명확하고 공감적인 소통으로 알려진 Cody는 문의를 효율적으로 해결하고, 계정 요구 사항을 조율하며, 정확한 문서를 유지하는 데 탁월합니다. 내부 팀과 긴밀히 협력하여 프로세스를 간소화하고 고객 요구를 선제적으로 파악하여 신뢰할 수 있고 신속한 지원을 제공합니다.",
+    },
+    image: "/team/cody-li.jpg",
+  },
 ];
