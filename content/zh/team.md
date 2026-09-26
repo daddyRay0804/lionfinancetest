@@ -26,11 +26,14 @@ Edit the JSON block below to update the content.
     "image": "/team/allan.png"
   },
   {
-    "id": "eric-huang",
-    "name": "Eric Huang",
-    "title": "社交媒体与广告专员",
-    "bio": "Eric 是 Lion Finance 的广告专员，拥有超过 10 年数字销售与社交媒体内容创作经验。他负责管理公司的主要中文渠道，包括小红书和 Facebook，并制作英文与普通话双语内容，帮助新西兰华语客户更好地了解房屋贷款、投资贷款和商业融资选择。Eric 将市场洞察与数据驱动的广告优化相结合，提升潜在客户质量，并以合规、准确的信息支持顾问团队。",
-    "image": "/team/eric-huang.jpg"
+    "id": "john-yang",
+    "name": "John Yang",
+    "title": "房贷顾问",
+    "bio": "John 持有梅西大学金融学硕士学位，拥有近 8 年银行及贷款行业经验，在住宅贷款和房屋融资方面具备丰富的专业知识，专注于首次购房、投资房产及贷款再融资。凭借个人及商业贷款领域的工作背景，John 对银行业务流程和贷款申请要求有着深入的实际理解。他致力于帮助客户顺利完成贷款流程，解决财务挑战，实现购房及财务目标，并以专业的服务为客户提供中英文双语支持。",
+    "fspNumber": "FSP 1011137",
+    "phone": "027 467 5773",
+    "email": "john@lionfinance.co.nz",
+    "image": "/team/john-yang.jpg"
   },
   {
     "id": "cody-li",
@@ -38,6 +41,13 @@ Edit the JSON block below to update the content.
     "title": "客户支持专员",
     "bio": "Cody 为 Lion Finance 带来超过八年的行政与客户关系管理经验。她致力于通过卓越的组织能力与客户为先的心态，提供无缝且专业的客户体验。Cody 以注重细节与清晰、富有同理心的沟通著称，擅长高效处理询问、协调账户需求并保持准确的文档记录。她与内部团队紧密合作，优化流程并主动预见客户需求，确保提供可靠且及时的支持。",
     "image": "/team/cody-li.jpg"
+  },
+  {
+    "id": "eric-huang",
+    "name": "Eric Huang",
+    "title": "社交媒体与广告专员",
+    "bio": "Eric 是 Lion Finance 的广告专员，拥有超过 10 年数字销售与社交媒体内容创作经验。他负责管理公司的主要中文渠道，包括小红书和 Facebook，并制作英文与普通话双语内容，帮助新西兰华语客户更好地了解房屋贷款、投资贷款和商业融资选择。Eric 将市场洞察与数据驱动的广告优化相结合，提升潜在客户质量，并以合规、准确的信息支持顾问团队。",
+    "image": "/team/eric-huang.jpg"
   }
 ]
 ```

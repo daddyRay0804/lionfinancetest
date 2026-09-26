@@ -52,19 +52,22 @@ export const teamMembers: TeamMember[] = [
     image: "/team/allan.png",
   },
   {
-    id: "eric-huang",
-    name: "Eric Huang",
+    id: "john-yang",
+    name: "John Yang",
     title: {
-      en: "Social Media & Advertising Specialist",
-      zh: "社交媒体与广告专员",
-      kr: "소셜 미디어 및 광고 스페셜리스트",
+      en: "Mortgage Advisor",
+      zh: "房贷顾问",
+      kr: "모기지 어드바이저",
     },
     bio: {
-      en: "Eric is Lion Finance's Advertising Specialist with over 10 years' experience in digital sales and social media content creation. He manages the company's key Chinese-language channels, including Xiaohongshu and Facebook, producing bilingual (English & Mandarin) content that helps Chinese-speaking clients in New Zealand better understand home loans, investment lending, and business finance options. Eric combines market insight with data-driven campaign optimisation to improve lead quality and support the advisory team with compliant, accurate messaging.",
-      zh: "Eric 是 Lion Finance 的广告专员，拥有超过 10 年数字销售与社交媒体内容创作经验。他负责管理公司的主要中文渠道，包括小红书和 Facebook，并制作英文与普通话双语内容，帮助新西兰华语客户更好地了解房屋贷款、投资贷款和商业融资选择。Eric 将市场洞察与数据驱动的广告优化相结合，提升潜在客户质量，并以合规、准确的信息支持顾问团队。",
-      kr: "Eric은 Lion Finance의 광고 스페셜리스트로, 디지털 세일즈와 소셜 미디어 콘텐츠 제작 분야에서 10년 이상의 경험을 보유하고 있습니다. Xiaohongshu와 Facebook을 포함한 회사의 주요 중국어 채널을 관리하며, 뉴질랜드의 중국어권 고객이 주택 대출, 투자 대출, 사업자 금융 옵션을 더 잘 이해할 수 있도록 영어와 중국어 콘텐츠를 제작합니다. Eric은 시장 인사이트와 데이터 기반 캠페인 최적화를 결합해 리드 품질을 높이고, 자문팀이 규정을 준수하는 정확한 메시지를 전달하도록 지원합니다.",
+      en: "John holds a Master of Finance from Massey University. With nearly 8 years of banking and lending experience, he brings strong expertise in residential and home lending, with a focus on first home buyers, investment properties, and refinancing. His background in both personal and business lending gives him a practical understanding of banking processes and lending requirements. John is committed to helping clients navigate their lending journey, solve financial challenges, and achieve their goals, providing professional service in both English and Chinese.",
+      zh: "John 持有梅西大学金融学硕士学位，拥有近 8 年银行及贷款行业经验，在住宅贷款和房屋融资方面具备丰富的专业知识，专注于首次购房、投资房产及贷款再融资。凭借个人及商业贷款领域的工作背景，John 对银行业务流程和贷款申请要求有着深入的实际理解。他致力于帮助客户顺利完成贷款流程，解决财务挑战，实现购房及财务目标，并以专业的服务为客户提供中英文双语支持。",
+      kr: "John은 매시 대학교에서 금융학 석사 학위를 취득했으며, 은행 및 대출 업계에서 약 8년의 경력을 보유하고 있습니다. 주거용 및 주택 대출 분야에서 풍부한 전문성을 갖추고 있으며, 첫 주택 구매자, 투자용 부동산, 재융자에 중점을 두고 있습니다. 개인 및 사업자 대출 분야의 경험을 바탕으로 은행 절차와 대출 요건을 실무적으로 깊이 이해하고 있습니다. John은 고객이 대출 과정을 원활히 진행하고 재정적 과제를 해결하며 목표를 달성할 수 있도록 지원하며, 영어와 중국어로 전문적인 서비스를 제공합니다.",
     },
-    image: "/team/eric-huang.jpg",
+    fspNumber: "FSP 1011137",
+    phone: "027 467 5773",
+    email: "john@lionfinance.co.nz",
+    image: "/team/john-yang.jpg",
   },
   {
     id: "cody-li",
@@ -80,5 +83,20 @@ export const teamMembers: TeamMember[] = [
       kr: "Cody는 Lion Finance에 8년 이상의 행정 및 고객 관계 관리 경험을 바탕으로 합니다. 뛰어난 조직력과 고객 우선 마인드셋을 통해 매끄럽고 전문적인 고객 경험을 제공하는 데 전념합니다. 세심한 주의력과 명확하고 공감적인 소통으로 알려진 Cody는 문의를 효율적으로 해결하고, 계정 요구 사항을 조율하며, 정확한 문서를 유지하는 데 탁월합니다. 내부 팀과 긴밀히 협력하여 프로세스를 간소화하고 고객 요구를 선제적으로 파악하여 신뢰할 수 있고 신속한 지원을 제공합니다.",
     },
     image: "/team/cody-li.jpg",
+  },
+  {
+    id: "eric-huang",
+    name: "Eric Huang",
+    title: {
+      en: "Social Media & Advertising Specialist",
+      zh: "社交媒体与广告专员",
+      kr: "소셜 미디어 및 광고 스페셜리스트",
+    },
+    bio: {
+      en: "Eric is Lion Finance's Advertising Specialist with over 10 years' experience in digital sales and social media content creation. He manages the company's key Chinese-language channels, including Xiaohongshu and Facebook, producing bilingual (English & Mandarin) content that helps Chinese-speaking clients in New Zealand better understand home loans, investment lending, and business finance options. Eric combines market insight with data-driven campaign optimisation to improve lead quality and support the advisory team with compliant, accurate messaging.",
+      zh: "Eric 是 Lion Finance 的广告专员，拥有超过 10 年数字销售与社交媒体内容创作经验。他负责管理公司的主要中文渠道，包括小红书和 Facebook，并制作英文与普通话双语内容，帮助新西兰华语客户更好地了解房屋贷款、投资贷款和商业融资选择。Eric 将市场洞察与数据驱动的广告优化相结合，提升潜在客户质量，并以合规、准确的信息支持顾问团队。",
+      kr: "Eric은 Lion Finance의 광고 스페셜리스트로, 디지털 세일즈와 소셜 미디어 콘텐츠 제작 분야에서 10년 이상의 경험을 보유하고 있습니다. Xiaohongshu와 Facebook을 포함한 회사의 주요 중국어 채널을 관리하며, 뉴질랜드의 중국어권 고객이 주택 대출, 투자 대출, 사업자 금융 옵션을 더 잘 이해할 수 있도록 영어와 중국어 콘텐츠를 제작합니다. Eric은 시장 인사이트와 데이터 기반 캠페인 최적화를 결합해 리드 품질을 높이고, 자문팀이 규정을 준수하는 정확한 메시지를 전달하도록 지원합니다.",
+    },
+    image: "/team/eric-huang.jpg",
   },
 ];
