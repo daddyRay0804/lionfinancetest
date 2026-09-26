@@ -26,6 +26,13 @@ Edit the JSON block below to update the content.
     "image": "/team/allan.png"
   },
   {
+    "id": "eric-huang",
+    "name": "Eric Huang",
+    "title": "Social Media & Advertising Specialist",
+    "bio": "Eric is Lion Finance's Advertising Specialist with over 10 years' experience in digital sales and social media content creation. He manages the company's key Chinese-language channels, including Xiaohongshu and Facebook, producing bilingual (English & Mandarin) content that helps Chinese-speaking clients in New Zealand better understand home loans, investment lending, and business finance options. Eric combines market insight with data-driven campaign optimisation to improve lead quality and support the advisory team with compliant, accurate messaging.",
+    "image": "/team/eric-huang.jpg"
+  },
+  {
     "id": "john-yang",
     "name": "John Yang",
     "title": "Mortgage Advisor",
@@ -41,13 +48,6 @@ Edit the JSON block below to update the content.
     "title": "Client Support Specialist",
     "bio": "Cody brings more than eight years of administration and client-relationship experience to Lion Finance. She is committed to providing a seamless, professional experience by combining strong organizational skills with a client-first mindset. Known for her attention to detail and clear, empathetic communication, Cody excels at resolving inquiries efficiently, coordinating account needs, and maintaining accurate documentation. She collaborates closely with internal teams to streamline processes and proactively anticipate client requirements, ensuring reliable, responsive support.",
     "image": "/team/cody-li.jpg"
-  },
-  {
-    "id": "eric-huang",
-    "name": "Eric Huang",
-    "title": "Social Media & Advertising Specialist",
-    "bio": "Eric is Lion Finance's Advertising Specialist with over 10 years' experience in digital sales and social media content creation. He manages the company's key Chinese-language channels, including Xiaohongshu and Facebook, producing bilingual (English & Mandarin) content that helps Chinese-speaking clients in New Zealand better understand home loans, investment lending, and business finance options. Eric combines market insight with data-driven campaign optimisation to improve lead quality and support the advisory team with compliant, accurate messaging.",
-    "image": "/team/eric-huang.jpg"
   }
 ]
 ```
