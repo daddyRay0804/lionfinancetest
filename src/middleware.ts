@@ -14,7 +14,7 @@ export function middleware(request: NextRequest) {
   const proto = request.headers.get("x-forwarded-proto") ?? "https";
 
   // www → apex (308 permanent)
-  if (bareHost.startsWith("www.")) {
+  if (bareHost === `www.${CANONICAL_HOST}`) {
     const url = request.nextUrl.clone();
     url.protocol = "https:";
     url.hostname = CANONICAL_HOST;

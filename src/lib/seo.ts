@@ -29,7 +29,7 @@ export function makeAlternates(
 
   const languages: Record<string, string> = {};
   for (const l of indexable) {
-    languages[l] = `${BASE_URL}/${l}${safePath}`;
+    languages[l === "kr" ? "ko" : l] = `${BASE_URL}/${l}${safePath}`;
   }
   if (indexable.includes("en")) {
     languages["x-default"] = `${BASE_URL}/en${safePath}`;
@@ -43,3 +43,22 @@ export const ENGLISH_ONLY_LEGAL_LANGS: Lang[] = ["en"];
 
 /** Legal pages with full zh/kr localization — all languages indexable. */
 export const LOCALIZED_LEGAL_LANGS: Lang[] = ALL_LANGS;
+
+export function makeSocialMetadata(lang: Lang, path: string, title: string, description: string, image = "/hero.png"): Pick<Metadata, "openGraph" | "twitter"> {
+  const locale = { en: "en_NZ", zh: "zh_CN", kr: "ko_KR" };
+  const fullTitle = title.includes("Lion Finance") ? title : `${title} | Lion Finance`;
+  return {
+    openGraph: {
+      type: "website", siteName: "Lion Finance",
+      url: `${BASE_URL}/${lang}${path}`,
+      locale: locale[lang],
+      alternateLocale: ALL_LANGS.filter((l) => l !== lang).map((l) => locale[l]),
+      title: fullTitle, description, images: [{ url: image, alt: fullTitle }],
+    },
+    twitter: { card: "summary_large_image", title: fullTitle, description, images: [image] },
+  };
+}
+
+export function serializeJsonLd(value: unknown): string {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}

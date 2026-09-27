@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { Lang } from "@/lib/i18n";
 import { aboutContent } from "@/data/about";
 import { isValidLang } from "@/lib/i18n";
-import { makeAlternates } from "@/lib/seo";
+import { makeAlternates, makeSocialMetadata } from "@/lib/seo";
 
 const titles: Record<Lang, string> = {
   en: "About Lion Finance",
@@ -23,7 +23,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const lang = isValidLang(params.lang) ? params.lang : "en";
   return {
-    title: titles[lang],
+    title: { absolute: titles[lang] },
     description: descriptions[lang],
     keywords:
       lang === "zh"
@@ -33,7 +33,7 @@ export async function generateMetadata({
           : ["Lion Finance", "about", "mortgage broker", "Auckland"],
     alternates: makeAlternates(lang, "/about"),
     robots: { index: true, follow: true },
-    openGraph: { title: titles[lang], description: descriptions[lang] },
+    ...makeSocialMetadata(lang, "/about", titles[lang], descriptions[lang]),
   };
 }
 

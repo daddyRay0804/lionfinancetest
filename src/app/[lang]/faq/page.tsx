@@ -3,7 +3,7 @@ import { FAQAccordion } from "@/components/FAQAccordion";
 import { getLocalizedContentBundle } from "@/lib/contentStore";
 import type { Lang } from "@/lib/i18n";
 import { isValidLang } from "@/lib/i18n";
-import { makeAlternates } from "@/lib/seo";
+import { makeAlternates, makeSocialMetadata } from "@/lib/seo";
 
 const titles: Record<Lang, string> = {
   en: "Frequently Asked Questions",
@@ -34,7 +34,7 @@ export async function generateMetadata({
           : ["mortgage FAQ", "pre-approval", "documents", "broker fees", "New Zealand"],
     alternates: makeAlternates(lang, "/faq"),
     robots: { index: true, follow: true },
-    openGraph: { title: titles[lang], description: descriptions[lang] },
+    ...makeSocialMetadata(lang, "/faq", titles[lang], descriptions[lang]),
   };
 }
 

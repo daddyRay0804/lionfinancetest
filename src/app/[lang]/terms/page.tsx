@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { footerLegal } from "@/data/content";
 import { isValidLang } from "@/lib/i18n";
 import type { Lang } from "@/lib/i18n";
-import { makeAlternates, ENGLISH_ONLY_LEGAL_LANGS } from "@/lib/seo";
+import { makeAlternates, makeSocialMetadata, ENGLISH_ONLY_LEGAL_LANGS } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -15,14 +15,14 @@ export async function generateMetadata({
       ? "Lion Finance 웹사이트 이용 약관 및 개인정보 처리 관련 안내(뉴질랜드)."
       : "Lion Finance website terms & conditions and privacy policy (New Zealand).";
   return {
-    title: `${title} | Lion Finance`,
+    title,
     description: desc,
     alternates: makeAlternates(lang, "/terms", {
       indexableLangs: ENGLISH_ONLY_LEGAL_LANGS,
     }),
     // Body content is English-only on all language routes → noindex zh/kr.
     robots: { index: lang === "en", follow: true },
-    openGraph: { title: `${title} | Lion Finance`, description: desc },
+    ...makeSocialMetadata(lang, "/terms", title, desc),
   };
 }
 

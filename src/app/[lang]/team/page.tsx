@@ -3,7 +3,7 @@ import Image from "next/image";
 import type { Lang } from "@/lib/i18n";
 import { teamMembers } from "@/data/team";
 import { isValidLang } from "@/lib/i18n";
-import { makeAlternates } from "@/lib/seo";
+import { makeAlternates, makeSocialMetadata } from "@/lib/seo";
 
 const titles: Record<Lang, string> = {
   en: "Our Team",
@@ -34,7 +34,7 @@ export async function generateMetadata({
           : ["mortgage advisor", "loan broker", "Gary Jiang", "Allan Wu", "Eric Huang", "John Yang", "Cody Li", "Auckland"],
     alternates: makeAlternates(lang, "/team"),
     robots: { index: true, follow: true },
-    openGraph: { title: titles[lang], description: descriptions[lang] },
+    ...makeSocialMetadata(lang, "/team", titles[lang], descriptions[lang]),
   };
 }
 

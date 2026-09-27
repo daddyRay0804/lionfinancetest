@@ -3,7 +3,7 @@ import { footerLegal } from "@/data/content";
 import { disclosureSubtitle, disclosureSections } from "@/data/legal/disclosure";
 import { isValidLang } from "@/lib/i18n";
 import type { Lang } from "@/lib/i18n";
-import { makeAlternates } from "@/lib/seo";
+import { makeAlternates, makeSocialMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -16,10 +16,10 @@ export async function generateMetadata({
       ? "Lion Finance 공시: 서비스 범위, 수수료 및 분쟁 해결(뉴질랜드)."
       : "Lion Finance disclosure statement: services, fees, and dispute resolution (New Zealand).";
   return {
-    title: `${title} | Lion Finance`,
+    title,
     description: desc,
     alternates: makeAlternates(lang, "/disclosure"),
-    openGraph: { title: `${title} | Lion Finance`, description: desc },
+    ...makeSocialMetadata(lang, "/disclosure", title, desc),
   };
 }
 

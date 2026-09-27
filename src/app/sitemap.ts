@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { productSlugs, footerLegalSlugs } from "@/data/content";
+import { makeAlternates } from "@/lib/seo";
 
 const BASE = "https://lionfinance.co.nz";
 const LANGS = ["en", "zh", "kr"] as const;
@@ -11,12 +12,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = ["", "/about", "/team", "/faq"] as const;
   const legalPaths = footerLegalSlugs.map((s) => `/${s}`);
   const entries: MetadataRoute.Sitemap = [];
-  const lastModified = new Date();
 
   for (const lang of LANGS) {
     entries.push({
       url: `${BASE}/${lang}`,
-      lastModified,
+      alternates: { languages: makeAlternates(lang, "")!.languages as Record<string, string> },
       changeFrequency: "weekly",
       priority: 1,
     });
@@ -24,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       if (!path) continue;
       entries.push({
         url: `${BASE}/${lang}${path}`,
-        lastModified,
+        alternates: { languages: makeAlternates(lang, path)!.languages as Record<string, string> },
         changeFrequency: "monthly",
         priority: 0.8,
       });
@@ -34,7 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       if (ENGLISH_ONLY_LEGAL.has(slug) && lang !== "en") continue;
       entries.push({
         url: `${BASE}/${lang}${path}`,
-        lastModified,
+        alternates: { languages: makeAlternates(lang, path, { indexableLangs: ENGLISH_ONLY_LEGAL.has(slug) ? ["en"] : [...LANGS] })!.languages as Record<string, string> },
         changeFrequency: "monthly",
         priority: 0.5,
       });
@@ -42,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const slug of productSlugs) {
       entries.push({
         url: `${BASE}/${lang}/products/${slug}`,
-        lastModified,
+        alternates: { languages: makeAlternates(lang, `/products/${slug}`)!.languages as Record<string, string> },
         changeFrequency: "monthly",
         priority: 0.9,
       });

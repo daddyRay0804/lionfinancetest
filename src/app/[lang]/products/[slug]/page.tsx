@@ -11,7 +11,7 @@ import {
 import { isValidLang } from "@/lib/i18n";
 import type { Lang } from "@/lib/i18n";
 import { nav } from "@/data/content";
-import { makeAlternates } from "@/lib/seo";
+import { BASE_URL, makeAlternates, makeSocialMetadata, serializeJsonLd } from "@/lib/seo";
 
 const cta: Record<Lang, string> = {
   en: "Get in touch",
@@ -56,8 +56,7 @@ export async function generateMetadata({
     description: desc,
     alternates: makeAlternates(lang, `/products/${slug}`),
     robots: { index: true, follow: true },
-    openGraph: { title, description: desc, images: [image] },
-    twitter: { card: "summary_large_image", title, description: desc, images: [image] },
+    ...makeSocialMetadata(lang, `/products/${slug}`, title, desc, image),
   };
 }
 
@@ -77,6 +76,15 @@ export default function ProductPage({
 
   return (
     <article className="py-16 sm:py-20 px-4 sm:px-6">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: nav.home[lang], item: `${BASE_URL}/${lang}` },
+          { "@type": "ListItem", position: 2, name: nav.products[lang], item: `${BASE_URL}/${lang}#products` },
+          { "@type": "ListItem", position: 3, name: title, item: `${BASE_URL}/${lang}/products/${slug}` },
+        ],
+      }) }} />
       <div className="max-w-3xl mx-auto">
         <nav className="text-sm text-lion-dark/70 mb-6" aria-label="Breadcrumb">
           <Link href={`/${lang}`} className="hover:text-lion-gold">

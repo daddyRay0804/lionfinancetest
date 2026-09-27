@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Lang } from "@/lib/i18n";
 import { isValidLang } from "@/lib/i18n";
-import { makeAlternates } from "@/lib/seo";
+import { makeAlternates, makeSocialMetadata, serializeJsonLd } from "@/lib/seo";
 import { getLocalizedContentBundle, contentMeta } from "@/lib/contentStore";
 import { ProductShowcase } from "@/components/ProductShowcase";
 import { FAQAccordion } from "@/components/FAQAccordion";
@@ -31,7 +31,7 @@ export async function generateMetadata({
   const lang = (isValidLang(params.lang) ? params.lang : "en") as Lang;
   const image = "/hero.png";
   return {
-    title: titles[lang],
+    title: { absolute: titles[lang] },
     description: descriptions[lang],
     keywords:
       lang === "zh"
@@ -40,8 +40,7 @@ export async function generateMetadata({
           ? ["GJ Finance", "오클랜드 모기지 브로커", "뉴질랜드 주택 대출", "재융자", "건축 대출", "사업자 대출"]
           : ["GJ Finance", "Auckland mortgage broker", "home loan NZ", "refinance", "construction loan", "business loan"],
     alternates: makeAlternates(lang, ""),
-    openGraph: { title: titles[lang], description: descriptions[lang], images: [image] },
-    twitter: { card: "summary_large_image", title: titles[lang], description: descriptions[lang], images: [image] },
+    ...makeSocialMetadata(lang, "", titles[lang], descriptions[lang], image),
   };
 }
 
@@ -52,6 +51,8 @@ function OrganizationJsonLd({ bundle }: { bundle: ReturnType<typeof getLocalized
   const schema = {
     "@context": "https://schema.org",
     "@type": "FinancialService",
+    "@id": `${base}/#organization`,
+    logo: `${base}/logo.png`,
     name: "Lion Finance",
     url: base,
     description: bundle.site.siteTagline,
@@ -88,7 +89,7 @@ function OrganizationJsonLd({ bundle }: { bundle: ReturnType<typeof getLocalized
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }}
     />
   );
 }

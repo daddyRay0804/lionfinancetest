@@ -6,8 +6,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 function resolveHtmlLang(pathname: string): string {
-  if (pathname.startsWith("/zh")) return "zh-CN";
-  if (pathname.startsWith("/kr")) return "ko";
+  if (pathname.split("/")[1] === "zh") return "zh-CN";
+  if (pathname.split("/")[1] === "kr") return "ko";
   return "en";
 }
 

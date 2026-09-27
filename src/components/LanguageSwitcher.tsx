@@ -9,8 +9,7 @@ type LanguageSwitcherProps = { currentLang: Lang };
 export function LanguageSwitcher({ currentLang }: LanguageSwitcherProps) {
   const pathname = usePathname();
   // pathname is like /en, /en/about, /zh/products/home-loans
-  const pathWithoutLang = pathname.replace(/^\/(en|zh|kr)/, "") || "";
-  const basePath = pathWithoutLang ? `/${pathWithoutLang}` : "";
+  const basePath = pathname.replace(/^\/(en|zh|kr)(?=\/|$)/, "");
 
   return (
     <div className="flex items-center gap-1" role="group" aria-label="Language">

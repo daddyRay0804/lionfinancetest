@@ -1,7 +1,8 @@
 import type { Lang } from "@/lib/i18n";
+import { serializeJsonLd } from "@/lib/seo";
 
 /**
- * FAQPage 结构化数据，利于搜索引擎展示 FAQ 富摘要
+ * Describes the visible FAQ content without promising rich-result eligibility.
  */
 type FAQPageJsonLdProps = { lang: Lang; items: Array<{ q: string; a: string }>; baseUrl: string };
 
@@ -21,7 +22,7 @@ export function FAQPageJsonLd({ lang, items, baseUrl }: FAQPageJsonLdProps) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }}
     />
   );
 }

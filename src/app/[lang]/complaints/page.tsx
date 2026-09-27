@@ -4,7 +4,7 @@ import { footerLegal } from "@/data/content";
 import { complaintsIntro, complaintsSteps } from "@/data/legal/complaints";
 import { isValidLang } from "@/lib/i18n";
 import type { Lang } from "@/lib/i18n";
-import { makeAlternates } from "@/lib/seo";
+import { makeAlternates, makeSocialMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -17,10 +17,10 @@ export async function generateMetadata({
       ? "Lion Finance 불만 처리 및 분쟁 해결 절차(FDRS 안내 포함)."
       : "Lion Finance complaints and dispute resolution process (includes FDRS contact).";
   return {
-    title: `${title} | Lion Finance`,
+    title,
     description: desc,
     alternates: makeAlternates(lang, "/complaints"),
-    openGraph: { title: `${title} | Lion Finance`, description: desc },
+    ...makeSocialMetadata(lang, "/complaints", title, desc),
   };
 }
 
