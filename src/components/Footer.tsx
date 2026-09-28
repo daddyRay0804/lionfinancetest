@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Lang } from "@/lib/i18n";
+import { blogLabels } from "@/data/blog/types";
 
 type FooterProps = {
   lang: Lang;
@@ -69,6 +70,11 @@ export function Footer({ lang, nav, productSlugs, productTitles, siteName, siteT
               <li>
                 <Link href={`${base}/team`} className="inline-block py-2.5 hover:text-lion-gold transition touch-manipulation">
                   {nav.team}
+                </Link>
+              </li>
+              <li>
+                <Link href={`${base}/blog`} className="inline-block py-2.5 hover:text-lion-gold transition touch-manipulation">
+                  {blogLabels[lang].nav}
                 </Link>
               </li>
               <li>

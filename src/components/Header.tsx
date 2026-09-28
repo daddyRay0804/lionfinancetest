@@ -6,6 +6,7 @@ import { useState } from "react";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { Logo } from "./Logo";
 import type { Lang } from "@/lib/i18n";
+import { blogLabels } from "@/data/blog/types";
 
 type HeaderProps = {
   lang: Lang;
@@ -27,7 +28,7 @@ export function Header({ lang, nav, productSlugs, productTitles }: HeaderProps) 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
         <Logo lang={lang} />
 
-        <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
+        <nav className="hidden xl:flex items-center gap-5" aria-label="Main navigation">
           <Link
             href={base}
             className={`text-sm font-medium transition ${isActive(base) && base === pathname ? "text-lion-gold" : "text-lion-dark hover:text-lion-gold"}`}
@@ -82,6 +83,9 @@ export function Header({ lang, nav, productSlugs, productTitles }: HeaderProps) 
           >
             {nav.faq}
           </Link>
+          <Link href={`${base}/blog`} className={`text-sm font-medium transition ${isActive(`${base}/blog`) ? "text-emerald-800" : "text-lion-dark hover:text-emerald-800"}`}>
+            {blogLabels[lang].nav}
+          </Link>
           <Link
             href={`${base}#contact`}
             className="text-sm font-medium text-lion-dark hover:text-lion-gold"
@@ -93,8 +97,10 @@ export function Header({ lang, nav, productSlugs, productTitles }: HeaderProps) 
 
         <button
           type="button"
-          className="md:hidden min-h-[44px] min-w-[44px] flex items-center justify-center p-3 -m-1 text-lion-dark touch-manipulation"
+          className="xl:hidden min-h-[44px] min-w-[44px] flex items-center justify-center p-3 -m-1 text-lion-dark touch-manipulation"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navigation"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? "✕" : "☰"}
@@ -102,7 +108,7 @@ export function Header({ lang, nav, productSlugs, productTitles }: HeaderProps) 
       </div>
 
       {menuOpen && (
-        <div className="md:hidden border-t border-lion-gold/20 bg-white py-2 px-4 pb-6 animate-fade-in">
+        <div id="mobile-navigation" className="xl:hidden max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-lion-gold/20 bg-white py-2 px-4 pb-6 animate-fade-in">
           <div className="flex flex-col">
             <Link href={base} className="min-h-[44px] flex items-center text-sm font-medium py-2 touch-manipulation" onClick={() => setMenuOpen(false)}>
               {nav.home}
@@ -126,6 +132,9 @@ export function Header({ lang, nav, productSlugs, productTitles }: HeaderProps) 
             </Link>
             <Link href={`${base}/faq`} className="min-h-[44px] flex items-center text-sm font-medium py-2 touch-manipulation" onClick={() => setMenuOpen(false)}>
               {nav.faq}
+            </Link>
+            <Link href={`${base}/blog`} className="min-h-[44px] flex items-center text-sm font-medium py-2 touch-manipulation" onClick={() => setMenuOpen(false)}>
+              {blogLabels[lang].nav}
             </Link>
             <Link href={`${base}#contact`} className="min-h-[44px] flex items-center text-sm font-medium py-2 touch-manipulation" onClick={() => setMenuOpen(false)}>
               {nav.contact}

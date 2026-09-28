@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { productSlugs, footerLegalSlugs } from "@/data/content";
 import { makeAlternates } from "@/lib/seo";
+import { blogPosts } from "@/data/blog";
 
 const BASE = "https://lionfinance.co.nz";
 const LANGS = ["en", "zh", "kr"] as const;
@@ -9,7 +10,7 @@ const LANGS = ["en", "zh", "kr"] as const;
 const ENGLISH_ONLY_LEGAL = new Set(["terms"]);
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPaths = ["", "/about", "/team", "/faq"] as const;
+  const staticPaths = ["", "/about", "/team", "/faq", "/blog"] as const;
   const legalPaths = footerLegalSlugs.map((s) => `/${s}`);
   const entries: MetadataRoute.Sitemap = [];
 
@@ -45,6 +46,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: { languages: makeAlternates(lang, `/products/${slug}`)!.languages as Record<string, string> },
         changeFrequency: "monthly",
         priority: 0.9,
+      });
+    }
+    for (const post of blogPosts) {
+      entries.push({
+        url: `${BASE}/${lang}/blog/${post.slug}`,
+        alternates: { languages: makeAlternates(lang, `/blog/${post.slug}`)!.languages as Record<string, string> },
+        changeFrequency: "monthly",
+        priority: 0.7,
       });
     }
   }

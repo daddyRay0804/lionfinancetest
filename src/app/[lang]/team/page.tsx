@@ -50,7 +50,8 @@ export default function TeamPage({ params }: { params: { lang: string } }) {
           {teamMembers.map((member) => (
             <div
               key={member.id}
-              className="grid grid-cols-1 md:grid-cols-[240px_1fr] lg:grid-cols-[280px_1fr] gap-6 md:gap-8 p-6 bg-white rounded-xl border border-lion-gold/20 shadow-sm hover:shadow-card-hover hover:border-lion-gold/30 transition-all duration-200 overflow-hidden"
+              id={member.id === "eric-huang" ? "eric" : member.id}
+              className="scroll-mt-24 grid grid-cols-1 md:grid-cols-[240px_1fr] lg:grid-cols-[280px_1fr] gap-6 md:gap-8 p-6 bg-white rounded-xl border border-lion-gold/20 shadow-sm hover:shadow-card-hover hover:border-lion-gold/30 transition-all duration-200 overflow-hidden"
             >
               {/* 照片列 */}
               <div className="flex justify-center md:justify-start">

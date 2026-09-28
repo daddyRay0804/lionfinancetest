@@ -1,0 +1,125 @@
+{
+  "generator": "Built-in image_gen (model not exposed; user approved)",
+  "assets": [
+    {
+      "name": "first-home",
+      "source": "exec-c5934c9e-c472-4500-8889-f6a097912022.png",
+      "prompt": "Photorealistic landscape New Zealand first-home purchase illustration: house keys on gatepost outside modest weatherboard home, daylight, no text.",
+      "output": "public/blog/first-home.webp"
+    },
+    {
+      "name": "pre-approval",
+      "source": "exec-6ce1affe-b687-4f39-ae4a-ca78fed0f7a5.png",
+      "prompt": "One photorealistic editorial photograph, landscape 3:2, for Lion Finance New Zealand educational blog. A tidy bright New Zealand home office desk with a blank document folder, simple checklist sheet with small empty square boxes but absolutely no letters or numbers, calculator and house keys, through the window a suburban weatherboard home is visible. The concept is organising mortgage pre-approval documents. Professional crisp magazine photography, natural light, believable details, airy white and green accents. No text, no lettering, no numbers, no logos, no watermarks, no collage.",
+      "output": "public/blog/pre-approval.webp"
+    },
+    {
+      "name": "deposit-budget",
+      "source": "exec-62bc5620-713e-4348-84cb-95fd1260387a.png",
+      "prompt": "One photorealistic editorial photograph, landscape 3:2, for Lion Finance New Zealand educational blog. An overhead editorial still life: small realistic house model, three clear glass jars containing unmarked metal coins, calculator and a plain notebook with blank pages on white tabletop with green plant. The concept is separating a first-home deposit from additional buying costs. Professional crisp magazine photography, natural light, believable details, airy white and green accents. No text, no lettering, no numbers, no logos, no watermarks, no collage.",
+      "output": "public/blog/deposit-budget.webp"
+    },
+    {
+      "name": "kiwisaver",
+      "source": "exec-2aa1742e-2caa-43f2-a64d-7df38e64a9ff.png",
+      "prompt": "One photorealistic editorial photograph, landscape 3:2, for Lion Finance New Zealand educational blog. A small white ceramic savings piggy bank beside a realistic timber house model and front door keys on a bright desk near a garden window. The concept is using long-term savings for a first-home purchase. No currency symbols. Professional crisp magazine photography, natural light, believable details, airy white and green accents. No text, no lettering, no numbers, no logos, no watermarks, no collage.",
+      "output": "public/blog/kiwisaver.webp"
+    },
+    {
+      "name": "fixed-floating",
+      "source": "exec-1db01761-1f25-41a2-93c4-bdcc4dc2715e.png",
+      "prompt": "One photorealistic editorial photograph, landscape 3:2, for Lion Finance New Zealand educational blog. Bright daylight photo of two different clean doorways side by side on an ordinary New Zealand townhouse facade, one sage green door and one warm white door, elegant symmetrical framing with a small leafy plant between, visual metaphor for choosing fixed versus floating mortgage structures. Both doors grounded in realistic architecture. Professional crisp magazine photography, natural light, believable details, airy white and green accents. No text, no lettering, no numbers, no logos, no watermarks, no collage.",
+      "output": "public/blog/fixed-floating.webp"
+    },
+    {
+      "name": "auction",
+      "source": "exec-63727215-34e3-42ca-af36-20311e8e9969.png",
+      "prompt": "Create one photorealistic editorial photograph, landscape 3:2 for a New Zealand mortgage education blog. An auctioneer's small wooden gavel and sounding block beside house keys and a closed blank property document folder on a crisp white desk, suburban New Zealand house visible through a bright window. No humans. Crisp realistic magazine photography, natural daylight, balanced wide framing, white and green accents. No text, lettering, logos, watermark or collage.",
+      "output": "public/blog/auction.webp"
+    },
+    {
+      "name": "refix",
+      "source": "exec-02ad630d-887d-42db-9ff2-1363df691615.png",
+      "prompt": "Create one photorealistic editorial photograph, landscape 3:2 for a New Zealand mortgage education blog. A simple unbranded desk calendar with a clean blank grid and one square circled in green, beside home keys and a calculator, bright home office scene. Concept: preparing for a fixed mortgage rate expiry, absolutely no readable lettering or dates. Crisp realistic magazine photography, natural daylight, balanced wide framing, white and green accents. No text, lettering, logos, watermark or collage.",
+      "output": "public/blog/refix.webp"
+    },
+    {
+      "name": "refinance",
+      "source": "exec-1c512db5-7ba9-490b-88e8-962b94014f75.png",
+      "prompt": "Create one photorealistic editorial photograph, landscape 3:2 for a New Zealand mortgage education blog. Two plain blank mortgage document folders side by side with house keys and a calculator between them, bright white tabletop, overhead photographic view with a green plant edge. Concept: comparing total refinance costs, not bank advertising. Crisp realistic magazine photography, natural daylight, balanced wide framing, white and green accents. No text, lettering, logos, watermark or collage.",
+      "output": "public/blog/refinance.webp"
+    },
+    {
+      "name": "offset",
+      "source": "exec-040cda56-5711-419c-93ab-91ba3394ea07.png",
+      "prompt": "Create one photorealistic editorial photograph, landscape 3:2 for a New Zealand mortgage education blog. A tidy household banking planning still life with two separate clear jars of unmarked coins beside a white model home, one small stack of coins in between, bright airy realistic editorial photo about linking savings with a mortgage. Crisp realistic magazine photography, natural daylight, balanced wide framing, white and green accents. No text, lettering, logos, watermark or collage.",
+      "output": "public/blog/offset.webp"
+    },
+    {
+      "name": "repayments",
+      "source": "exec-073d2f3a-c66a-49f9-9317-bc68de49400e.png",
+      "prompt": "Create one photorealistic editorial photograph, landscape 3:2 for a New Zealand mortgage education blog. A hand placing a single plain metal coin onto three short ascending stacks next to a small white house model, realistic human hand, fresh light green background, daylight photograph about making small extra repayments. No graphs or arrows. Crisp realistic magazine photography, natural daylight, balanced wide framing, white and green accents. No text, lettering, logos, watermark or collage.",
+      "output": "public/blog/repayments.webp"
+    },
+    {
+      "name": "investment",
+      "source": "exec-52376c25-ea5b-491b-9626-eb7560744cc9.png",
+      "prompt": "Create a single photorealistic editorial photograph, landscape 3:2, for a New Zealand property finance educational blog. Exterior of a modest tidy New Zealand rental townhouse, small garden and mail box, beside the foreground windowsill a calculator and blank notebook, realistic daytime property photograph communicating rental cash-flow planning. Crisp realistic professional magazine photography, natural light, balanced wide framing, neutral whites with fresh greens, not luxury real estate. No letters, numbers, branding, watermark, collage or diagrams.",
+      "output": "public/blog/investment.webp"
+    },
+    {
+      "name": "construction",
+      "source": "exec-dc282e28-d743-4e2b-aeec-96963ce749ea.png",
+      "prompt": "Create a single photorealistic editorial photograph, landscape 3:2, for a New Zealand property finance educational blog. A small New Zealand detached home under construction at timber-framing stage, completed concrete foundation, clean organised site, a plain white hard hat and rolled floor plans in foreground, blue sky, no workers. Crisp realistic professional magazine photography, natural light, balanced wide framing, neutral whites with fresh greens, not luxury real estate. No letters, numbers, branding, watermark, collage or diagrams.",
+      "output": "public/blog/construction.webp"
+    },
+    {
+      "name": "renovation",
+      "source": "exec-32ee1974-f123-4a87-9208-5c5212dc434b.png",
+      "prompt": "Create a single photorealistic editorial photograph, landscape 3:2, for a New Zealand property finance educational blog. Bright New Zealand domestic kitchen mid-renovation, half installed white kitchen cabinetry, neatly arranged paint swatches in sage green and white, tape measure on clean countertop, unfinished but orderly, no people. Crisp realistic professional magazine photography, natural light, balanced wide framing, neutral whites with fresh greens, not luxury real estate. No letters, numbers, branding, watermark, collage or diagrams.",
+      "output": "public/blog/renovation.webp"
+    },
+    {
+      "name": "moving",
+      "source": "exec-56f41e39-ffc5-4289-8f26-e4d3d5a8528d.png",
+      "prompt": "Create a single photorealistic editorial photograph, landscape 3:2, for a New Zealand property finance educational blog. Two cardboard moving boxes and a pair of house keys beside the open front door of a tidy New Zealand suburban home, garden and driveway visible outside, natural light, concept coordinating buying and selling homes. Crisp realistic professional magazine photography, natural light, balanced wide framing, neutral whites with fresh greens, not luxury real estate. No letters, numbers, branding, watermark, collage or diagrams.",
+      "output": "public/blog/moving.webp"
+    },
+    {
+      "name": "apartment",
+      "source": "exec-4d7a7e41-05e7-4164-9f2f-d339e0e58597.png",
+      "prompt": "Create a single photorealistic editorial photograph, landscape 3:2, for a New Zealand property finance educational blog. Clearly visible modern mid-rise New Zealand apartment building with balconies, tidy common entrance courtyard and planted landscaping, full architecture in daylight, no people, no text or signs, concept apartment due diligence. Crisp realistic professional magazine photography, natural light, balanced wide framing, neutral whites with fresh greens, not luxury real estate. No letters, numbers, branding, watermark, collage or diagrams.",
+      "output": "public/blog/apartment.webp"
+    },
+    {
+      "name": "self-employed",
+      "source": "exec-0ee85229-ed13-4f77-b3ef-16dbf931955b.png",
+      "prompt": "Create one photorealistic editorial photograph, landscape 3:2, for a New Zealand finance education blog. A self-employed designer's tidy studio desk with an open blank ledger, laptop viewed from behind, plain invoice folder, home keys and a small green plant, daylight New Zealand small home office, no person. Clear detailed professional magazine photography, balanced framing, neutral white and fresh green palette. No text, no lettering, no numbers, no watermarks, no collage.",
+      "output": "public/blog/self-employed.webp"
+    },
+    {
+      "name": "business-loan",
+      "source": "exec-6551482a-7da1-4de5-b9cc-7672bd54270e.png",
+      "prompt": "Create one photorealistic editorial photograph, landscape 3:2, for a New Zealand finance education blog. A small independent New Zealand cafe in bright daylight before opening, espresso machine, clean service counter, foreground plain business planning folder and calculator. No customers or staff, no menus or signage. Concept preparing a business loan application. Clear detailed professional magazine photography, balanced framing, neutral white and fresh green palette. No text, no lettering, no numbers, no watermarks, no collage.",
+      "output": "public/blog/business-loan.webp"
+    },
+    {
+      "name": "cash-flow",
+      "source": "exec-009f0343-092a-4759-929f-22255ed55747.png",
+      "prompt": "Create one photorealistic editorial photograph, landscape 3:2, for a New Zealand finance education blog. Small New Zealand workshop stockroom with a few neat shelves of plain cardboard inventory boxes, foreground a blank planning notebook and calculator on a desk. Concept managing seasonal working capital. Bright practical environment, not a giant warehouse. Clear detailed professional magazine photography, balanced framing, neutral white and fresh green palette. No text, no lettering, no numbers, no watermarks, no collage.",
+      "output": "public/blog/cash-flow.webp"
+    },
+    {
+      "name": "commercial",
+      "source": "exec-2ecda9cc-8bd0-44bb-b8b9-e338e1133c51.png",
+      "prompt": "Create one photorealistic editorial photograph, landscape 3:2, for a New Zealand finance education blog. A modest single-storey commercial light-industrial unit in New Zealand with a clean roller door and small glass office entry, tidy driveway, green landscaping, bright daylight. Entire building visible, no signs or cars. Concept buying commercial premises. Clear detailed professional magazine photography, balanced framing, neutral white and fresh green palette. No text, no lettering, no numbers, no watermarks, no collage.",
+      "output": "public/blog/commercial.webp"
+    },
+    {
+      "name": "adviser",
+      "source": "exec-a0473fa4-1c9d-4080-8d7b-be6919d51294.png",
+      "prompt": "Create one photorealistic editorial photograph, landscape 3:2, for a New Zealand finance education blog. A welcoming contemporary New Zealand office meeting table with two empty chairs, a blank notebook and pen, plain document folder and water glasses, daylight from a garden window. Concept preparing questions for a mortgage adviser, no people, no logos. Clear detailed professional magazine photography, balanced framing, neutral white and fresh green palette. No text, no lettering, no numbers, no watermarks, no collage.",
+      "output": "public/blog/adviser.webp"
+    }
+  ]
+}

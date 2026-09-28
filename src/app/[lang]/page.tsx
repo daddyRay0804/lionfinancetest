@@ -10,6 +10,7 @@ import { FAQAccordion } from "@/components/FAQAccordion";
 import { FAQPageJsonLd } from "@/components/FAQPageJsonLd";
 import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
 import { SHOW_TESTIMONIALS_ON_HOMEPAGE } from "@/data/testimonials";
+import { BlogPreview } from "@/components/blog/BlogPreview";
 
 const titles: Record<Lang, string> = {
   en: "Lion Finance | Mortgage & Loan Broker | New Zealand",
@@ -307,6 +308,8 @@ export default function HomePage({ params }: { params: { lang: string } }) {
           </div>
         </div>
       </section>
+
+      <BlogPreview lang={lang} />
 
       <section id="contact" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-lion-navy text-white">
         <div className="max-w-2xl mx-auto text-center">

@@ -57,7 +57,7 @@ def fetch(path):
 root = ET.fromstring(fetch("/sitemap.xml"))
 ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9", "x": "http://www.w3.org/1999/xhtml"}
 urls = [entry.find("s:loc", ns).text for entry in root]
-assert len(urls) == len(set(urls)) == 40, "Unexpected sitemap URLs"
+assert len(urls) == len(set(urls)) == 103, "Unexpected sitemap URLs"
 assert not any("/admin" in u or "/login" in u or u.endswith(("/zh/terms", "/kr/terms")) for u in urls)
 titles = set()
 for entry, url in zip(root, urls):
@@ -90,11 +90,11 @@ for entry, url in zip(root, urls):
 
 for path in ["/login", "/zh/terms", "/kr/terms"]:
     assert "noindex" in Page(fetch(path)).meta("robots"), path
-for path in ["/en/not-a-page", "/en/products/not-a-product", "/fr"]:
+for path in ["/en/not-a-page", "/en/products/not-a-product", "/en/blog/not-an-article", "/zh/blog/not-an-article", "/kr/blog/not-an-article", "/fr"]:
     try:
         fetch(path)
         raise AssertionError((path, "Expected 404"))
     except urllib.error.HTTPError as error:
         assert error.code == 404, (path, error.code)
 assert CANONICAL + "/sitemap.xml" in fetch("/robots.txt")
-print("PASS: 40 sitemap pages, noindex pages, invalid routes, and robots.txt")
+print("PASS: 103 sitemap pages, noindex pages, invalid routes, and robots.txt")

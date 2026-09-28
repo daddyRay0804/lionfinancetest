@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LANGUAGES, type Lang } from "@/lib/i18n";
 
@@ -14,18 +13,19 @@ export function LanguageSwitcher({ currentLang }: LanguageSwitcherProps) {
   return (
     <div className="flex items-center gap-1" role="group" aria-label="Language">
       {LANGUAGES.map(({ code, label }) => (
-        <Link
+        // Reload the document so the root html language matches the new locale.
+        <a
           key={code}
           href={basePath ? `/${code}${basePath}` : `/${code}`}
-          className={`px-2 py-1 text-xs font-medium rounded transition ${
+          className={`inline-flex min-h-[44px] items-center px-2 py-1 text-xs font-medium rounded transition ${
             code === currentLang
-              ? "bg-lion-gold text-white"
+              ? "bg-lion-navy text-white"
               : "text-lion-dark hover:bg-lion-cream hover:text-lion-gold"
           }`}
           aria-current={code === currentLang ? "true" : undefined}
         >
           {label}
-        </Link>
+        </a>
       ))}
     </div>
   );
