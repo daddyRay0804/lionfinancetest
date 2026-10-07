@@ -1,26 +1,24 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
-const ts = require("typescript");
-
-// Load the typed editorial data without adding a runtime dependency to the site.
-require.extensions[".ts"] = (module, filename) => {
-  const source = fs.readFileSync(filename, "utf8");
-  module._compile(ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText, filename);
-};
-const { blogPosts } = require("../src/data/blog/index.ts");
-const { productSlugs } = require("../src/data/content.ts");
+const { blogPosts, productSlugs } = require("./blog-test-data.cjs");
+const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Pacific/Auckland", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
 const slugs = new Set(blogPosts.map(post => post.slug));
-assert.equal(blogPosts.length, 20);
-assert.equal(slugs.size, 20);
-assert.equal(new Set(blogPosts.map(post => post.image)).size, 20);
-assert.equal(new Set(blogPosts.map(post => post.date)).size, 20);
+assert(blogPosts.length >= 20, "Do not remove the original editorial collection");
+assert.equal(slugs.size, blogPosts.length);
+assert.equal(new Set(blogPosts.map(post => post.image)).size, blogPosts.length);
+assert.equal(new Set(blogPosts.map(post => post.date)).size, blogPosts.length);
+const imageHashes = new Set();
+const crypto = require("node:crypto");
 const titles = new Set();
 const descriptions = new Set();
 let links = 0;
 for (const post of blogPosts) {
-  assert(post.date >= "2026-03-01" && post.date <= "2026-09-29", post.slug);
+  assert(/^\d{4}-\d{2}-\d{2}$/.test(post.date) && post.date >= "2026-03-01" && post.date <= today, `${post.slug}: future or invalid date`);
   assert.equal(new Date(`${post.date}T12:00:00Z`).toISOString().slice(0, 10), post.date);
   assert(fs.statSync(`public/blog/${post.image}.webp`).size < 400000, post.image);
+  const hash = crypto.createHash("sha256").update(fs.readFileSync(`public/blog/${post.image}.webp`)).digest("hex");
+  assert(!imageHashes.has(hash), `${post.slug}: duplicate image bytes`);
+  imageHashes.add(hash);
   assert(productSlugs.includes(post.service), post.service);
   assert.equal(post.related.length, 2);
   for (const slug of post.related) assert(slugs.has(slug) && slug !== post.slug, slug);
@@ -42,4 +40,4 @@ for (const post of blogPosts) {
     }
   }
 }
-console.log(`PASS: 20 posts, 60 complete translations, 20 unique images/dates, ${links} inline internal links, related links, services and source references.`);
+console.log(`PASS: ${blogPosts.length} posts, ${blogPosts.length * 3} complete translations, unique images/dates, ${links} inline internal links, related links, services and source references.`);

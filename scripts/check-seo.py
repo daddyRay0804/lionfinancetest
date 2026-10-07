@@ -1,6 +1,8 @@
 """Validate SEO against a running production build: python3 scripts/check-seo.py URL."""
 import json
 import sys
+import subprocess
+from pathlib import Path
 import urllib.request
 import urllib.error
 import xml.etree.ElementTree as ET
@@ -57,7 +59,9 @@ def fetch(path):
 root = ET.fromstring(fetch("/sitemap.xml"))
 ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9", "x": "http://www.w3.org/1999/xhtml"}
 urls = [entry.find("s:loc", ns).text for entry in root]
-assert len(urls) == len(set(urls)) == 103, "Unexpected sitemap URLs"
+expected_paths = json.loads(subprocess.check_output(["node", str(Path(__file__).with_name("blog-test-data.cjs"))], text=True))
+assert len(urls) == len(set(urls)), "Duplicate sitemap URLs"
+assert set(urls) == {CANONICAL + path for path in expected_paths}, "Missing or unexpected sitemap URLs"
 assert not any("/admin" in u or "/login" in u or u.endswith(("/zh/terms", "/kr/terms")) for u in urls)
 titles = set()
 for entry, url in zip(root, urls):
@@ -97,4 +101,4 @@ for path in ["/en/not-a-page", "/en/products/not-a-product", "/en/blog/not-an-ar
     except urllib.error.HTTPError as error:
         assert error.code == 404, (path, error.code)
 assert CANONICAL + "/sitemap.xml" in fetch("/robots.txt")
-print("PASS: 103 sitemap pages, noindex pages, invalid routes, and robots.txt")
+print(f"PASS: {len(urls)} sitemap pages, noindex pages, invalid routes, and robots.txt")

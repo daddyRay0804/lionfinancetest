@@ -2,6 +2,12 @@
   "generator": "Built-in image_gen (model not exposed; user approved)",
   "assets": [
     {
+      "name": "house-insurance",
+      "source": "exec-2a106a3f-4dc6-45e5-88d8-8b621ae096c5.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: editorial blog header for Lion Finance New Zealand, landscape 3:2, 1536 x 1024. Subject: checking a home's physical exposure before arranging house insurance. A crisp realistic eye-level documentary photograph of a modest New Zealand weatherboard home after light rain, seen from a three-quarter side angle. Clearly visible intact roof gutter and downpipe feeding into a tidy grated surface drain beside the house, wet paved path with subtle reflections, healthy green planting and a simple timber fence. Building, drainage and ground all clearly in focus; no flooding or damage, no implication of a real customer property. Natural soft daylight, white weatherboards, restrained green accents, realistic architectural geometry. No people, no house keys, no paperwork, no miniature houses, no umbrellas, no text, no numbers, no logos, no watermark, no collage. This is an illustrative scene, not evidence that a house is insurable.",
+      "output": "public/blog/house-insurance.webp"
+    },
+    {
       "name": "first-home",
       "source": "exec-c5934c9e-c472-4500-8889-f6a097912022.png",
       "prompt": "Photorealistic landscape New Zealand first-home purchase illustration: house keys on gatepost outside modest weatherboard home, daylight, no text.",

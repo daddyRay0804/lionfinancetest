@@ -1,6 +1,8 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const { chromium } = require("playwright");
+const { blogPosts, blogLabels } = require("./blog-test-data.cjs");
+const latestSlug = blogPosts[0].slug;
 const base = process.env.QA_BASE_URL || "http://localhost:3105";
 const output = process.env.QA_OUTPUT || "/tmp/lionfinance-blog-qa";
 
@@ -43,7 +45,7 @@ async function main() {
     for (const lang of ["en", "zh", "kr"]) {
       await page.goto(`${base}/${lang}/blog`);
       await page.locator(".blog-card").first().waitFor();
-      assert.equal(await page.locator(".blog-card").count(), 20);
+      assert.equal(await page.locator(".blog-card").count(), blogPosts.length);
       await layout(`${lang}-desktop-list`); await shot(`${lang}-desktop-list`); await axe(`${lang}-desktop-list`);
       const links = await page.locator(".blog-card > a").evaluateAll(nodes => nodes.map(n => n.getAttribute("href")));
       for (const href of links) {
@@ -63,7 +65,7 @@ async function main() {
         await page.setViewportSize({ width: 1440, height: 1000 });
         report.articleChecks++;
       }
-      await page.goto(`${base}/${lang}/blog/first-home-roadmap-nz`);
+      await page.goto(`${base}/${lang}/blog/${latestSlug}`);
       await shot(`${lang}-desktop-article`); await axe(`${lang}-desktop-article`);
       await page.setViewportSize({ width: 390, height: 844 });
       await shot(`${lang}-mobile-article`, true); await axe(`${lang}-mobile-article`);
@@ -79,13 +81,13 @@ async function main() {
       await page.goto(`${base}/${lang}/blog`);
       await layout(`${lang}-mobile-list`); await shot(`${lang}-mobile-list`);
       await page.locator('[role="group"] button').last().click();
-      assert.equal(await page.locator(".blog-card").count(), 4);
+      assert.equal(await page.locator(".blog-card").count(), blogPosts.filter(post => post.category === "business").length);
       await page.locator("#blog-search").fill("zzzz-no-such-article");
       assert.equal(await page.locator(".blog-card").count(), 0);
       await page.locator('main section > div.text-center button').click();
-      assert.equal(await page.locator(".blog-card").count(), 20);
+      assert.equal(await page.locator(".blog-card").count(), blogPosts.length);
       await page.locator("#blog-search").fill("KiwiSaver");
-      assert.equal(await page.locator(".blog-card").count(), 1);
+      assert.equal(await page.locator(".blog-card").count(), blogPosts.filter(post => `${post.copy[lang].title} ${post.copy[lang].description} ${blogLabels[lang].categories[post.category]}`.normalize("NFKC").toLocaleLowerCase().includes("kiwisaver")).length);
       await page.locator("#blog-search").fill("");
       await page.getByRole("button", { name: "Open menu", exact: true }).click();
       const nav = page.locator("#mobile-navigation");
@@ -96,22 +98,22 @@ async function main() {
     for (const width of [320, 768, 1024]) {
       await page.setViewportSize({ width, height: 900 });
       await page.goto(`${base}/en/blog`); await layout(`en-list-${width}`);
-      await page.goto(`${base}/kr/blog/renovation-home-loan-top-up`); await layout(`kr-article-${width}`);
+      await page.goto(`${base}/kr/blog/${latestSlug}`); await layout(`kr-article-${width}`);
     }
     await page.setViewportSize({ width: 1440, height: 1000 });
-    await page.goto(`${base}/en/blog/first-home-roadmap-nz`);
+    await page.goto(`${base}/en/blog/${latestSlug}`);
     await page.getByRole("link", { name: "中文", exact: true }).click();
-    await page.waitForURL("**/zh/blog/first-home-roadmap-nz");
+    await page.waitForURL(`**/zh/blog/${latestSlug}`);
     assert.equal(await page.locator("html").getAttribute("lang"), "zh-CN");
     await page.getByRole("link", { name: "한국어", exact: true }).click();
-    await page.waitForURL("**/kr/blog/first-home-roadmap-nz");
+    await page.waitForURL(`**/kr/blog/${latestSlug}`);
     assert.equal(await page.locator("html").getAttribute("lang"), "ko");
     const noJs = await browser.newContext({ javaScriptEnabled: false });
     const crawler = await noJs.newPage();
     for (const lang of ["en", "zh", "kr"]) {
       await crawler.goto(`${base}/${lang}/blog`);
-      assert.equal(await crawler.locator(".blog-card > a").count(), 20);
-      await crawler.goto(`${base}/${lang}/blog/first-home-roadmap-nz`);
+      assert.equal(await crawler.locator(".blog-card > a").count(), blogPosts.length);
+      await crawler.goto(`${base}/${lang}/blog/${latestSlug}`);
       assert((await crawler.locator(".blog-prose").textContent()).length > 400);
     }
     await noJs.close();

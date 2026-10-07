@@ -1,5 +1,15 @@
 # Blog delivery and QA
 
+## Scheduled release: 7 October 2026
+
+- One new topic: `house-insurance-before-buying-nz`, with complete English, Chinese and Korean versions, dated 2026-10-07 and authored by Eric Huang. No future scheduled articles are included.
+- Intent review against all 20 previous English articles: focuses on address-specific insurance confirmation, repair evidence and the insurer/lender/lawyer handover. Previous pre-approval and auction guides mention insurance briefly but do not cover this workflow. Full translations were checked for consistent facts and links.
+- Facts checked against Settled's insurance guide and the Natural Hazards Commission's current previous-claims guidance. The older Settled article's EQC eligibility and coverage statements were not reused. No policy, premium, approval or repair guarantee is made.
+- New built-in generated image: `public/blog/house-insurance.webp`, 1536 x 1024, 278,870 bytes. Prompt and source recorded in the image manifest. Inspected individually and against a contact sheet of all 20 existing images; wet side path/drainage composition is distinct. Additional 64-bit difference-hash comparison had a minimum distance of 16/64 (screening only, not proof of semantic originality). No duplicate image bytes.
+- Tests now derive article counts, category/search results and exact expected sitemap URL sets from typed content. Date checks use the current Auckland date. Unique dates, images, titles, descriptions, minimum content, source and link assertions remain enabled. Browser screenshots, accessibility, language-switch and no-JavaScript tests exercise the newest article.
+- Local production verification passed: lint, build, 21 articles / 63 translations, 138 contextual links, 106 sitemap URLs, 63 browser article checks, 138 layout checks and nine axe scans with no reported violations. Viewports: 1440, 1024, 768, 390 and 320 pixels. New English desktop and Chinese/Korean mobile screenshots visually reviewed; browser reports/screenshots are under `artifacts/blog-qa/2026-10-07/` (ignored by Git).
+- Publication remains conditional on a successful main push and separate live verification. This entry records pre-publication QA, not a claim that Vercel has deployed. Existing dependency and cross-browser testing limitations below remain applicable.
+
 ## Scope
 
 - 20 original guides, each with full English, Chinese and Korean content (60 article URLs).
