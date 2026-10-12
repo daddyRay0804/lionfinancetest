@@ -1,5 +1,14 @@
 # Blog delivery and QA
 
+## Scheduled release: 12 October 2026
+
+- One topic only: `parental-leave-mortgage-budget-nz`, dated 2026-10-12, full English/Chinese/Korean versions, Eric Huang attribution. October now has two scheduled articles; no future-node content was added or backdated.
+- Editorial comparison against all 21 existing topics: this guide covers parental-leave income transitions, a hypothetical four-month cash-gap calculation and return-to-work checks. The refix and extra-payment guides are linked as supporting material, not rewritten. Three-language amounts and caveats match; the example is NZ$4,800 income minus NZ$5,500 outgoings, a NZ$700 monthly shortfall / NZ$2,800 over four months. This is not a benefit amount or lending assessment.
+- Official information reviewed on 12 October: Inland Revenue paid parental leave and Westpac's new-arrival and repayment-reduction guidance. No benefit maximum, rate forecast, automatic repayment-holiday eligibility or individual recommendation is asserted.
+- New built-in generated `public/blog/parental-leave.webp`: 1536 x 1024, 252,156 bytes; original and full prompt in the image manifest. Individually reviewed and compared with all previous images in a contact sheet. Distinct stroller/family-preparation composition; minimum 64-bit difference-hash distance to previous images was 24. Text 8-character-shingle Jaccard screening against old articles peaked at 5.1% English, 3.2% Chinese and 3.5% Korean. These are supporting duplicate screens, not substitutes for editorial/visual review.
+- Passed lint, production build and editorial checks: 22 posts / 66 translations, 147 contextual internal links; all 109 expected sitemap URLs passed local HTTP SEO checks. Browser QA passed 66 article checks, 144 layouts and nine axe scans, plus search, filters, mobile menu, author anchor, TOC, locale switching and no-JavaScript content. English desktop and Chinese/Korean mobile screenshots visually reviewed. Reports: `artifacts/blog-qa/2026-10-12/` (Git-ignored).
+- This is the pre-push QA record; deployment must be separately confirmed after pushing. Existing dependency risks and physical-device/cross-browser limitations below remain unchanged.
+
 ## Scheduled release: 7 October 2026
 
 - One new topic: `house-insurance-before-buying-nz`, with complete English, Chinese and Korean versions, dated 2026-10-07 and authored by Eric Huang. No future scheduled articles are included.

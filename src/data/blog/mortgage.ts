@@ -2,6 +2,97 @@ import type { BlogPost } from "./types";
 
 export const mortgagePosts: BlogPost[] = [
   {
+    slug: "parental-leave-mortgage-budget-nz", date: "2026-10-12", category: "mortgage", image: "parental-leave", service: "home-loans", related: ["mortgage-refix-checklist", "extra-mortgage-repayments"],
+    sources: [
+      { name: "Inland Revenue: Paid parental leave", url: "https://www.ird.govt.nz/paid-parental-leave" },
+      { name: "Westpac: Getting ready for a new arrival", url: "https://www.westpac.co.nz/personal/life-money/couples-family/getting-ready-for-a-new-arrival/" },
+      { name: "Westpac: Reduce your home loan repayments", url: "https://www.westpac.co.nz/home-loans-mortgages/manage/reduce-your-repayments/" },
+    ],
+    copy: {
+      en: { title: "Parental leave and your NZ mortgage: plan for the income gap", description: "Prepare your mortgage budget for parental leave in New Zealand: map income dates, calculate a cash buffer and discuss repayment changes before leave starts.", alt: "Empty green stroller beside a sofa with folded baby clothes and a household planning notebook", body: `A parental-leave mortgage budget needs more than a before-and-after income figure. The tightest weeks may come when one payment stops before another starts, or when childcare begins before the first return-to-work payday. Build a plan around those transitions, not an assumed average month.
+
+## Map the income changes on one timeline
+Inland Revenue sets eligibility and payment rules for paid parental leave. Confirm your own entitlement and expected payments directly; do not budget on an advertised maximum or assume government payments replace your full salary.
+
+Record the last ordinary payday, confirmed employer support, expected leave payments, any unpaid period and the first payday after returning. Label uncertain dates clearly. If more than one parent is taking time away from work, show both income streams without counting the same payment twice. Keep a copy of the information behind each amount so you can revise the plan when arrangements change.
+
+## Calculate the gap without spending the emergency fund twice
+Westpac's family guidance recommends allowing for both initial baby purchases and ongoing costs, including childcare. Put these beside mortgage payments and ordinary household bills rather than burying them in one miscellaneous allowance.
+
+For a hypothetical planning example, suppose confirmed take-home household income is NZ$4,800 a month and planned outgoings, including the mortgage, total NZ$5,500. The gap is NZ$700 monthly, or NZ$2,800 over four months. That is before separate one-off costs and an emergency reserve. These are invented budget figures, not benefit amounts, loan terms or an affordability assessment.
+
+Give planned leave savings and emergency savings separate jobs. Check the lowest projected bank balance, not just whether the total savings cover an average shortfall. A trial month using the proposed budget can reveal overlooked expenses before leave begins.
+
+## Ask for a repayment comparison before changing anything
+Westpac notes that reduced repayments can increase long-term borrowing costs; interest-only payments do not reduce principal. Availability depends on the lender and your circumstances. Parental leave is not automatic permission to stop paying.
+
+Ask your lender for a written comparison of the current schedule and any proposed arrangement: payments during leave, payments afterwards, fees, remaining term and estimated total interest. Do not reduce a required payment until the change is confirmed. If you currently pay extra, use our [extra repayments guide](/blog/extra-mortgage-repayments) to prepare questions about the contractual minimum. If a fixed period expires during leave, add that date to your timeline and use the [refix checklist](/blog/mortgage-refix-checklist).
+
+## Set a review point for the return to work
+Before relying on the plan, agree who will check these items and when:
+- Confirm actual income against the expected payment dates.
+- Recheck childcare and commuting costs using current quotes.
+- Test a later return or fewer working hours as a separate scenario.
+- Contact the lender early if the plan shows a payment may be missed.
+
+Bring the timeline, budget and current loan details to our [home loan team](/products/home-loans). The aim is a manageable transition and a clear route back to sustainable repayments, not simply the smallest payment today. Confirm benefits with Inland Revenue and employment arrangements with your employer. This is general planning information, not a personalised lending recommendation.` },
+      zh: { title: "新西兰育儿假与房贷：提前规划收入缺口", description: "育儿假前如何安排新西兰房贷预算：梳理收入到账日期、计算资金缓冲，并在休假前确认还款调整及返岗后的支出。", alt: "空置的绿色婴儿推车，旁边沙发上有叠好的婴儿衣物，桌上放着家庭计划本", body: `育儿假期间的房贷预算，不能只比较休假前后的月收入。资金最紧张的时候，可能是一笔收入结束、下一笔尚未到账，或托育已经开始、返岗后的第一笔工资还没发。应围绕这些衔接阶段规划，而不是只看假设的平均月份。
+
+## 把收入变化放在同一条时间线上
+Inland Revenue 规定带薪育儿假补贴的资格与支付规则。请直接核实自己的资格和预计款项，不要按宣传中的最高金额做预算，也不要假定政府补贴会完全替代工资。
+
+记录最后一次正常发薪、已确认的雇主支持、预计育儿假款项、任何无薪阶段以及返岗后的首次发薪日期。不确定的日期要明确标注。如果两位家长都会暂时离岗，请分别列出收入，避免把同一笔款项重复计算。保留每个金额的依据，以便安排变化时修订计划。
+
+## 计算缺口，不要重复使用应急资金
+Westpac 的家庭财务指南建议同时考虑婴儿用品的一次性购买和包括托育在内的持续支出。请把这些费用与房贷和日常账单并列，不要全部塞进一个笼统的杂费预算。
+
+以下仅为假设的规划示例：家庭已确认的税后收入每月为 4,800 新西兰元，包含房贷在内的计划支出为 5,500 元，每月缺口就是 700 元，四个月合计 2,800 元。这还不包含单独的一次性支出和应急储备。这些是虚构的预算数字，并非补贴标准、贷款条款或偿付能力评估。
+
+让计划用于休假的储蓄和应急储蓄各司其职。除了看总储蓄能否覆盖平均缺口，还要检查预计银行余额的最低点。休假前按拟定预算试行一个月，有助于发现遗漏的费用。
+
+## 调整前先取得还款方案对比
+Westpac 提醒，降低还款额可能增加长期借款成本；只付利息并不会减少本金。能否调整取决于贷款机构及个人情况。育儿假并不意味着可以自动停止还款。
+
+请银行书面对比现有及拟议安排，包括休假期间与之后的还款、费用、剩余期限和预计总利息。在变更确认前，不要自行减少合同要求的还款。如果目前有额外还款，可参考[额外还款指南](/blog/extra-mortgage-repayments)，准备关于合同最低还款额的问题。如果固定利率期将在休假期间结束，请将日期加入时间线，并使用[利率重订清单](/blog/mortgage-refix-checklist)。
+
+## 为返岗阶段设定复核时间
+依赖这份计划之前，请明确由谁、何时检查以下事项：
+- 将实际收入与预计到账日期核对。
+- 根据当前报价重新检查托育与通勤费用。
+- 单独测算延后返岗或减少工作时数的情况。
+- 如果预测可能出现漏还，请提前联系银行。
+
+与我们的[房贷团队](/products/home-loans)沟通时，可带上时间线、预算和现有贷款明细。目标是平稳过渡，并明确如何恢复可持续的还款，而不只是追求今天最低的月供。补贴事宜请向 Inland Revenue 核实，工作安排请与雇主确认。本文仅为一般规划信息，不构成个性化贷款建议。` },
+      kr: { title: "뉴질랜드 육아휴직과 모기지: 소득 공백을 미리 계획하세요", description: "뉴질랜드 육아휴직 전 모기지 예산을 준비하세요. 소득 입금일, 현금 여유분, 상환 변경과 복직 후 비용을 함께 점검합니다.", alt: "접어 둔 아기 옷이 있는 소파 옆의 빈 녹색 유모차와 가계 계획 공책", body: `육아휴직 중 모기지 예산은 휴직 전후 월 소득을 비교하는 것만으로 충분하지 않습니다. 한 지급이 끝나고 다음 지급이 시작되기 전, 또는 복직 후 첫 급여를 받기 전에 보육비가 발생하는 시기가 가장 빠듯할 수 있습니다. 평균적인 한 달보다 이런 전환 시점을 중심으로 계획하세요.
+
+## 소득 변화를 하나의 일정표에 표시하세요
+Inland Revenue는 유급 육아휴직 급여의 자격과 지급 규정을 정합니다. 본인의 자격과 예상 지급액을 직접 확인하세요. 안내된 최대 금액을 예산에 넣거나 정부 급여가 기존 임금을 전부 대체한다고 가정하지 마세요.
+
+마지막 정규 급여일, 확인된 고용주 지원, 예상 육아휴직 급여, 무급 기간과 복직 후 첫 급여일을 적으세요. 불확실한 날짜는 표시해 두세요. 두 부모 모두 일을 쉬는 기간이 있다면 소득을 각각 적되 같은 지급액을 중복 계산하지 마세요. 각 금액의 근거를 보관하면 일정이 바뀔 때 계획을 수정하기 쉽습니다.
+
+## 비상자금을 중복 계산하지 않고 부족액을 구하세요
+Westpac의 가족 재정 안내는 아기 용품의 초기 구매비와 보육비 등 지속적인 비용을 함께 고려하도록 권합니다. 이를 모기지와 일상 청구서 옆에 별도로 기록하고, 하나의 막연한 기타 비용에 넣지 마세요.
+
+가상의 계획 예로, 확인된 가계 세후 소득이 월 NZ$4,800이고 모기지를 포함한 예정 지출이 NZ$5,500이라면 월 부족액은 NZ$700, 네 달 동안은 NZ$2,800입니다. 별도의 일회성 비용과 비상 예비금은 아직 포함되지 않았습니다. 이 수치는 가상의 예산이며 급여 지급 기준, 대출 조건이나 상환능력 평가가 아닙니다.
+
+휴직에 쓰기로 한 저축과 비상저축의 역할을 구분하세요. 총저축으로 평균 부족액을 충당할 수 있는지만 보지 말고 예상 계좌 잔액의 최저점도 확인하세요. 휴직 전에 한 달간 예정 예산대로 생활해 보면 놓친 지출을 찾는 데 도움이 됩니다.
+
+## 변경하기 전에 상환 비교표를 요청하세요
+Westpac은 상환액을 낮추면 장기 차입 비용이 늘 수 있으며 이자만 납부하면 원금이 줄지 않는다고 설명합니다. 변경 가능 여부는 금융기관과 개인 상황에 따라 다릅니다. 육아휴직 자체가 상환 중단을 허용하는 것은 아닙니다.
+
+금융기관에 현재 일정과 제안된 방식의 서면 비교를 요청하세요. 휴직 중과 이후의 상환액, 수수료, 남은 기간과 예상 총이자를 포함해야 합니다. 변경이 확인되기 전에는 계약상 요구되는 납부액을 임의로 줄이지 마세요. 현재 추가 상환 중이라면 [추가 상환 가이드](/blog/extra-mortgage-repayments)를 읽고 계약상 최소 상환액에 관해 질문하세요. 휴직 중 고정금리 기간이 끝난다면 일정표에 날짜를 넣고 [금리 재약정 체크리스트](/blog/mortgage-refix-checklist)를 활용하세요.
+
+## 복직 시점의 재점검 일정을 정하세요
+계획에 의존하기 전에 다음 항목을 누가 언제 확인할지 정하세요.
+- 실제 소득과 예상 입금일을 대조합니다.
+- 현재 견적으로 보육비와 통근비를 다시 확인합니다.
+- 복직이 늦어지거나 근무시간이 줄어드는 경우를 별도로 계산합니다.
+- 상환을 놓칠 가능성이 보이면 금융기관에 미리 연락합니다.
+
+[주택 대출팀](/products/home-loans)에 일정표, 예산과 현재 대출 내역을 가져오세요. 목표는 당장의 최저 납부액만 찾는 것이 아니라 무리 없이 전환기를 지나 지속 가능한 상환으로 돌아가는 경로를 정하는 것입니다. 급여 지원은 Inland Revenue에, 근무 계획은 고용주에게 확인하세요. 이 글은 일반적인 계획 정보이며 개인별 대출 추천이 아닙니다.` },
+    },
+  },
+  {
     slug: "fixed-or-floating-mortgage", date: "2026-03-27", category: "mortgage", image: "fixed-floating", service: "home-loans", related: ["mortgage-refix-checklist", "offset-and-revolving-credit"],
     sources: [{ name: "Sorted: Mortgage types in New Zealand", url: "https://sorted.org.nz/guides/home-buying/mortgage-types/" }],
     copy: {

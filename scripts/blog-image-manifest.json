@@ -2,6 +2,12 @@
   "generator": "Built-in image_gen (model not exposed; user approved)",
   "assets": [
     {
+      "name": "parental-leave",
+      "source": "exec-82b2f8e1-ae85-4309-bdf0-f06d5fb4e0a0.png",
+      "prompt": "Use case: photorealistic-natural. Asset: one editorial photograph for a New Zealand blog about planning mortgage cash flow during parental leave. Landscape 3:2, 1536x1024. A modest bright lived-in family living room, an empty modern baby stroller with dark green fabric parked safely beside a light grey sofa, folded baby clothes neatly on one sofa cushion, a closed plain household planning notebook and pen on a small side table. Wide eye-level composition, stroller fully visible and anatomically plausible with correct wheels, coherent furniture, natural soft daylight, crisp editorial photography. White walls, green accents, no luxury staging. No people or babies, no crib, no text, no numbers, no logos, no watermarks, no house models, no keys, no coins, no calendar, no collage. Illustration of family preparation only, not a real client case study.",
+      "output": "public/blog/parental-leave.webp"
+    },
+    {
       "name": "house-insurance",
       "source": "exec-2a106a3f-4dc6-45e5-88d8-8b621ae096c5.png",
       "prompt": "Use case: photorealistic-natural. Asset type: editorial blog header for Lion Finance New Zealand, landscape 3:2, 1536 x 1024. Subject: checking a home's physical exposure before arranging house insurance. A crisp realistic eye-level documentary photograph of a modest New Zealand weatherboard home after light rain, seen from a three-quarter side angle. Clearly visible intact roof gutter and downpipe feeding into a tidy grated surface drain beside the house, wet paved path with subtle reflections, healthy green planting and a simple timber fence. Building, drainage and ground all clearly in focus; no flooding or damage, no implication of a real customer property. Natural soft daylight, white weatherboards, restrained green accents, realistic architectural geometry. No people, no house keys, no paperwork, no miniature houses, no umbrellas, no text, no numbers, no logos, no watermark, no collage. This is an illustrative scene, not evidence that a house is insurable.",
